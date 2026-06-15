@@ -1,0 +1,146 @@
+:root {
+  --ink: #171717;
+  --line: #dedede;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: #fff;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  background: #fff;
+  font-family: "Manrope", Arial, sans-serif;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.45rem 2rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.site-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+main {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 5.5rem 2rem 2rem;
+}
+
+.hero {
+  display: grid;
+  width: min(92rem, 94vw);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(4.5rem, 7vw, 8rem);
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.4rem, 5.2vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.title--left {
+  justify-self: end;
+}
+
+.title--right {
+  justify-self: start;
+}
+
+.plan {
+  width: clamp(9rem, 16vw, 15rem);
+  aspect-ratio: 0.72;
+  animation: rotate-plan 18s linear infinite;
+}
+
+.plan img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+@keyframes rotate-plan {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 1.25rem 1rem;
+  }
+
+  main {
+    padding-inline: 1rem;
+  }
+
+  .hero {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1.8rem;
+    justify-items: center;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+    letter-spacing: -0.045em;
+  }
+
+  .title--left,
+  .title--right {
+    justify-self: center;
+  }
+
+  .title--left {
+    grid-row: 1;
+  }
+
+  .plan {
+    grid-row: 2;
+  }
+
+  .title--right {
+    grid-row: 3;
+  }
+
+  .plan {
+    width: clamp(7rem, 30vw, 9rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan {
+    animation: none;
+  }
+}
