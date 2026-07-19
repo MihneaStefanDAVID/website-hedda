@@ -1,0 +1,19 @@
+---
+layout: base.njk
+mainClass: project-main
+includeScript: false
+---
+<div class="project-header">
+  <h1 class="project-header__title">{{ title }}</h1>
+  <a href="/" class="project-header__back">go back</a>
+</div>
+
+<div class="project-blocks">
+  {% for block in blocks %}
+    {% if block.type == "image_group" %}
+      {% include "partials/image_group.njk" %}
+    {% elif block.type == "text" %}
+      {% include "partials/text.njk" %}
+    {% endif %}
+  {% endfor %}
+</div>

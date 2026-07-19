@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: Hedda Oprea
+description: "Hedda Oprea — architecture portfolio."
+includeScript: true
+---
+<!--
+  SCROLL-DRIVEN HERO
+  The four outlined rectangles (the mark) begin centered in the
+  viewport, gather into a compact centered square, then morph into
+  the exact bounding boxes of the first four project cards below.
+  All motion is scroll-progress driven from script.js — nothing here
+  auto-plays. See script.js CONFIG for the timeline.
+
+  script.js has a hard DOM contract: #project-grid must contain
+  exactly 4 .project-card elements (one mark-rect morphs into each).
+  The "heroProjects" collection in .eleventy.js always takes the
+  first 4 projects by `order` for this reason — if fewer than 4
+  projects exist, the hero animation will not target correctly.
+-->
+<section class="scroll-scene" id="hero-project-transition">
+  <div class="sticky-stage">
+    <div class="mark" aria-hidden="true">
+      <div class="mark-rect" data-index="0"></div>
+      <div class="mark-rect" data-index="1"></div>
+      <div class="mark-rect" data-index="2"></div>
+      <div class="mark-rect" data-index="3"></div>
+    </div>
+
+    <div class="project-grid" id="project-grid">
+      {% for project in collections.heroProjects %}
+      <a class="project-card" data-index="{{ loop.index0 }}" href="/projects/{{ project.fileSlug }}/" aria-label="{{ project.data.title }}">
+        <span class="project-card__frame">
+          <img
+            class="project-card__image"
+            src="{{ project.data.cover }}"
+            alt=""
+            loading="eager"
+          />
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="scroll-hint" aria-hidden="true">scroll</p>
+  </div>
+</section>
+
+<!-- Remaining projects continue in normal document flow. -->
+<section class="remaining-projects" aria-label="More projects">
+  <div class="project-grid project-grid--static">
+    {% for project in collections.remainingProjects %}
+    <a class="project-card" href="/projects/{{ project.fileSlug }}/" aria-label="{{ project.data.title }}">
+      <span class="project-card__frame">
+        <img class="project-card__image" src="{{ project.data.cover }}" alt="" loading="lazy" />
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>

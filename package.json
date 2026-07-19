@@ -1,0 +1,28 @@
+{
+  "name": "hedda-oprea-website",
+  "version": "1.0.0",
+  "description": "Hedda Oprea architecture portfolio",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "cms:local": "decap-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MihneaStefanDAVID/website-hedda.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MihneaStefanDAVID/website-hedda/issues"
+  },
+  "homepage": "https://github.com/MihneaStefanDAVID/website-hedda#readme",
+  "private": "true",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "decap-server": "^3.9.1",
+    "markdown-it": "^14.3.0"
+  }
+}

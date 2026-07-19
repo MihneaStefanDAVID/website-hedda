@@ -1,0 +1,476 @@
+:root {
+  --ink: #171717;
+  --line: #dedede;
+  --paper: #fff;
+
+  /* Scroll scene length — see script.js CONFIG for the matching timeline. */
+  --scene-height: 300vh;
+
+  /* Single shared gap so row spacing reads as uniform everywhere the grid
+     appears — inside the sticky stage, between it and the static grid
+     below, and between the static grid's own rows. */
+  --grid-gap: clamp(14px, 2vw, 28px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Manrope", Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Header                                                            */
+/* ---------------------------------------------------------------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  background: var(--paper);
+}
+
+.site-name {
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------------- */
+/* Scroll scene / sticky stage                                       */
+/* ---------------------------------------------------------------- */
+
+.scroll-scene {
+  position: relative;
+  height: var(--scene-height);
+}
+
+.sticky-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* The geometric mark: four independently animated outlined rectangles.
+   Each rectangle is positioned from the exact center of the stage and
+   moved only with translate + width/height interpolation — never
+   rotated, skewed, or given perspective. */
+.mark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mark-rect {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  border: 1px solid var(--ink);
+  background: transparent;
+  transform-origin: top left;
+  will-change: transform, width, height, opacity;
+}
+
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 40px);
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.4;
+}
+
+/* ---------------------------------------------------------------- */
+/* Project grid                                                      */
+/* ---------------------------------------------------------------- */
+
+.project-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  padding: clamp(96px, 15vh, 150px) clamp(18px, 3vw, 46px) var(--grid-gap);
+  align-content: end;
+}
+
+.project-grid--static {
+  position: static;
+  grid-template-rows: repeat(2, auto);
+  row-gap: var(--grid-gap);
+  padding: 0 clamp(18px, 3vw, 46px) clamp(80px, 10vh, 140px);
+}
+
+.project-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  opacity: 0;
+  transform: translateY(40px) scale(0.985);
+  clip-path: inset(46% 46% 46% 46%);
+  will-change: opacity, transform, clip-path;
+}
+
+.project-grid--static .project-card {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
+
+.project-card__frame {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.project-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transform: scale(1.06);
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                         */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  :root {
+    --scene-height: 230vh;
+  }
+
+  .site-header {
+    padding: 1.1rem 1.15rem;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: clamp(90px, 16vh, 130px) clamp(14px, 4vw, 24px) var(--grid-gap);
+  }
+
+  .project-grid--static {
+    grid-template-rows: repeat(4, auto);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Reduced motion: skip the pinned animation entirely                */
+/* ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-scene {
+    height: auto;
+  }
+
+  .sticky-stage {
+    position: static;
+    height: auto;
+    padding-top: clamp(90px, 14vh, 150px);
+  }
+
+  .mark {
+    display: none;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+
+  .project-grid {
+    position: static;
+    padding-top: 0;
+  }
+
+  .project-card {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .project-card__image {
+    transform: none;
+  }
+}
+
+/* Debug mode: reveals measured card target bounding boxes.
+   Toggle with the `d` key, or append ?debug to the URL. */
+.debug-target {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 1px dashed #e0413f;
+  background: rgba(224, 65, 63, 0.06);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ---------------------------------------------------------------- */
+/* Contact page                                                      */
+/*                                                                    */
+/* The hero mark held at rest: no scroll, no morph. Each rectangle is */
+/* a real link, positioned with plain CSS percentages so the exact    */
+/* 00_logo-1.pdf proportions hold at any size without JS.             */
+/* ---------------------------------------------------------------- */
+
+.contact-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vh, 48px);
+  padding: clamp(96px, 15vh, 150px) 1.5rem 4rem;
+}
+
+.contact-mark {
+  /* Same responsive formula as the hero mark's targetHeight in script.js
+     (clamp(vh * 0.4, 200, 380)) — this is meant to read as the same
+     object at the same size, not a resized copy of it. */
+  position: relative;
+  container-type: inline-size;
+  height: clamp(200px, 40vh, 380px);
+  width: auto;
+  aspect-ratio: 411.16 / 477.32;
+}
+
+.contact-rect {
+  position: absolute;
+  box-sizing: border-box;
+  padding: clamp(4px, 3cqw, 10px);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  outline-offset: 4px;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-width 0.15s ease;
+}
+
+.contact-rect__labels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2px, 1.4cqw, 6px);
+  text-align: center;
+}
+
+/* Percentages traced from the same vector rectangles as script.js's
+   BASE_RECTS — top/right/bottom/left of the source mark. */
+.contact-rect--top {
+  left: 35.67%;
+  top: 0%;
+  width: 50.33%;
+  height: 35.54%;
+}
+
+.contact-rect--right {
+  left: 72.72%;
+  top: 20.48%;
+  width: 27.28%;
+  height: 63.86%;
+}
+
+.contact-rect--bottom {
+  left: 35.67%;
+  top: 72.89%;
+  width: 50.33%;
+  height: 27.11%;
+}
+
+/* The left/right rectangles' top edges cross through --top at ~57.6% of
+   its height, and their bottom edges cross through --bottom at ~42.2% of
+   its height. Both are computed the same way as the box geometry itself
+   (percentage of the box's own height), so the label block is confined
+   to the clear side of that line rather than guessing at a padding
+   value that would drift out of sync at different sizes. */
+.contact-rect--top .contact-rect__labels {
+  inset: 0 0 42.37% 0;
+}
+
+.contact-rect--bottom .contact-rect__labels {
+  inset: 42.19% 0 0 0;
+}
+
+.contact-rect--left {
+  left: 0%;
+  top: 20.48%;
+  width: 48.95%;
+  height: 63.85%;
+}
+
+.contact-rect__name {
+  min-width: 0;
+  max-width: 100%;
+  font-size: clamp(0.56rem, 4.6cqw, 0.68rem);
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  opacity: 0.55;
+}
+
+.contact-rect__value {
+  min-width: 0;
+  max-width: 100%;
+  font-size: clamp(0.58rem, 4.8cqw, 0.85rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.contact-rect:hover,
+.contact-rect:focus-visible {
+  z-index: 5;
+  transform: scale(1.035);
+  border-width: 1.5px;
+  background-color: rgba(23, 23, 23, 0.035);
+}
+
+.contact-rect:hover .contact-rect__value,
+.contact-rect:focus-visible .contact-rect__value {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-rect:active {
+  transform: scale(0.985);
+}
+
+/* No hover on touch — show the value permanently instead of gating it
+   behind an interaction that doesn't exist on the device. */
+@media (hover: none) {
+  .contact-rect__value {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.contact-hint {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-rect {
+    transition: background-color 0.25s ease;
+  }
+
+  .contact-rect:hover,
+  .contact-rect:focus-visible {
+    transform: none;
+  }
+
+  .contact-rect__value {
+    transition: opacity 0.25s ease;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Project detail page                                               */
+/*                                                                    */
+/* Renders each project's content blocks (Image Group / Text) as a    */
+/* single flexible vertical stack, in whatever order and quantity     */
+/* the owner arranged them in — no fixed two-column template.         */
+/* ---------------------------------------------------------------- */
+
+.project-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(96px, 15vh, 150px) clamp(18px, 3vw, 46px) clamp(60px, 10vh, 120px);
+}
+
+.project-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(32px, 6vh, 64px);
+}
+
+.project-header__title {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.project-header__back {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.project-header__back:hover,
+.project-header__back:focus-visible {
+  opacity: 1;
+}
+
+.project-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 5vh, 56px);
+}
+
+.project-block--images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--grid-gap);
+}
+
+.project-block__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-block--text {
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.project-block--text :first-child {
+  margin-top: 0;
+}
+
+.project-block--text :last-child {
+  margin-bottom: 0;
+}
