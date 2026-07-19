@@ -1,11 +1,11 @@
 ---
-title: "Project Two"
+title: Project Two
 order: 2
-cover: "/assets/projects/02-placeholder.svg"
+cover: chatgpt-image-apr-19-2026-05_52_09-pm.png
 blocks:
-  - type: "image_group"
+  - type: image_group
     images:
-      - image: "/assets/projects/02-placeholder.svg"
-  - type: "text"
-    body: "Placeholder description for Project Two. Replace this from the admin panel."
+      - image: /assets/projects/02-placeholder.svg
+  - type: text
+    body: Placeholder description for Project Two. Replace this from the admin panel.
 ---
