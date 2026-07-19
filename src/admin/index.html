@@ -7,6 +7,111 @@
     <title>Hedda Oprea — Admin</title>
   </head>
   <body>
+    <script src="https://unpkg.com/markdown-it@14/dist/markdown-it.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Live preview for the Projects collection — reuses the site's own
+      // stylesheet and mirrors project.njk's block rendering exactly, so
+      // editing a project looks like the real page, not Decap's generic
+      // default preview (plain serif title, raw unstyled image dump).
+      CMS.registerPreviewStyle("/styles.css");
+
+      var md = window.markdownit({ html: false, breaks: true, linkify: true });
+
+      function resolveImage(getAsset, path) {
+        if (!path) return "";
+        var asset = getAsset(path);
+        return asset ? asset.toString() : "";
+      }
+
+      var ProjectPreview = createClass({
+        render: function () {
+          var entry = this.props.entry;
+          var getAsset = this.props.getAsset;
+          var title = entry.getIn(["data", "title"]) || "";
+          var blocksData = entry.getIn(["data", "blocks"]);
+          var blocks = blocksData ? blocksData.toJS() : [];
+
+          function renderBlock(block, i) {
+            if (block.type === "image_group") {
+              var layout = block.layout || "Full width";
+              var layoutClass =
+                layout === "Left"
+                  ? "project-block--images-left"
+                  : layout === "Right"
+                  ? "project-block--images-right"
+                  : layout === "Center"
+                  ? "project-block--images-center"
+                  : "project-block--images-full";
+              var images = (block.images || []).map(function (img, j) {
+                return h("img", {
+                  key: j,
+                  className: "project-block__image",
+                  src: resolveImage(getAsset, img.image),
+                });
+              });
+              return h(
+                "div",
+                { key: i, className: "project-block project-block--images " + layoutClass },
+                images
+              );
+            }
+
+            if (block.type === "text") {
+              return h("div", {
+                key: i,
+                className: "project-block project-block--text",
+                dangerouslySetInnerHTML: { __html: md.render(block.body || "") },
+              });
+            }
+
+            if (block.type === "image_text") {
+              var reverseClass = block.position === "Right" ? " project-block--split-reverse" : "";
+              return h(
+                "div",
+                { key: i, className: "project-block project-block--split" + reverseClass },
+                h("img", {
+                  className: "project-block__image",
+                  src: resolveImage(getAsset, block.image),
+                }),
+                h("div", {
+                  className: "project-block--split__text",
+                  dangerouslySetInnerHTML: { __html: md.render(block.body || "") },
+                })
+              );
+            }
+
+            return null;
+          }
+
+          return h(
+            "div",
+            {},
+            h(
+              "header",
+              {
+                className: "site-header",
+                style: { position: "static" },
+              },
+              h("span", { className: "site-name" }, "hedda oprea"),
+              h("span", { className: "contact-link" }, "contact")
+            ),
+            h(
+              "main",
+              { className: "project-main" },
+              h(
+                "div",
+                { className: "project-header" },
+                h("h1", { className: "project-header__title" }, title),
+                h("span", { className: "project-header__back" }, "go back")
+              ),
+              h("div", { className: "project-blocks" }, blocks.map(renderBlock))
+            )
+          );
+        },
+      });
+
+      CMS.registerPreviewTemplate("projects", ProjectPreview);
+    </script>
   </body>
 </html>
