@@ -2,39 +2,38 @@
 title: Project Two
 order: 2
 cover: chatgpt-image-apr-19-2026-05_52_09-pm.png
-blocks:
-  - type: image_group
-    images:
-      - image: /assets/projects/02-placeholder.svg
-  - type: text
-    body: Placeholder description for Project Two. Replace this from the admin
-      panel.dsds
-  - type: image_group
-    layout: Right
-    images:
-      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-  - type: image_text
-    position: Left
-    image: /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-    body: >-
-      *ddasdsadadadann*
+body: >
+  <img src="/assets/projects/02-placeholder.svg"
+  class="project-block__image--full" alt="" />
 
 
-      *dsd*
+  <p>Placeholder description for Project Two. Replace this from the admin
+  panel.dsds</p>
 
 
-      *sds*
+
+  <img src="/assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png"
+  class="project-block__image--wrap-right" alt="" />
+
+  <img src="/assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png"
+  class="project-block__image--wrap-right" alt="" />
 
 
-      *ds*
+  <img src="/assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png"
+  class="project-block__image--wrap-left" alt="" />
 
+  <p><em>ddasdsadadadann</em></p>
 
-      *ds*
+  <p><em>dsd</em></p>
 
+  <p><em>sds</em></p>
 
-      *dddsssdssdsdsdsdsdsdsdsdsdsdsdsdssdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsds*
+  <p><em>ds</em></p>
 
+  <p><em>ds</em></p>
 
-      *ddsdsddddds*
+  <p><em>dddsssdssdsdsdsdsdsdsdsdsdsdsdsdssdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsds</em></p>
+
+  <p><em>ddsdsddddds</em></p>
 ---
+

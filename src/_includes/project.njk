@@ -8,14 +8,4 @@ includeScript: false
   <a href="/" class="project-header__back">go back</a>
 </div>
 
-<div class="project-blocks">
-  {% for block in blocks %}
-    {% if block.type == "image_group" %}
-      {% include "partials/image_group.njk" %}
-    {% elif block.type == "text" %}
-      {% include "partials/text.njk" %}
-    {% elif block.type == "image_text" %}
-      {% include "partials/image_text.njk" %}
-    {% endif %}
-  {% endfor %}
-</div>
+<div class="project-content">{{ body | safe }}</div>

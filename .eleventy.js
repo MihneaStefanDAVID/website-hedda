@@ -1,10 +1,4 @@
-import markdownIt from "markdown-it";
-
-const md = markdownIt({ html: false, breaks: true, linkify: true });
-
 export default function (eleventyConfig) {
-  eleventyConfig.addFilter("markdown", (value) => md.render(value || ""));
-
   // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
   // path, but some paths through the editor (e.g. pasting a bare name from
   // "Copy Name" into "Replace with URL") only save the filename. Normalize

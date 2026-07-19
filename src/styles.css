@@ -483,131 +483,86 @@ a {
   opacity: 1;
 }
 
-.project-blocks {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(28px, 5vh, 56px);
+/* Flowing rich-text project content (replaces the old fixed block system).
+   Plain block flow — not flex/grid — is load-bearing here: floated images
+   (the wrap-left/wrap-right variants below) only float correctly as a
+   normal-flow block child; float is ignored on flex/grid items per spec. */
+.project-content > p,
+.project-content > ul,
+.project-content > ol {
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1.25em;
+  overflow-wrap: break-word;
 }
 
-.project-block--images {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--grid-gap);
+.project-content > h2,
+.project-content > h3 {
+  max-width: 62ch;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 1.5em 0 0.75em;
 }
 
-.project-block__image {
+.project-content > h2 {
+  font-size: 1.3rem;
+}
+
+.project-content > h3 {
+  font-size: 1.1rem;
+}
+
+.project-content > :first-child {
+  margin-top: 0;
+}
+
+.project-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Base image handling — a plain (unclassed) image is a full block on its
+   own line, capped to its container so a resize (TinyMCE writes width as
+   an inline style/attribute) never overflows on a narrow screen. */
+.project-content img {
   display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  margin: 0 0 1.25em;
 }
 
-.project-block--text {
-  max-width: 62ch;
-  font-size: 1rem;
-  line-height: 1.6;
+/* Wrap-left/right — the photo floats and following text wraps around it,
+   sized reasonably by default until manually resized by dragging a handle.
+   Prefixed with .project-content so these beat the base `img` rule above
+   on specificity (both are one class, but this one is two). */
+.project-content .project-block__image--wrap-left {
+  float: left;
+  max-width: min(340px, 100%);
+  margin: 0 1.75rem 1rem 0;
 }
 
-.project-block--text :first-child {
-  margin-top: 0;
+.project-content .project-block__image--wrap-right {
+  float: right;
+  max-width: min(340px, 100%);
+  margin: 0 0 1rem 1.75rem;
 }
 
-.project-block--text :last-child {
-  margin-bottom: 0;
-}
-
-/* Text alignment variants — Left is the default position/alignment;
-   Center/Right also shift the block itself, matching how the Image
-   Group layout variants position off to one side. */
-.project-block--text-left {
-  margin-right: auto;
-}
-
-.project-block--text-center {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.project-block--text-right {
-  margin-left: auto;
-  text-align: right;
-}
-
-/* Image Group layout variants — Left/Right/Center narrow the group and
-   position it to one side; Full width (the default, no extra class) is
-   the plain full-column grid above. */
-.project-block--images-left,
-.project-block--images-right,
-.project-block--images-center {
-  max-width: 60%;
-}
-
-.project-block--images-left {
-  margin-right: auto;
-}
-
-.project-block--images-right {
-  margin-left: auto;
-}
-
-.project-block--images-center {
+.project-content .project-block__image--center {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Image + Text — photo and paragraph side by side; --split-reverse puts
-   the photo on the right instead of the left. Stacks on narrow screens.
-   Grid (not flex) so the image's intrinsic aspect ratio can't blow out
-   its track — minmax(0, 1fr) is the standard guard for that. */
-.project-block--split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: var(--grid-gap);
-}
-
-.project-block--split-reverse .project-block__image {
-  order: 2;
-}
-
-.project-block--split-reverse .project-block--split__text {
-  order: 1;
-}
-
-.project-block--split__text {
-  max-width: 62ch;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.project-block--split__text :first-child {
-  margin-top: 0;
-}
-
-.project-block--split__text :last-child {
-  margin-bottom: 0;
+/* Full width is a deliberate override of any prior manual resize (TinyMCE
+   sets width via an inline style, which normally beats a class rule). */
+.project-block__image--full {
+  width: 100% !important;
 }
 
 @media (max-width: 640px) {
-  .project-block--images-left,
-  .project-block--images-right,
-  .project-block--images-center {
+  .project-block__image--wrap-left,
+  .project-block__image--wrap-right {
+    float: none;
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .project-block--split {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-
-  /* Always image-on-top on narrow screens, regardless of --split-reverse. */
-  .project-block--split .project-block__image {
-    order: 1;
-  }
-
-  .project-block--split .project-block--split__text {
-    order: 2;
+    margin: 0 0 1.25em;
   }
 }

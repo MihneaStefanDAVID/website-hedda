@@ -62,53 +62,7 @@ collections:
         default: 0
         hint: "Controls left-to-right / grid position on the main page. Lower numbers come first — the first 4 become the animated hero cards."
       - { label: "Cover Image", name: "cover", widget: "image" }
-      - label: "Content Blocks"
-        name: "blocks"
-        widget: "content_blocks"
-        hint: "Add as many blocks as you like, in any order — Image Group for one or more photos together (choose how they sit on the page), Text for a paragraph, Image + Text to place a photo and a paragraph side by side."
-        types:
-          - label: "Image Group"
-            name: "image_group"
-            widget: "object"
-            summary: "{{fields.layout}} — {{fields.images}} image(s)"
-            fields:
-              - label: "Layout"
-                name: "layout"
-                widget: "select"
-                options: ["Full width", "Left", "Right", "Center"]
-                default: "Full width"
-                required: false
-                hint: "Full width spans the whole page; Left/Right/Center show the photo(s) narrower and positioned to that side."
-              - label: "Images"
-                name: "images"
-                widget: "list"
-                field: { label: "Image", name: "image", widget: "image" }
-                max: 6
-                hint: "Up to 6 photos in one row. Need more? Add another Image Group block below."
-          - label: "Text"
-            name: "text"
-            widget: "object"
-            summary: "{{fields.align}} — {{fields.body}}"
-            fields:
-              - label: "Align"
-                name: "align"
-                widget: "select"
-                options: ["Left", "Center", "Right"]
-                default: "Left"
-                required: false
-                hint: "Where the paragraph sits on the page."
-              - { label: "Body", name: "body", widget: "markdown" }
-          - label: "Image + Text"
-            name: "image_text"
-            widget: "object"
-            summary: "{{fields.position}} — {{fields.body}}"
-            fields:
-              - label: "Image Position"
-                name: "position"
-                widget: "select"
-                options: ["Left", "Right"]
-                default: "Left"
-                required: false
-                hint: "Which side the photo sits on; the text fills the other side. Stacks (photo on top) on narrow/mobile screens."
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Text", name: "body", widget: "markdown" }
+      - label: "Content"
+        name: "body"
+        widget: "rich_editor"
+        hint: "Type your text, and use the toolbar to insert photos, headings, bold, and alignment. Click a photo to resize it by dragging a corner, or double-click it to wrap text around it (left/right), center it, or make it full width."

@@ -6,411 +6,191 @@
     <meta name="robots" content="noindex" />
     <title>Hedda Oprea — Admin</title>
     <style>
-      /* Scoped styling for the custom content-blocks editor widget only —
-         this is admin tooling chrome, separate from the public site's
-         styles.css (which is loaded for the live-preview pane instead). */
-      .cb-root {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .cb-block {
+      /* Scoped styling for the custom rich-text editor widget only — this
+         is admin tooling chrome, separate from the public site's
+         styles.css (which the TinyMCE iframe also loads directly, via
+         content_css below, so editing looks like the real page). */
+      .rt-root {
         border: 1px solid #dedede;
         border-radius: 4px;
-        background: #fff;
-      }
-
-      .cb-block.cb-block--drag-over {
-        border-color: #3b82f6;
-      }
-
-      .cb-block__header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        background: #f5f5f5;
-        border-bottom: 1px solid #dedede;
-        border-radius: 4px 4px 0 0;
-        cursor: grab;
-      }
-
-      .cb-block__handle {
-        font-size: 1.1rem;
-        line-height: 1;
-        color: #888;
-        user-select: none;
-      }
-
-      .cb-block__label {
-        flex: 1;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #333;
-      }
-
-      .cb-block__delete {
-        border: 1px solid #e0413f;
-        background: #fff;
-        color: #e0413f;
-        border-radius: 3px;
-        font-size: 0.72rem;
-        padding: 4px 9px;
-        cursor: pointer;
-      }
-
-      .cb-block__delete:hover {
-        background: #e0413f;
-        color: #fff;
-      }
-
-      .cb-block__fields {
-        padding: 14px 12px;
-      }
-
-      .cb-empty {
-        padding: 20px 12px;
-        text-align: center;
-        color: #888;
-        font-size: 0.85rem;
-        border: 1px dashed #dedede;
-        border-radius: 4px;
-      }
-
-      .cb-add-bar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding-top: 4px;
-      }
-
-      .cb-add-btn {
-        border: 1px solid #333;
-        background: #333;
-        color: #fff;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        padding: 8px 14px;
-        cursor: pointer;
-      }
-
-      .cb-add-btn:hover {
-        background: #555;
       }
     </style>
   </head>
   <body>
-    <script src="https://unpkg.com/markdown-it@14/dist/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       // ------------------------------------------------------------------
-      // Custom "content_blocks" widget — replaces the native "list with
-      // variable types" editor for a project's `blocks` field with a
-      // clearer add/reorder/delete UI. Each block's actual fields (image
-      // pickers, text areas, alignment selects) are rendered by delegating
-      // to Decap's own built-in "object" widget control via
-      // CMS.getWidget("object").control — so native image upload/media
-      // library keeps working exactly as it always has; only the outer
-      // chrome (add block / drag reorder / delete) is custom here.
+      // Custom "rich_editor" widget — a Word-like editor for a project's
+      // `content` field: type text, insert images inline, resize them by
+      // dragging a handle, wrap text around them left/right/center, format
+      // text (headings/bold/italic/lists). Backed by TinyMCE (self-hosted,
+      // license_key: "gpl" — free, no account, no build step, matching how
+      // Decap CMS is loaded above). Stores raw HTML.
+      //
+      // Image insertion deliberately does NOT use TinyMCE's own upload
+      // flow. It reuses Decap's existing media library (the exact same
+      // DecapBridge-backed upload/browse pipeline the old widget used) via
+      // the standard onOpenMediaLibrary/mediaPaths contract every
+      // registered widget control receives — confirmed against Decap's own
+      // source (packages/decap-cms-widget-file/src/withFileControl.js,
+      // the native Image widget's own control): generate a controlID,
+      // call onOpenMediaLibrary({controlID, forImage: true, ...}), then
+      // watch props.mediaPaths.get(controlID) in componentDidUpdate for
+      // the picked path. No new upload code, no new risk to the tested
+      // upload pipeline.
       // ------------------------------------------------------------------
-      var TYPE_KEY = "type";
+      var RICH_TEXT_IMAGE_CLASSES = [
+        { title: "None", value: "" },
+        { title: "Wrap left", value: "project-block__image--wrap-left" },
+        { title: "Wrap right", value: "project-block__image--wrap-right" },
+        { title: "Centered", value: "project-block__image--center" },
+        { title: "Full width", value: "project-block__image--full" },
+      ];
 
-      var ContentBlocksControl = createClass({
-        getBlockTypes: function () {
-          var types = this.props.field.get("types");
-          return types ? types.toArray() : [];
-        },
-
-        findTypeConfig: function (typeName) {
-          var types = this.getBlockTypes();
-          for (var i = 0; i < types.length; i++) {
-            if (types[i].get("name") === typeName) return types[i];
+      var RichEditorControl = createClass({
+        getControlID: function () {
+          if (!this._controlID) {
+            this._controlID = "rt_" + Math.random().toString(36).slice(2);
           }
-          return null;
+          return this._controlID;
         },
 
-        // Derive Map/List constructors from Decap's own already-parsed
-        // Immutable data (this.props.field, which Decap built from
-        // config.yml) instead of a separately-loaded Immutable.js copy.
-        // A block built with a different module instance renders fine in
-        // our own widget, but isn't recognized as real Immutable data by
-        // Decap's save/publish pipeline, so it silently fails to persist.
-        nativeListClass: function () {
-          return this.props.field.get("types").constructor;
+        // The Widget wrapper every registered control renders through only
+        // re-renders on value/classNameWrapper/hasActiveStyle changes by
+        // default — it ignores mediaPaths entirely unless the control
+        // defines its own shouldComponentUpdate (which the wrapper detects
+        // and defers to). Without this, componentDidUpdate below would
+        // never fire after picking an image, exactly like the native Image
+        // widget's own withFileControl.js has to do. No need to track "last
+        // inserted path" separately: componentDidUpdate clears mediaPaths
+        // via onRemoveInsertedMedia right after consuming it, so a truthy
+        // mediaPath here always means a fresh, not-yet-consumed selection —
+        // that also means picking the same image twice in separate actions
+        // still inserts it both times, as it should.
+        shouldComponentUpdate: function (nextProps) {
+          if (this.props.value !== nextProps.value) return true;
+          if (nextProps.mediaPaths.get(this.getControlID())) return true;
+          return false;
         },
 
-        nativeMapClass: function () {
-          return this.props.field.constructor;
-        },
-
-        getValue: function () {
-          if (this.props.value) return this.props.value;
-          var List = this.nativeListClass();
-          return List();
-        },
-
-        handleAddBlock: function (typeConfig) {
-          var typeName = typeConfig.get("name");
-          var fields = typeConfig.get("fields");
-          var Map = this.nativeMapClass();
-          var newBlock = { type: typeName };
-          if (fields) {
-            fields.forEach(function (f) {
-              var def = f.get("default");
-              if (def !== undefined) newBlock[f.get("name")] = def;
-            });
-          }
-          var newBlockMap = Map(newBlock);
-          this.props.onChange(this.getValue().push(newBlockMap));
-        },
-
-        handleDelete: function (index) {
-          this.props.onChange(this.getValue().delete(index));
-        },
-
-        handleBlockChange: function (index, newBlockValue) {
-          this.props.onChange(this.getValue().set(index, newBlockValue));
-        },
-
-        handleDragStart: function (index, e) {
-          this._dragIndex = index;
-          e.dataTransfer.effectAllowed = "move";
-          try {
-            e.dataTransfer.setData("text/plain", String(index));
-          } catch (err) {
-            // some browsers require setData to be called; harmless if it's not needed
-          }
-        },
-
-        handleDragOver: function (e) {
-          e.preventDefault();
-        },
-
-        handleDrop: function (index, e) {
-          e.preventDefault();
-          var from = this._dragIndex;
-          this._dragIndex = undefined;
-          if (from === undefined || from === index) return;
-          var value = this.getValue();
-          var item = value.get(from);
-          var withoutItem = value.delete(from);
-          var insertAt = from < index ? index - 1 : index;
-          this.props.onChange(withoutItem.insert(insertAt, item));
-        },
-
-        renderBlock: function (blockValue, index) {
-          var typeName = blockValue.get(TYPE_KEY);
-          var typeConfig = this.findTypeConfig(typeName);
-          if (!typeConfig) return null;
-
-          var ObjectControl = CMS.getWidget("object").control;
+        componentDidMount: function () {
           var self = this;
-          // ObjectControl requires `onChangeObject`, called by its nested
-          // EditorControls as onChangeObject(fieldConfig, newFieldValue,
-          // newMetadata) — one nested field at a time. We merge that single
-          // field change into this block's own value, then hand the whole
-          // updated block up to handleBlockChange.
-          var childProps = Object.assign({}, this.props, {
-            field: typeConfig,
-            value: blockValue,
-            forID: this.props.forID + "_block_" + index,
-            classNameWrapper: "cb-block__fields",
-            onChangeObject: function (nestedField, newFieldValue) {
-              // Read the block's value fresh at call time (self.props.value
-              // is always current) rather than closing over the blockValue
-              // argument from this render pass — if two field changes on the
-              // same block happen before React re-renders between them, a
-              // stale closure here would let the second overwrite the first.
-              var fieldName = nestedField.get("name");
-              var current = self.getValue().get(index);
-              var updated = current.set(fieldName, newFieldValue).set(TYPE_KEY, typeName);
-              self.handleBlockChange(index, updated);
+          tinymce.init({
+            target: this._textareaEl,
+            license_key: "gpl",
+            height: 480,
+            menubar: false,
+            branding: false,
+            plugins: "lists link image",
+            toolbar:
+              "undo redo | blocks | bold italic | bullist numlist | alignleft aligncenter alignright | link insertimage | removeformat",
+            image_class_list: RICH_TEXT_IMAGE_CLASSES,
+            object_resizing: true,
+            content_css: "/styles.css",
+            body_class: "project-content",
+            // Without these, TinyMCE rewrites absolute paths like
+            // /assets/uploads/x.png into a path relative to THIS admin
+            // page's own URL (e.g. "../assets/uploads/x.png") — correct
+            // here, but wrong once rendered on the actual project page at
+            // a different URL. Keep the absolute paths exactly as inserted.
+            relative_urls: false,
+            convert_urls: false,
+            remove_script_host: false,
+            setup: function (editor) {
+              self._editor = editor;
+              editor.ui.registry.addButton("insertimage", {
+                icon: "image",
+                tooltip: "Insert image",
+                onAction: function () {
+                  self.handleInsertImageClick();
+                },
+              });
+              editor.on("init", function () {
+                editor.setContent(self.props.value || "");
+              });
+              editor.on("change input undo redo", function () {
+                self.props.onChange(editor.getContent());
+              });
             },
           });
+        },
 
-          return h(
-            "div",
-            {
-              key: index,
-              className: "cb-block",
-              onDragOver: this.handleDragOver,
-              onDrop: function (e) {
-                self.handleDrop(index, e);
-              },
-            },
-            h(
-              "div",
-              {
-                className: "cb-block__header",
-                draggable: true,
-                onDragStart: function (e) {
-                  self.handleDragStart(index, e);
-                },
-              },
-              h("span", { className: "cb-block__handle" }, "⠿"),
-              h("span", { className: "cb-block__label" }, typeConfig.get("label") || typeName),
-              h(
-                "button",
-                {
-                  type: "button",
-                  className: "cb-block__delete",
-                  onClick: function () {
-                    self.handleDelete(index);
-                  },
-                },
-                "Remove"
-              )
-            ),
-            h(ObjectControl, childProps)
-          );
+        componentDidUpdate: function (prevProps) {
+          var mediaPath = this.props.mediaPaths.get(this.getControlID());
+          if (mediaPath) {
+            this.insertImage(mediaPath);
+            this.props.onRemoveInsertedMedia(this.getControlID());
+            return;
+          }
+          // Decap's SPA routing can reuse this same widget instance when
+          // navigating from one entry to another (not a full page reload),
+          // so value can change for a reason other than our own typing.
+          // Only push it into the editor if it's genuinely different from
+          // what's already there — our own onChange echoes value right
+          // back unchanged, and calling setContent then would reset the
+          // cursor to the start on every keystroke.
+          if (this._editor && this.props.value !== prevProps.value) {
+            var current = this._editor.getContent();
+            if (this.props.value !== current) {
+              this._editor.setContent(this.props.value || "");
+            }
+          }
+        },
+
+        componentWillUnmount: function () {
+          if (this._editor) {
+            tinymce.remove(this._editor);
+          }
+          this.props.onRemoveMediaControl(this.getControlID());
+        },
+
+        insertImage: function (path) {
+          var asset = this.props.getAsset(path, this.props.field);
+          var src = asset ? asset.toString() : path;
+          if (this._editor) {
+            this._editor.insertContent('<img src="' + src + '" alt="" />');
+          }
+        },
+
+        handleInsertImageClick: function () {
+          this.props.onOpenMediaLibrary({
+            controlID: this.getControlID(),
+            forImage: true,
+            allowMultiple: false,
+            field: this.props.field,
+          });
         },
 
         render: function () {
-          var value = this.getValue();
-          var blocks = value.toArray ? value.toArray() : [];
-          var types = this.getBlockTypes();
           var self = this;
-
           return h(
             "div",
-            { className: "cb-root" },
-            blocks.length
-              ? h(
-                  "div",
-                  { className: "cb-blocks" },
-                  blocks.map(function (b, i) {
-                    return self.renderBlock(b, i);
-                  })
-                )
-              : h("div", { className: "cb-empty" }, "No blocks yet — add one below."),
-            h(
-              "div",
-              { className: "cb-add-bar" },
-              types.map(function (t, i) {
-                return h(
-                  "button",
-                  {
-                    type: "button",
-                    key: i,
-                    className: "cb-add-btn",
-                    onClick: function () {
-                      self.handleAddBlock(t);
-                    },
-                  },
-                  "+ " + t.get("label")
-                );
-              })
-            )
+            { className: "rt-root" },
+            h("textarea", {
+              ref: function (el) {
+                self._textareaEl = el;
+              },
+              defaultValue: this.props.value || "",
+            })
           );
         },
       });
 
-      CMS.registerWidget("content_blocks", ContentBlocksControl);
+      CMS.registerWidget("rich_editor", RichEditorControl);
 
       // ------------------------------------------------------------------
-      // Live preview for the Projects collection — reuses the site's own
-      // stylesheet and mirrors project.njk's block rendering exactly, so
-      // editing a project looks like the real page, not Decap's generic
-      // default preview (plain serif title, raw unstyled image dump).
+      // Live preview for the Projects collection — the `content` field is
+      // already final HTML (TinyMCE's own output), so the preview just
+      // renders it directly inside the site's real header/page chrome.
       // ------------------------------------------------------------------
       CMS.registerPreviewStyle("/styles.css");
-
-      var md = window.markdownit({ html: false, breaks: true, linkify: true });
-
-      // A just-chosen image isn't written to the repo until the entry is
-      // saved (standard git-backend behavior — the media library only
-      // holds it in memory until then), so it can 404 in this preview and
-      // in Decap's own native thumbnail until you hit Save. Nothing to
-      // resolve here beyond the plain asset path.
-      function resolveImage(getAsset, path) {
-        if (!path) return "";
-        var asset = getAsset(path);
-        return asset ? asset.toString() : "";
-      }
 
       var ProjectPreview = createClass({
         render: function () {
           var entry = this.props.entry;
-          var getAsset = this.props.getAsset;
           var title = entry.getIn(["data", "title"]) || "";
-          var blocksData = entry.getIn(["data", "blocks"]);
-          var blocks = blocksData ? blocksData.toJS() : [];
-
-          function renderBlock(block, i) {
-            if (!block) return null;
-
-            if (block.type === "image_group") {
-              var layout = block.layout || "Full width";
-              var layoutClass =
-                layout === "Left"
-                  ? "project-block--images-left"
-                  : layout === "Right"
-                  ? "project-block--images-right"
-                  : layout === "Center"
-                  ? "project-block--images-center"
-                  : "project-block--images-full";
-              // A freshly-added "Add images" slot with no file chosen yet
-              // is null, not {image: undefined} — guard against it so the
-              // whole preview doesn't crash mid-edit. Decap's list widget
-              // (singular `field:`) can store each item either wrapped as
-              // {image: path} or as a bare path string depending on how the
-              // entry was created — handle both.
-              var images = (block.images || [])
-                .map(function (img) {
-                  if (!img) return null;
-                  return img.image || img;
-                })
-                .filter(Boolean)
-                .map(function (path, j) {
-                  return h("img", {
-                    key: j,
-                    className: "project-block__image",
-                    src: resolveImage(getAsset, path),
-                  });
-                });
-              return h(
-                "div",
-                { key: i, className: "project-block project-block--images " + layoutClass },
-                images
-              );
-            }
-
-            if (block.type === "text") {
-              var align = block.align || "Left";
-              var alignClass =
-                align === "Center"
-                  ? "project-block--text-center"
-                  : align === "Right"
-                  ? "project-block--text-right"
-                  : "project-block--text-left";
-              return h("div", {
-                key: i,
-                className: "project-block project-block--text " + alignClass,
-                dangerouslySetInnerHTML: { __html: md.render(block.body || "") },
-              });
-            }
-
-            if (block.type === "image_text") {
-              var reverseClass = block.position === "Right" ? " project-block--split-reverse" : "";
-              return h(
-                "div",
-                { key: i, className: "project-block project-block--split" + reverseClass },
-                h("img", {
-                  className: "project-block__image",
-                  src: resolveImage(getAsset, block.image),
-                }),
-                h("div", {
-                  className: "project-block--split__text",
-                  dangerouslySetInnerHTML: { __html: md.render(block.body || "") },
-                })
-              );
-            }
-
-            return null;
-          }
+          var contentHtml = entry.getIn(["data", "body"]) || "";
 
           return h(
             "div",
@@ -433,7 +213,10 @@
                 h("h1", { className: "project-header__title" }, title),
                 h("span", { className: "project-header__back" }, "go back")
               ),
-              h("div", { className: "project-blocks" }, blocks.map(renderBlock))
+              h("div", {
+                className: "project-content",
+                dangerouslySetInnerHTML: { __html: contentHtml },
+              })
             )
           );
         },
