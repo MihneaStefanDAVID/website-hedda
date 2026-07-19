@@ -64,7 +64,7 @@ collections:
       - { label: "Cover Image", name: "cover", widget: "image" }
       - label: "Content Blocks"
         name: "blocks"
-        widget: "list"
+        widget: "content_blocks"
         hint: "Add as many blocks as you like, in any order — Image Group for one or more photos together (choose how they sit on the page), Text for a paragraph, Image + Text to place a photo and a paragraph side by side."
         types:
           - label: "Image Group"
@@ -86,8 +86,15 @@ collections:
           - label: "Text"
             name: "text"
             widget: "object"
-            summary: "{{fields.body}}"
+            summary: "{{fields.align}} — {{fields.body}}"
             fields:
+              - label: "Align"
+                name: "align"
+                widget: "select"
+                options: ["Left", "Center", "Right"]
+                default: "Left"
+                required: false
+                hint: "Where the paragraph sits on the page."
               - { label: "Body", name: "body", widget: "markdown" }
           - label: "Image + Text"
             name: "image_text"

@@ -5,15 +5,317 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Hedda Oprea — Admin</title>
+    <style>
+      /* Scoped styling for the custom content-blocks editor widget only —
+         this is admin tooling chrome, separate from the public site's
+         styles.css (which is loaded for the live-preview pane instead). */
+      .cb-root {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .cb-block {
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        background: #fff;
+      }
+
+      .cb-block.cb-block--drag-over {
+        border-color: #3b82f6;
+      }
+
+      .cb-block__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        background: #f5f5f5;
+        border-bottom: 1px solid #dedede;
+        border-radius: 4px 4px 0 0;
+        cursor: grab;
+      }
+
+      .cb-block__handle {
+        font-size: 1.1rem;
+        line-height: 1;
+        color: #888;
+        user-select: none;
+      }
+
+      .cb-block__label {
+        flex: 1;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #333;
+      }
+
+      .cb-block__delete {
+        border: 1px solid #e0413f;
+        background: #fff;
+        color: #e0413f;
+        border-radius: 3px;
+        font-size: 0.72rem;
+        padding: 4px 9px;
+        cursor: pointer;
+      }
+
+      .cb-block__delete:hover {
+        background: #e0413f;
+        color: #fff;
+      }
+
+      .cb-block__fields {
+        padding: 14px 12px;
+      }
+
+      .cb-empty {
+        padding: 20px 12px;
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        border: 1px dashed #dedede;
+        border-radius: 4px;
+      }
+
+      .cb-add-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-top: 4px;
+      }
+
+      .cb-add-btn {
+        border: 1px solid #333;
+        background: #333;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        padding: 8px 14px;
+        cursor: pointer;
+      }
+
+      .cb-add-btn:hover {
+        background: #555;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/markdown-it@14/dist/markdown-it.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
+      // ------------------------------------------------------------------
+      // Custom "content_blocks" widget — replaces the native "list with
+      // variable types" editor for a project's `blocks` field with a
+      // clearer add/reorder/delete UI. Each block's actual fields (image
+      // pickers, text areas, alignment selects) are rendered by delegating
+      // to Decap's own built-in "object" widget control via
+      // CMS.getWidget("object").control — so native image upload/media
+      // library keeps working exactly as it always has; only the outer
+      // chrome (add block / drag reorder / delete) is custom here.
+      // ------------------------------------------------------------------
+      var TYPE_KEY = "type";
+
+      var ContentBlocksControl = createClass({
+        getBlockTypes: function () {
+          var types = this.props.field.get("types");
+          return types ? types.toArray() : [];
+        },
+
+        findTypeConfig: function (typeName) {
+          var types = this.getBlockTypes();
+          for (var i = 0; i < types.length; i++) {
+            if (types[i].get("name") === typeName) return types[i];
+          }
+          return null;
+        },
+
+        // Derive Map/List constructors from Decap's own already-parsed
+        // Immutable data (this.props.field, which Decap built from
+        // config.yml) instead of a separately-loaded Immutable.js copy.
+        // A block built with a different module instance renders fine in
+        // our own widget, but isn't recognized as real Immutable data by
+        // Decap's save/publish pipeline, so it silently fails to persist.
+        nativeListClass: function () {
+          return this.props.field.get("types").constructor;
+        },
+
+        nativeMapClass: function () {
+          return this.props.field.constructor;
+        },
+
+        getValue: function () {
+          if (this.props.value) return this.props.value;
+          var List = this.nativeListClass();
+          return List();
+        },
+
+        handleAddBlock: function (typeConfig) {
+          var typeName = typeConfig.get("name");
+          var fields = typeConfig.get("fields");
+          var Map = this.nativeMapClass();
+          var newBlock = { type: typeName };
+          if (fields) {
+            fields.forEach(function (f) {
+              var def = f.get("default");
+              if (def !== undefined) newBlock[f.get("name")] = def;
+            });
+          }
+          var newBlockMap = Map(newBlock);
+          this.props.onChange(this.getValue().push(newBlockMap));
+        },
+
+        handleDelete: function (index) {
+          this.props.onChange(this.getValue().delete(index));
+        },
+
+        handleBlockChange: function (index, newBlockValue) {
+          this.props.onChange(this.getValue().set(index, newBlockValue));
+        },
+
+        handleDragStart: function (index, e) {
+          this._dragIndex = index;
+          e.dataTransfer.effectAllowed = "move";
+          try {
+            e.dataTransfer.setData("text/plain", String(index));
+          } catch (err) {
+            // some browsers require setData to be called; harmless if it's not needed
+          }
+        },
+
+        handleDragOver: function (e) {
+          e.preventDefault();
+        },
+
+        handleDrop: function (index, e) {
+          e.preventDefault();
+          var from = this._dragIndex;
+          this._dragIndex = undefined;
+          if (from === undefined || from === index) return;
+          var value = this.getValue();
+          var item = value.get(from);
+          var withoutItem = value.delete(from);
+          var insertAt = from < index ? index - 1 : index;
+          this.props.onChange(withoutItem.insert(insertAt, item));
+        },
+
+        renderBlock: function (blockValue, index) {
+          var typeName = blockValue.get(TYPE_KEY);
+          var typeConfig = this.findTypeConfig(typeName);
+          if (!typeConfig) return null;
+
+          var ObjectControl = CMS.getWidget("object").control;
+          var self = this;
+          // ObjectControl requires `onChangeObject`, called by its nested
+          // EditorControls as onChangeObject(fieldConfig, newFieldValue,
+          // newMetadata) — one nested field at a time. We merge that single
+          // field change into this block's own value, then hand the whole
+          // updated block up to handleBlockChange.
+          var childProps = Object.assign({}, this.props, {
+            field: typeConfig,
+            value: blockValue,
+            forID: this.props.forID + "_block_" + index,
+            classNameWrapper: "cb-block__fields",
+            onChangeObject: function (nestedField, newFieldValue) {
+              // Read the block's value fresh at call time (self.props.value
+              // is always current) rather than closing over the blockValue
+              // argument from this render pass — if two field changes on the
+              // same block happen before React re-renders between them, a
+              // stale closure here would let the second overwrite the first.
+              var fieldName = nestedField.get("name");
+              var current = self.getValue().get(index);
+              var updated = current.set(fieldName, newFieldValue).set(TYPE_KEY, typeName);
+              self.handleBlockChange(index, updated);
+            },
+          });
+
+          return h(
+            "div",
+            {
+              key: index,
+              className: "cb-block",
+              onDragOver: this.handleDragOver,
+              onDrop: function (e) {
+                self.handleDrop(index, e);
+              },
+            },
+            h(
+              "div",
+              {
+                className: "cb-block__header",
+                draggable: true,
+                onDragStart: function (e) {
+                  self.handleDragStart(index, e);
+                },
+              },
+              h("span", { className: "cb-block__handle" }, "⠿"),
+              h("span", { className: "cb-block__label" }, typeConfig.get("label") || typeName),
+              h(
+                "button",
+                {
+                  type: "button",
+                  className: "cb-block__delete",
+                  onClick: function () {
+                    self.handleDelete(index);
+                  },
+                },
+                "Remove"
+              )
+            ),
+            h(ObjectControl, childProps)
+          );
+        },
+
+        render: function () {
+          var value = this.getValue();
+          var blocks = value.toArray ? value.toArray() : [];
+          var types = this.getBlockTypes();
+          var self = this;
+
+          return h(
+            "div",
+            { className: "cb-root" },
+            blocks.length
+              ? h(
+                  "div",
+                  { className: "cb-blocks" },
+                  blocks.map(function (b, i) {
+                    return self.renderBlock(b, i);
+                  })
+                )
+              : h("div", { className: "cb-empty" }, "No blocks yet — add one below."),
+            h(
+              "div",
+              { className: "cb-add-bar" },
+              types.map(function (t, i) {
+                return h(
+                  "button",
+                  {
+                    type: "button",
+                    key: i,
+                    className: "cb-add-btn",
+                    onClick: function () {
+                      self.handleAddBlock(t);
+                    },
+                  },
+                  "+ " + t.get("label")
+                );
+              })
+            )
+          );
+        },
+      });
+
+      CMS.registerWidget("content_blocks", ContentBlocksControl);
+
+      // ------------------------------------------------------------------
       // Live preview for the Projects collection — reuses the site's own
       // stylesheet and mirrors project.njk's block rendering exactly, so
       // editing a project looks like the real page, not Decap's generic
       // default preview (plain serif title, raw unstyled image dump).
+      // ------------------------------------------------------------------
       CMS.registerPreviewStyle("/styles.css");
 
       var md = window.markdownit({ html: false, breaks: true, linkify: true });
@@ -58,9 +360,16 @@
             }
 
             if (block.type === "text") {
+              var align = block.align || "Left";
+              var alignClass =
+                align === "Center"
+                  ? "project-block--text-center"
+                  : align === "Right"
+                  ? "project-block--text-right"
+                  : "project-block--text-left";
               return h("div", {
                 key: i,
-                className: "project-block project-block--text",
+                className: "project-block project-block--text " + alignClass,
                 dangerouslySetInnerHTML: { __html: md.render(block.body || "") },
               });
             }

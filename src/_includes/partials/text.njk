@@ -1,3 +1,7 @@
-<div class="project-block project-block--text">
+<div class="project-block project-block--text
+  {%- if block.align == 'Center' %} project-block--text-center
+  {%- elif block.align == 'Right' %} project-block--text-right
+  {%- else %} project-block--text-left
+  {%- endif %}">
   {{ block.body | markdown | safe }}
 </div>
