@@ -5,6 +5,8 @@
   {%- else %} project-block--images-full
   {%- endif %}">
   {% for img in block.images %}
+  {%- if img and img.image %}
   <img class="project-block__image" src="{{ img.image | imagePath }}" alt="" loading="lazy" />
+  {%- endif %}
   {% endfor %}
 </div>

@@ -335,6 +335,8 @@
           var blocks = blocksData ? blocksData.toJS() : [];
 
           function renderBlock(block, i) {
+            if (!block) return null;
+
             if (block.type === "image_group") {
               var layout = block.layout || "Full width";
               var layoutClass =
@@ -345,13 +347,20 @@
                   : layout === "Center"
                   ? "project-block--images-center"
                   : "project-block--images-full";
-              var images = (block.images || []).map(function (img, j) {
-                return h("img", {
-                  key: j,
-                  className: "project-block__image",
-                  src: resolveImage(getAsset, img.image),
+              // A freshly-added "Add images" slot with no file chosen yet
+              // is null, not {image: undefined} — guard against it so the
+              // whole preview doesn't crash mid-edit.
+              var images = (block.images || [])
+                .filter(function (img) {
+                  return img && img.image;
+                })
+                .map(function (img, j) {
+                  return h("img", {
+                    key: j,
+                    className: "project-block__image",
+                    src: resolveImage(getAsset, img.image),
+                  });
                 });
-              });
               return h(
                 "div",
                 { key: i, className: "project-block project-block--images " + layoutClass },
