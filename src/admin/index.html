@@ -349,16 +349,21 @@
                   : "project-block--images-full";
               // A freshly-added "Add images" slot with no file chosen yet
               // is null, not {image: undefined} — guard against it so the
-              // whole preview doesn't crash mid-edit.
+              // whole preview doesn't crash mid-edit. Decap's list widget
+              // (singular `field:`) can store each item either wrapped as
+              // {image: path} or as a bare path string depending on how the
+              // entry was created — handle both.
               var images = (block.images || [])
-                .filter(function (img) {
-                  return img && img.image;
+                .map(function (img) {
+                  if (!img) return null;
+                  return img.image || img;
                 })
-                .map(function (img, j) {
+                .filter(Boolean)
+                .map(function (path, j) {
                   return h("img", {
                     key: j,
                     className: "project-block__image",
-                    src: resolveImage(getAsset, img.image),
+                    src: resolveImage(getAsset, path),
                   });
                 });
               return h(
