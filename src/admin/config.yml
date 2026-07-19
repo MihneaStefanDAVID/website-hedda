@@ -83,6 +83,8 @@ collections:
                 name: "images"
                 widget: "list"
                 field: { label: "Image", name: "image", widget: "image" }
+                max: 6
+                hint: "Up to 6 photos in one row. Need more? Add another Image Group block below."
           - label: "Text"
             name: "text"
             widget: "object"

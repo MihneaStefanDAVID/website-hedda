@@ -320,6 +320,11 @@
 
       var md = window.markdownit({ html: false, breaks: true, linkify: true });
 
+      // A just-chosen image isn't written to the repo until the entry is
+      // saved (standard git-backend behavior — the media library only
+      // holds it in memory until then), so it can 404 in this preview and
+      // in Decap's own native thumbnail until you hit Save. Nothing to
+      // resolve here beyond the plain asset path.
       function resolveImage(getAsset, path) {
         if (!path) return "";
         var asset = getAsset(path);
