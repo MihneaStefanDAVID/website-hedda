@@ -493,7 +493,7 @@ a {
   max-width: 62ch;
   font-size: 1rem;
   line-height: 1.6;
-  margin: 0 0 1.25em;
+  margin: 0 0 2em;
   overflow-wrap: break-word;
 }
 
@@ -532,7 +532,7 @@ a {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 0 0 1.25em;
+  margin: 0 0 2em;
 }
 
 /* Wrap-left/right — the photo floats and following text wraps around it,
@@ -570,7 +570,7 @@ a {
 .project-content table {
   width: 100%;
   max-width: 100%;
-  margin: 0 0 1.25em;
+  margin: 0 0 2em;
   border-collapse: collapse;
   clear: both;
   /* Without this, column widths are only a suggestion — a browser's
@@ -586,6 +586,15 @@ a {
   vertical-align: top;
   padding: 0.5em;
   overflow-wrap: break-word;
+}
+
+/* A photo dropped into a table cell fills that cell's width by default,
+   so resizing the column (dragging its border) resizes the photo along
+   with it — rather than the photo staying at whatever fixed size it was
+   inserted/last resized at, leaving empty space in a wider column. */
+.project-content td img {
+  width: 100%;
+  height: auto;
 }
 
 /* The "End wrap" toolbar button inserts this — a plain paragraph break
@@ -604,7 +613,7 @@ a {
   .project-block__image--wrap-right {
     float: none;
     max-width: 100%;
-    margin: 0 0 1.25em;
+    margin: 0 0 2em;
   }
 
   /* Classic responsive-table collapse: stack cells full-width instead of
