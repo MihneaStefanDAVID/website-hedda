@@ -65,4 +65,4 @@ collections:
       - label: "Content"
         name: "body"
         widget: "rich_editor"
-        hint: "Type your text, and use the toolbar to insert photos, headings, bold, and alignment. Click a photo to resize it by dragging a corner, or double-click it to wrap text around it (left/right), center it, or make it full width."
+        hint: "Type your text, and use the toolbar to insert photos, headings, bold, and alignment. Click a photo to resize it by dragging a corner, or double-click it to wrap text around it (left/right), center it, or make it full width. For a precise photo-next-to-text layout, use the Table button — put the photo in one column (drag its border to resize) and text in the other, then right-click the text cell for Cell properties to center it top-to-bottom."

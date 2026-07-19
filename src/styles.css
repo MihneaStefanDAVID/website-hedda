@@ -503,6 +503,10 @@ a {
   font-weight: 500;
   letter-spacing: -0.01em;
   margin: 1.5em 0 0.75em;
+  /* A heading is a natural new-section boundary, so it always starts on
+     its own full-width line — it won't sit squeezed beside a wrap-left/
+     right photo above it the way a plain paragraph deliberately can. */
+  clear: both;
 }
 
 .project-content > h2 {
@@ -558,11 +562,40 @@ a {
   width: 100% !important;
 }
 
+/* Table — for precise side-by-side layouts (e.g. a photo in one column,
+   sized by dragging its border, and text in the other, vertically
+   centered via that cell's Cell properties) where wrap-left/right's
+   approximate floating isn't precise enough. Like headings, a table is
+   a new-section boundary: it always starts on its own full-width line. */
+.project-content table {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 1.25em;
+  border-collapse: collapse;
+  clear: both;
+}
+
+.project-content td,
+.project-content th {
+  vertical-align: top;
+  padding: 0.5em;
+}
+
 @media (max-width: 640px) {
   .project-block__image--wrap-left,
   .project-block__image--wrap-right {
     float: none;
     max-width: 100%;
     margin: 0 0 1.25em;
+  }
+
+  /* Classic responsive-table collapse: stack cells full-width instead of
+     squeezing a photo+text pair into a too-narrow column on a phone. */
+  .project-content table,
+  .project-content tbody,
+  .project-content tr,
+  .project-content td {
+    display: block;
+    width: 100% !important;
   }
 }

@@ -82,9 +82,21 @@
             height: 480,
             menubar: false,
             branding: false,
-            plugins: "lists link image",
+            plugins: "lists link image table",
+            // insertimage/table are the two tools most specific to this
+            // editor's job, so they're placed early enough to stay visible
+            // rather than falling into the "..." overflow menu on the
+            // admin's fixed-width form column.
             toolbar:
-              "undo redo | blocks | bold italic | bullist numlist | alignleft aligncenter alignright | link insertimage | removeformat",
+              "undo redo | blocks | bold italic | insertimage table | bullist numlist | alignleft aligncenter alignright | link removeformat",
+            // For precise side-by-side photo+text layouts (exact column
+            // widths, vertical-centering text next to a photo) — right-click
+            // a cell, or use the Table menu, for column width and Cell
+            // properties (vertical align top/middle/bottom).
+            table_toolbar:
+              "tableprops tablerowheader tablecolheader | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablecellprops",
+            table_default_attributes: { border: "0" },
+            table_default_styles: { width: "100%" },
             image_class_list: RICH_TEXT_IMAGE_CLASSES,
             object_resizing: true,
             content_css: "/styles.css",
