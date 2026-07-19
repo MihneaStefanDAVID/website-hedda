@@ -9,7 +9,26 @@ blocks:
   - type: text
     body: Placeholder description for Project Two. Replace this from the admin panel.
   - type: image_text
-    position: Right
+    position: Left
     image: /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-    body: ddasdsadadada
+    body: >-
+      *ddasdsadadadann*
+
+
+      *dsd*
+
+
+      *sds*
+
+
+      *ds*
+
+
+      *ds*
+
+
+      *dddsssdssdsdsdsdsdsdsdsdsdsdsdsdssdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsds*
+
+
+      *ddsdsddddds*
 ---
