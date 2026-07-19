@@ -14,6 +14,8 @@ includeScript: false
       {% include "partials/image_group.njk" %}
     {% elif block.type == "text" %}
       {% include "partials/text.njk" %}
+    {% elif block.type == "image_text" %}
+      {% include "partials/image_text.njk" %}
     {% endif %}
   {% endfor %}
 </div>

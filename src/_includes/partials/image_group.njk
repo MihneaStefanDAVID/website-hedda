@@ -1,4 +1,9 @@
-<div class="project-block project-block--images">
+<div class="project-block project-block--images
+  {%- if block.layout == 'Left' %} project-block--images-left
+  {%- elif block.layout == 'Right' %} project-block--images-right
+  {%- elif block.layout == 'Center' %} project-block--images-center
+  {%- else %} project-block--images-full
+  {%- endif %}">
   {% for img in block.images %}
   <img class="project-block__image" src="{{ img.image }}" alt="" loading="lazy" />
   {% endfor %}

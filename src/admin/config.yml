@@ -60,13 +60,19 @@ collections:
       - label: "Content Blocks"
         name: "blocks"
         widget: "list"
-        hint: "Add as many blocks as you like, in any order — Image Group for one or more photos together, Text for a paragraph."
+        hint: "Add as many blocks as you like, in any order — Image Group for one or more photos together (choose how they sit on the page), Text for a paragraph, Image + Text to place a photo and a paragraph side by side."
         types:
           - label: "Image Group"
             name: "image_group"
             widget: "object"
-            summary: "{{fields.images}} image(s)"
+            summary: "{{fields.layout}} — {{fields.images}} image(s)"
             fields:
+              - label: "Layout"
+                name: "layout"
+                widget: "select"
+                options: ["Full width", "Left", "Right", "Center"]
+                default: "Full width"
+                hint: "Full width spans the whole page; Left/Right/Center show the photo(s) narrower and positioned to that side."
               - label: "Images"
                 name: "images"
                 widget: "list"
@@ -77,3 +83,16 @@ collections:
             summary: "{{fields.body}}"
             fields:
               - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Image + Text"
+            name: "image_text"
+            widget: "object"
+            summary: "{{fields.position}} — {{fields.body}}"
+            fields:
+              - label: "Image Position"
+                name: "position"
+                widget: "select"
+                options: ["Left", "Right"]
+                default: "Left"
+                hint: "Which side the photo sits on; the text fills the other side. Stacks (photo on top) on narrow/mobile screens."
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Text", name: "body", widget: "markdown" }

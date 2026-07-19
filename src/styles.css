@@ -474,3 +474,82 @@ a {
 .project-block--text :last-child {
   margin-bottom: 0;
 }
+
+/* Image Group layout variants — Left/Right/Center narrow the group and
+   position it to one side; Full width (the default, no extra class) is
+   the plain full-column grid above. */
+.project-block--images-left,
+.project-block--images-right,
+.project-block--images-center {
+  max-width: 60%;
+}
+
+.project-block--images-left {
+  margin-right: auto;
+}
+
+.project-block--images-right {
+  margin-left: auto;
+}
+
+.project-block--images-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image + Text — photo and paragraph side by side; --split-reverse puts
+   the photo on the right instead of the left. Stacks on narrow screens.
+   Grid (not flex) so the image's intrinsic aspect ratio can't blow out
+   its track — minmax(0, 1fr) is the standard guard for that. */
+.project-block--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--grid-gap);
+}
+
+.project-block--split-reverse .project-block__image {
+  order: 2;
+}
+
+.project-block--split-reverse .project-block--split__text {
+  order: 1;
+}
+
+.project-block--split__text {
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.project-block--split__text :first-child {
+  margin-top: 0;
+}
+
+.project-block--split__text :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .project-block--images-left,
+  .project-block--images-right,
+  .project-block--images-center {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .project-block--split {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  /* Always image-on-top on narrow screens, regardless of --split-reverse. */
+  .project-block--split .project-block__image {
+    order: 1;
+  }
+
+  .project-block--split .project-block--split__text {
+    order: 2;
+  }
+}
