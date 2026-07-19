@@ -573,12 +573,30 @@ a {
   margin: 0 0 1.25em;
   border-collapse: collapse;
   clear: both;
+  /* Without this, column widths are only a suggestion — a browser's
+     default (auto) table layout will still widen a column to fit an
+     image that doesn't fit, instead of shrinking the image/wrapping
+     text to the width you actually set. Fixed makes the set width the
+     real, enforced width. */
+  table-layout: fixed;
 }
 
 .project-content td,
 .project-content th {
   vertical-align: top;
   padding: 0.5em;
+  overflow-wrap: break-word;
+}
+
+/* The "End wrap" toolbar button inserts this — a plain paragraph break
+   deliberately doesn't clear a floated photo (that's what lets text wrap
+   beside it), so this thin divider is the explicit, visible way to end
+   that wrap and force whatever comes next onto its own full-width line. */
+.project-content hr {
+  clear: both;
+  border: none;
+  border-top: 1px solid #e2e2e2;
+  margin: 1.5em 0;
 }
 
 @media (max-width: 640px) {

@@ -83,12 +83,12 @@
             menubar: false,
             branding: false,
             plugins: "lists link image table",
-            // insertimage/table are the two tools most specific to this
+            // insertimage/table/stopwrap are the tools most specific to this
             // editor's job, so they're placed early enough to stay visible
             // rather than falling into the "..." overflow menu on the
             // admin's fixed-width form column.
             toolbar:
-              "undo redo | blocks | bold italic | insertimage table | bullist numlist | alignleft aligncenter alignright | link removeformat",
+              "undo redo | blocks | bold italic | insertimage table stopwrap | bullist numlist | alignleft aligncenter alignright | link removeformat",
             // For precise side-by-side photo+text layouts (exact column
             // widths, vertical-centering text next to a photo) — right-click
             // a cell, or use the Table menu, for column width and Cell
@@ -116,6 +116,19 @@
                 tooltip: "Insert image",
                 onAction: function () {
                   self.handleInsertImageClick();
+                },
+              });
+              // Headings and tables already auto-clear a wrapped photo (see
+              // styles.css), but plain paragraphs deliberately don't — that's
+              // what makes "wrap text around a photo" work at all. This
+              // button is the manual way to end a wrap at any other point:
+              // it inserts a thin divider that also clears floats, so
+              // whatever comes after always starts full width.
+              editor.ui.registry.addButton("stopwrap", {
+                text: "End wrap",
+                tooltip: "End photo wrap here — everything after starts full width",
+                onAction: function () {
+                  editor.execCommand("InsertHorizontalRule");
                 },
               });
               editor.on("init", function () {
