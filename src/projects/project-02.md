@@ -7,7 +7,13 @@ blocks:
     images:
       - image: /assets/projects/02-placeholder.svg
   - type: text
-    body: Placeholder description for Project Two. Replace this from the admin panel.
+    body: Placeholder description for Project Two. Replace this from the admin
+      panel.dsds
+  - type: image_group
+    layout: Right
+    images:
+      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
+      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
   - type: image_text
     position: Left
     image: /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
