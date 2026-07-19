@@ -37,7 +37,12 @@ site_url: https://heddaoprea.com
 # locally without touching DecapBridge/production at all.
 local_backend: true
 
-media_folder: "assets/uploads"
+
+# media_folder is relative to the repo root by default in Decap — it must
+# point inside src/ so Eleventy's passthrough copy of src/assets actually
+# ships uploaded files. public_folder is the URL path they're served at,
+# which still resolves correctly since src/assets -> /assets at build time.
+media_folder: "src/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
@@ -72,6 +77,7 @@ collections:
                 widget: "select"
                 options: ["Full width", "Left", "Right", "Center"]
                 default: "Full width"
+                required: false
                 hint: "Full width spans the whole page; Left/Right/Center show the photo(s) narrower and positioned to that side."
               - label: "Images"
                 name: "images"
@@ -93,6 +99,7 @@ collections:
                 widget: "select"
                 options: ["Left", "Right"]
                 default: "Left"
+                required: false
                 hint: "Which side the photo sits on; the text fills the other side. Stacks (photo on top) on narrow/mobile screens."
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Text", name: "body", widget: "markdown" }
