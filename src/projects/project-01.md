@@ -1,7 +1,7 @@
 ---
 title: Project One
 order: 1
-cover: chatgpt-image-apr-19-2026-05_52_09-pm.png
+cover: /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
 blocks:
   - type: image_group
     images:
