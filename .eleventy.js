@@ -5,6 +5,18 @@ const md = markdownIt({ html: false, breaks: true, linkify: true });
 export default function (eleventyConfig) {
   eleventyConfig.addFilter("markdown", (value) => md.render(value || ""));
 
+  // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
+  // path, but some paths through the editor (e.g. pasting a bare name from
+  // "Copy Name" into "Replace with URL") only save the filename. Normalize
+  // defensively rather than depending on which flow was used to add it.
+  eleventyConfig.addFilter("imagePath", (value) => {
+    if (!value) return value;
+    if (value.startsWith("/") || value.startsWith("http://") || value.startsWith("https://")) {
+      return value;
+    }
+    return `/assets/uploads/${value}`;
+  });
+
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/script.js");
   eleventyConfig.addPassthroughCopy("src/assets");

@@ -1,5 +1,5 @@
 <div class="project-block project-block--split{% if block.position == 'Right' %} project-block--split-reverse{% endif %}">
-  <img class="project-block__image" src="{{ block.image }}" alt="" loading="lazy" />
+  <img class="project-block__image" src="{{ block.image | imagePath }}" alt="" loading="lazy" />
   <div class="project-block--split__text">
     {{ block.body | markdown | safe }}
   </div>
