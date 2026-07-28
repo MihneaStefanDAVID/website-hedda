@@ -98,6 +98,24 @@
             table_default_attributes: { border: "0" },
             table_default_styles: { width: "100%" },
             image_class_list: RICH_TEXT_IMAGE_CLASSES,
+            // The Align left/center/right toolbar buttons are meant only
+            // for paragraphs/headings/lists — but TinyMCE's built-in align
+            // commands ALSO apply directly to a selected image, writing a
+            // raw `style="float: left"` straight onto the <img> tag. That's
+            // an entirely separate, uncontrolled floating mechanism from
+            // the Class dropdown above (no mobile collapse, no float-
+            // clearing, no max-width clamp) — confirmed by testing
+            // execCommand("JustifyLeft") against a selected image. Omitting
+            // "img" from these format definitions (TinyMCE's default
+            // definitions include it) makes the align buttons a no-op on
+            // images, so floating a photo only ever happens through the
+            // Class dropdown, which is the only path with real support.
+            formats: {
+              alignleft: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "left" } }],
+              aligncenter: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "center" } }],
+              alignright: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "right" } }],
+              alignjustify: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "justify" } }],
+            },
             object_resizing: true,
             content_css: "/styles.css",
             body_class: "project-content",
