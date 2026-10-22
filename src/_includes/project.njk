@@ -4,9 +4,10 @@ mainClass: project-main
 includeScript: true
 ---
 <!--
-  Two columns: text on the left (40%, fixed in place), photos on the
-  right (60%) in rows of 1–4 shown side by side at equal height (see
-  script.js). Clicking a photo opens it enlarged in the lightbox.
+  Two columns: text on the left (40%, fixed in place), photos/GIFs/
+  videos on the right (60%) in rows of 1–4 shown side by side at equal
+  height (see script.js). Each row has an optional size and alignment.
+  Clicking an item opens it enlarged in the lightbox.
 -->
 <div class="project-layout">
   <div class="project-text">
@@ -34,10 +35,14 @@ includeScript: true
 
   <div class="project-gallery">
     {% for row in gallery %}
-    <div class="project-gallery__row">
-      {% for image in row.photos %}{% if image %}
-      <button class="project-gallery__item" type="button" aria-label="Enlarge photo">
-        <img src="{{ image | imagePath }}" alt="{{ title }}" loading="lazy" />
+    <div class="project-gallery__row project-gallery__row--{{ row.size or 'full' }} project-gallery__row--align-{{ row.align or 'center' }}">
+      {% for item in row.photos %}{% if item %}
+      <button class="project-gallery__item" type="button" aria-label="Enlarge">
+        {% if item | isVideo %}
+        <video src="{{ item | imagePath }}" autoplay muted loop playsinline preload="metadata"></video>
+        {% else %}
+        <img src="{{ item | imagePath }}" alt="{{ title }}" loading="lazy" />
+        {% endif %}
       </button>
       {% endif %}{% endfor %}
     </div>

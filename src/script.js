@@ -439,10 +439,10 @@
 })();
 
 // ------------------------------------------------------------------
-// Project photos — equal-height rows, and a lightbox: clicking a photo
-// opens it enlarged over the page.
-// Arrow keys or the left/right edges step through the photos; Escape,
-// the close button or a click on the photo closes it.
+// Project gallery — equal-height rows, and a lightbox: clicking a photo,
+// GIF or video opens it enlarged over the page. Arrow keys or the
+// left/right edges step through them; Escape, the close button or a
+// click outside a video closes it.
 // ------------------------------------------------------------------
 (() => {
   "use strict";
@@ -450,43 +450,41 @@
   const items = [...document.querySelectorAll(".project-gallery__item")];
   if (!items.length) return;
 
-  // Photos sharing a row: growing each one in proportion to its aspect
+  const mediaOf = (item) => item.querySelector("img, video");
+  const isVideo = (media) => media.tagName === "VIDEO";
+
+  // Items sharing a row: growing each one in proportion to its aspect
   // ratio gives them all the same height with nothing cropped.
   items.forEach((item) => {
-    const photo = item.querySelector("img");
+    const media = mediaOf(item);
     const fit = () => {
-      if (photo.naturalWidth && photo.naturalHeight) {
-        item.style.flexGrow = String(photo.naturalWidth / photo.naturalHeight);
-      }
+      const width = isVideo(media) ? media.videoWidth : media.naturalWidth;
+      const height = isVideo(media) ? media.videoHeight : media.naturalHeight;
+      if (width && height) item.style.flexGrow = String(width / height);
     };
-    if (photo.complete) fit();
-    else photo.addEventListener("load", fit, { once: true });
+    const ready = isVideo(media) ? media.readyState >= 1 : media.complete;
+    if (ready) fit();
+    else media.addEventListener(isVideo(media) ? "loadedmetadata" : "load", fit, { once: true });
   });
 
   const dialog = document.createElement("dialog");
   dialog.className = "lightbox";
-  dialog.setAttribute("aria-label", "Enlarged photo");
-  const image = document.createElement("img");
-  // Opening a modal dialog focuses its first focusable element — without
-  // this, that's the close button, which then shows a focus ring on
-  // every open. Focusing the (non-tabbable) photo instead keeps Escape
-  // and the arrow keys working with nothing highlighted.
-  image.tabIndex = -1;
-  image.autofocus = true;
+  dialog.setAttribute("aria-label", "Enlarged view");
   const close = document.createElement("button");
   close.type = "button";
   close.className = "lightbox__close";
   close.textContent = "close";
-  dialog.append(image, close);
+  dialog.append(close);
 
   let index = 0;
+  let current = null;
 
   if (items.length > 1) {
     [["prev", "←", -1], ["next", "→", 1]].forEach(([name, arrow, step]) => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = `lightbox__nav lightbox__nav--${name}`;
-      button.setAttribute("aria-label", name === "prev" ? "Previous photo" : "Next photo");
+      button.setAttribute("aria-label", name === "prev" ? "Previous" : "Next");
       button.textContent = arrow;
       button.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -499,9 +497,24 @@
 
   function show(i) {
     index = (i + items.length) % items.length;
-    const source = items[index].querySelector("img");
-    image.src = source.currentSrc || source.src;
-    image.alt = source.alt;
+    const source = mediaOf(items[index]);
+    const media = document.createElement(source.tagName.toLowerCase());
+    media.src = source.currentSrc || source.src;
+    if (isVideo(media)) {
+      // Starts muted (browsers block autoplay with sound); the controls
+      // let the visitor unmute. Clicks on it stay with the video.
+      Object.assign(media, { controls: true, autoplay: true, muted: true, loop: true, playsInline: true });
+      media.addEventListener("click", (event) => event.stopPropagation());
+    } else {
+      media.alt = source.alt;
+    }
+    // Focus lands on the media itself rather than the close button, so
+    // no focus ring shows on open while Escape and arrows keep working.
+    media.tabIndex = -1;
+    if (current) current.replaceWith(media);
+    else dialog.prepend(media);
+    current = media;
+    if (dialog.open) media.focus({ preventScroll: true });
   }
 
   function go(step) {
@@ -512,12 +525,11 @@
     item.addEventListener("click", () => {
       show(i);
       dialog.showModal();
+      current.focus({ preventScroll: true });
     });
   });
 
   close.addEventListener("click", () => dialog.close());
-  // Clicks on the photo or the empty space around it close; the nav
-  // buttons stop propagation so stepping doesn't.
   dialog.addEventListener("click", () => dialog.close());
 
   dialog.addEventListener("keydown", (event) => {
@@ -525,7 +537,10 @@
     if (event.key === "ArrowRight") go(1);
   });
 
-  // Return focus to the photo that was opened, wherever the visitor
-  // stepped to inside the lightbox.
-  dialog.addEventListener("close", () => items[index].focus({ preventScroll: true }));
+  dialog.addEventListener("close", () => {
+    // Drop the enlarged copy so a video stops playing (and its sound).
+    current.remove();
+    current = null;
+    items[index].focus({ preventScroll: true });
+  });
 })();

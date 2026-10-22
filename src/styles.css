@@ -25,7 +25,9 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Manrope", Arial, sans-serif;
+  /* Helvetica as installed on Apple devices; Arial is its closest
+     stand-in elsewhere (Windows, Android). */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -403,6 +405,28 @@ a {
   display: flex;
   gap: clamp(12px, 1.5vw, 20px);
   align-items: flex-start;
+  width: 100%;
+}
+
+/* Per-row size and alignment, chosen in the CMS. */
+.project-gallery__row--large {
+  width: 75%;
+}
+
+.project-gallery__row--medium {
+  width: 50%;
+}
+
+.project-gallery__row--small {
+  width: 33.333%;
+}
+
+.project-gallery__row--align-center {
+  margin-inline: auto;
+}
+
+.project-gallery__row--align-right {
+  margin-left: auto;
 }
 
 /* Equal widths until each photo loads; script.js then sets flex-grow to
@@ -418,7 +442,8 @@ a {
   cursor: zoom-in;
 }
 
-.project-gallery__item img {
+.project-gallery__item img,
+.project-gallery__item video {
   display: block;
   width: 100%;
   height: auto;
@@ -439,6 +464,11 @@ a {
 
   .project-gallery {
     margin-left: 0;
+  }
+
+  /* Smaller rows would be too small to see on a phone. */
+  .project-gallery__row {
+    width: 100%;
   }
 }
 
@@ -468,7 +498,8 @@ a {
   background: transparent;
 }
 
-.lightbox img {
+.lightbox img,
+.lightbox video {
   display: block;
   outline: none;
   max-width: 100%;

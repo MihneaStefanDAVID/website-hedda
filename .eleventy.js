@@ -1,3 +1,6 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
 export default function (eleventyConfig) {
   // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
   // path, but some paths through the editor (e.g. pasting a bare name from
@@ -10,6 +13,20 @@ export default function (eleventyConfig) {
     }
     return `/assets/uploads/${value}`;
   });
+
+  // Appends a short hash of the file's contents ("/styles.css?v=1a2b3c4d").
+  // The host serves CSS/JS with a 4-hour browser cache, so without this a
+  // visitor (Safari especially) can pair a fresh page with a stale
+  // stylesheet or script after a deploy. The URL now changes whenever the
+  // file does, so browsers always fetch the matching version.
+  eleventyConfig.addFilter("bust", (url) => {
+    const hash = createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 8);
+    return `${url}?v=${hash}`;
+  });
+
+  // Project gallery items can be photos, GIFs or videos — videos need a
+  // <video> element instead of an <img>.
+  eleventyConfig.addFilter("isVideo", (value) => /\.(mp4|webm|mov|m4v)$/i.test(value || ""));
 
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/script.js");

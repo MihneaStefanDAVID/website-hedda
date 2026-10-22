@@ -79,16 +79,38 @@ collections:
       - label: "Photo rows"
         name: "gallery"
         widget: "list"
-        label_singular: "row of photos"
+        label_singular: "row"
         required: false
         collapsed: false
-        hint: "The right column of the project page, top to bottom. Each row holds 1 to 4 photos shown side by side at the same height (one photo = full width). Drag rows, or photos within a row, to reorder. Visitors can click any photo to see it enlarged."
+        hint: "The right column of the project page, top to bottom. Each row holds 1 to 4 photos, GIFs or videos shown side by side at the same height. Drag rows, or items within a row, to reorder. Visitors can click any of them to see it enlarged."
         fields:
-          - label: "Photos in this row"
+          - label: "Photos / videos in this row"
             name: "photos"
             widget: "list"
-            label_singular: "photo"
+            label_singular: "photo or video"
             min: 1
             max: 4
             collapsed: false
-            field: { label: "Photo", name: "image", widget: "image" }
+            hint: "Photos (JPG, PNG), GIFs or videos (MP4). Videos play silently on a loop, like a GIF — keep them short and compressed (ideally under 20 MB)."
+            field: { label: "Photo or video", name: "image", widget: "file" }
+          - label: "Row size"
+            name: "size"
+            widget: "select"
+            required: false
+            default: "full"
+            options:
+              - { label: "Full width", value: "full" }
+              - { label: "Large (3/4)", value: "large" }
+              - { label: "Medium (1/2)", value: "medium" }
+              - { label: "Small (1/3)", value: "small" }
+            hint: "How much of the right column this row takes up."
+          - label: "Row alignment"
+            name: "align"
+            widget: "select"
+            required: false
+            default: "center"
+            options:
+              - { label: "Left", value: "left" }
+              - { label: "Center", value: "center" }
+              - { label: "Right", value: "right" }
+            hint: "Where a row smaller than full width sits."

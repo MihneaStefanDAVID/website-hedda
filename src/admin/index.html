@@ -163,27 +163,27 @@
                   "div",
                   { className: "project-gallery" },
                   gallery.map(function (row, r) {
-                    var photos = ((row && row.photos) || []).filter(Boolean);
+                    var items = ((row && row.photos) || []).filter(Boolean);
+                    var rowClass =
+                      "project-gallery__row project-gallery__row--" + ((row && row.size) || "full") +
+                      " project-gallery__row--align-" + ((row && row.align) || "center");
                     return h(
                       "div",
-                      { className: "project-gallery__row", key: r },
-                      photos.map(function (path, i) {
+                      { className: rowClass, key: r },
+                      items.map(function (path, i) {
                         var asset = props.getAsset(path);
-                        return h(
-                          "span",
-                          { className: "project-gallery__item", key: i },
-                          h("img", {
-                            src: asset ? asset.toString() : path,
-                            alt: "",
-                            // Same equal-height rule as script.js on the site.
-                            onLoad: function (event) {
-                              var img = event.target;
-                              if (img.naturalWidth && img.naturalHeight) {
-                                img.parentNode.style.flexGrow = String(img.naturalWidth / img.naturalHeight);
-                              }
-                            },
-                          })
-                        );
+                        var src = asset ? asset.toString() : path;
+                        // Same equal-height rule as script.js on the site.
+                        var fit = function (event) {
+                          var el = event.target;
+                          var w = el.videoWidth || el.naturalWidth;
+                          var ht = el.videoHeight || el.naturalHeight;
+                          if (w && ht) el.parentNode.style.flexGrow = String(w / ht);
+                        };
+                        var media = /\.(mp4|webm|mov|m4v)$/i.test(path)
+                          ? h("video", { src: src, autoPlay: true, muted: true, loop: true, playsInline: true, onLoadedMetadata: fit })
+                          : h("img", { src: src, alt: "", onLoad: fit });
+                        return h("span", { className: "project-gallery__item", key: i }, media);
                       })
                     );
                   })
