@@ -439,7 +439,8 @@
 })();
 
 // ------------------------------------------------------------------
-// Lightbox — clicking a project photo opens it enlarged over the page.
+// Project photos — equal-height rows, and a lightbox: clicking a photo
+// opens it enlarged over the page.
 // Arrow keys or the left/right edges step through the photos; Escape,
 // the close button or a click on the photo closes it.
 // ------------------------------------------------------------------
@@ -448,6 +449,19 @@
 
   const items = [...document.querySelectorAll(".project-gallery__item")];
   if (!items.length) return;
+
+  // Photos sharing a row: growing each one in proportion to its aspect
+  // ratio gives them all the same height with nothing cropped.
+  items.forEach((item) => {
+    const photo = item.querySelector("img");
+    const fit = () => {
+      if (photo.naturalWidth && photo.naturalHeight) {
+        item.style.flexGrow = String(photo.naturalWidth / photo.naturalHeight);
+      }
+    };
+    if (photo.complete) fit();
+    else photo.addEventListener("load", fit, { once: true });
+  });
 
   const dialog = document.createElement("dialog");
   dialog.className = "lightbox";

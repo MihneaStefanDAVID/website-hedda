@@ -4,9 +4,9 @@ mainClass: project-main
 includeScript: true
 ---
 <!--
-  Two columns: text on the left (40%, stays in view while scrolling),
-  photos stacked on the right (60%). Clicking a photo opens it enlarged
-  in the lightbox built by script.js.
+  Two columns: text on the left (40%, fixed in place), photos on the
+  right (60%) in rows of 1–4 shown side by side at equal height (see
+  script.js). Clicking a photo opens it enlarged in the lightbox.
 -->
 <div class="project-layout">
   <div class="project-text">
@@ -33,14 +33,14 @@ includeScript: true
   </div>
 
   <div class="project-gallery">
-    {% for image in images %}
-    <button class="project-gallery__item" type="button" aria-label="Enlarge photo {{ loop.index }}">
-      <img
-        src="{{ image | imagePath }}"
-        alt="{{ title }} — photo {{ loop.index }}"
-        loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
-      />
-    </button>
+    {% for row in gallery %}
+    <div class="project-gallery__row">
+      {% for image in row.photos %}{% if image %}
+      <button class="project-gallery__item" type="button" aria-label="Enlarge photo">
+        <img src="{{ image | imagePath }}" alt="{{ title }}" loading="lazy" />
+      </button>
+      {% endif %}{% endfor %}
+    </div>
     {% endfor %}
   </div>
 </div>

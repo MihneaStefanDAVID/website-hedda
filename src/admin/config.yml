@@ -76,9 +76,19 @@ collections:
         name: "body"
         widget: "rich_editor"
         hint: "The project text, shown in the left column of the project page. Photos go in the Photos field below."
-      - label: "Photos"
-        name: "images"
+      - label: "Photo rows"
+        name: "gallery"
         widget: "list"
+        label_singular: "row of photos"
         required: false
-        hint: "Shown stacked in the right column of the project page, in this order — drag to reorder. Visitors can click a photo to see it enlarged."
-        field: { label: "Photo", name: "image", widget: "image" }
+        collapsed: false
+        hint: "The right column of the project page, top to bottom. Each row holds 1 to 4 photos shown side by side at the same height (one photo = full width). Drag rows, or photos within a row, to reorder. Visitors can click any photo to see it enlarged."
+        fields:
+          - label: "Photos in this row"
+            name: "photos"
+            widget: "list"
+            label_singular: "photo"
+            min: 1
+            max: 4
+            collapsed: false
+            field: { label: "Photo", name: "image", widget: "image" }

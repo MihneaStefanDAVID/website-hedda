@@ -102,7 +102,8 @@
       // ------------------------------------------------------------------
       // Live preview for the Projects collection — mirrors
       // src/_includes/project.njk: facts table and text on the left,
-      // photos stacked on the right, inside the site's real header.
+      // rows of side-by-side photos on the right, inside the site's
+      // real header.
       // ------------------------------------------------------------------
       CMS.registerPreviewStyle("/styles.css");
 
@@ -114,8 +115,8 @@
           var supervision = entry.getIn(["data", "supervision"]) || "";
           var semester = entry.getIn(["data", "semester"]) || "";
           var contentHtml = entry.getIn(["data", "body"]) || "";
-          var images = entry.getIn(["data", "images"]);
-          images = images && images.toJS ? images.toJS() : images || [];
+          var gallery = entry.getIn(["data", "gallery"]);
+          gallery = gallery && gallery.toJS ? gallery.toJS() : gallery || [];
 
           var facts = [["Project", h("h1", { className: "project-facts__title" }, title)]];
           if (supervision) facts.push(["Supervision", supervision]);
@@ -161,12 +162,29 @@
                 h(
                   "div",
                   { className: "project-gallery" },
-                  images.filter(Boolean).map(function (path, i) {
-                    var asset = props.getAsset(path);
+                  gallery.map(function (row, r) {
+                    var photos = ((row && row.photos) || []).filter(Boolean);
                     return h(
-                      "span",
-                      { className: "project-gallery__item", key: i },
-                      h("img", { src: asset ? asset.toString() : path, alt: "" })
+                      "div",
+                      { className: "project-gallery__row", key: r },
+                      photos.map(function (path, i) {
+                        var asset = props.getAsset(path);
+                        return h(
+                          "span",
+                          { className: "project-gallery__item", key: i },
+                          h("img", {
+                            src: asset ? asset.toString() : path,
+                            alt: "",
+                            // Same equal-height rule as script.js on the site.
+                            onLoad: function (event) {
+                              var img = event.target;
+                              if (img.naturalWidth && img.naturalHeight) {
+                                img.parentNode.style.flexGrow = String(img.naturalWidth / img.naturalHeight);
+                              }
+                            },
+                          })
+                        );
+                      })
                     );
                   })
                 )

@@ -399,9 +399,19 @@ a {
   gap: clamp(12px, 1.5vw, 20px);
 }
 
+.project-gallery__row {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 20px);
+  align-items: flex-start;
+}
+
+/* Equal widths until each photo loads; script.js then sets flex-grow to
+   the photo's aspect ratio so every photo in a row gets the same height
+   without cropping. */
 .project-gallery__item {
   display: block;
-  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
   padding: 0;
   border: 0;
   background: none;
