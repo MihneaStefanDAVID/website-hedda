@@ -1,11 +1,46 @@
 ---
 layout: base.njk
 mainClass: project-main
-includeScript: false
+includeScript: true
 ---
-<div class="project-header">
-  <h1 class="project-header__title">{{ title }}</h1>
-  <a href="/" class="project-header__back">go back</a>
-</div>
+<!--
+  Two columns: text on the left (40%, stays in view while scrolling),
+  photos stacked on the right (60%). Clicking a photo opens it enlarged
+  in the lightbox built by script.js.
+-->
+<div class="project-layout">
+  <div class="project-text">
+    <a href="/" class="project-header__back">go back</a>
 
-<div class="project-content">{{ content | safe }}</div>
+    <table class="project-facts">
+      <thead>
+        <tr>
+          <th>Project</th>
+          {% if supervision %}<th>Supervision</th>{% endif %}
+          {% if semester %}<th>Semester</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><h1 class="project-facts__title">{{ title }}</h1></td>
+          {% if supervision %}<td>{{ supervision }}</td>{% endif %}
+          {% if semester %}<td>{{ semester }}</td>{% endif %}
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="project-content">{{ content | safe }}</div>
+  </div>
+
+  <div class="project-gallery">
+    {% for image in images %}
+    <button class="project-gallery__item" type="button" aria-label="Enlarge photo {{ loop.index }}">
+      <img
+        src="{{ image | imagePath }}"
+        alt="{{ title }} — photo {{ loop.index }}"
+        loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
+      />
+    </button>
+    {% endfor %}
+  </div>
+</div>

@@ -62,7 +62,23 @@ collections:
         default: 0
         hint: "Controls left-to-right / grid position on the main page. Lower numbers come first — the first 4 become the animated hero cards."
       - { label: "Cover Image", name: "cover", widget: "image" }
-      - label: "Content"
+      - label: "Supervision"
+        name: "supervision"
+        widget: "string"
+        required: false
+        hint: "Shown at the top of the project page and in the box that appears when hovering the project on the main page."
+      - label: "Semester"
+        name: "semester"
+        widget: "string"
+        required: false
+        hint: "e.g. FS26. Shown at the top of the project page and in the hover box on the main page."
+      - label: "Text"
         name: "body"
         widget: "rich_editor"
-        hint: "Type your text, and use the toolbar to insert photos, headings, bold, and alignment. Click a photo to resize it by dragging a corner, or double-click it to wrap text around it (left/right), center it, or make it full width. Wrapped text keeps flowing beside the photo until you click 'End wrap' — use that when you want the next part to go back to full width. For a precise photo-next-to-text layout, use the Table button — put the photo in one column (drag its border to resize) and text in the other, then right-click the text cell for Cell properties to center it top-to-bottom."
+        hint: "The project text, shown in the left column of the project page. Photos go in the Photos field below."
+      - label: "Photos"
+        name: "images"
+        widget: "list"
+        required: false
+        hint: "Shown stacked in the right column of the project page, in this order — drag to reorder. Visitors can click a photo to see it enlarged."
+        field: { label: "Photo", name: "image", widget: "image" }

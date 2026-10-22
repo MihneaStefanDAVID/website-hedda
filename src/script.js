@@ -1,3 +1,71 @@
+// ------------------------------------------------------------------
+// Scroll memory — returning from a project lands back where the visitor
+// left the main page, instead of at the top replaying the hero. Runs
+// before the hero code below so that, by the time it measures, the page
+// is already at the restored position and it renders that frame directly.
+// ------------------------------------------------------------------
+(() => {
+  "use strict";
+
+  const SCROLL_KEY = "home-scroll";
+  const RESTORE_KEY = "home-scroll-restore";
+
+  // sessionStorage can be unavailable (private mode, blocked site data) —
+  // the site must still work, just without the memory.
+  const store = {
+    get: (key) => {
+      try { return sessionStorage.getItem(key); } catch { return null; }
+    },
+    set: (key, value) => {
+      try { sessionStorage.setItem(key, value); } catch {}
+    },
+    remove: (key) => {
+      try { sessionStorage.removeItem(key); } catch {}
+    },
+  };
+
+  // Project page: "go back" behaves like the browser's back button when
+  // the visitor came from the main page (the browser then restores the
+  // page as it was), and otherwise asks the main page to restore itself.
+  const backLink = document.querySelector(".project-header__back");
+  if (backLink) {
+    backLink.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      let cameFromHome = false;
+      try {
+        const referrer = new URL(document.referrer);
+        cameFromHome = referrer.origin === location.origin && referrer.pathname === "/";
+      } catch {}
+      if (cameFromHome && history.length > 1) {
+        event.preventDefault();
+        history.back();
+        return;
+      }
+      store.set(RESTORE_KEY, "1");
+    });
+    return;
+  }
+
+  if (!document.getElementById("hero-project-transition")) return;
+
+  // Take over from the browser's own restoration: it applies the position
+  // late (after the hero has initialized at the top), which made the
+  // smoothing replay the whole animation on the way back down.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  window.addEventListener("pagehide", () => store.set(SCROLL_KEY, String(window.scrollY)));
+
+  const navigation = performance.getEntriesByType("navigation")[0];
+  const navType = navigation ? navigation.type : "navigate";
+  const restoreRequested = store.get(RESTORE_KEY) === "1";
+  store.remove(RESTORE_KEY);
+
+  const saved = Number(store.get(SCROLL_KEY));
+  if ((restoreRequested || navType === "back_forward" || navType === "reload") && saved > 0) {
+    window.scrollTo(0, saved);
+  }
+})();
+
 (() => {
   "use strict";
 
@@ -276,4 +344,174 @@
   });
 
   if (debugOn) renderDebug();
+})();
+
+// ------------------------------------------------------------------
+// Project info box — on hover, a box with the project's title,
+// supervision and semester appears with its corner at the pointer and
+// follows it, flipping to the other side near the viewport edges so it
+// is never cut off. Keyboard focus shows it at the card's top-left.
+// ------------------------------------------------------------------
+(() => {
+  "use strict";
+
+  const cards = [...document.querySelectorAll(".project-card")];
+  if (!cards.length) return;
+
+  const FIELDS = [
+    ["title", "Title"],
+    ["supervision", "Supervision"],
+    ["semester", "Semester"],
+  ];
+  const OFFSET = 12; // gap between the pointer and the box's corner
+  const EDGE = 8; // minimum distance kept from the viewport edges
+
+  const box = document.createElement("dl");
+  box.className = "project-info";
+  box.setAttribute("aria-hidden", "true");
+  document.body.appendChild(box);
+
+  let activeCard = null;
+
+  function fill(card) {
+    box.replaceChildren();
+    FIELDS.forEach(([key, label]) => {
+      const value = card.dataset[key];
+      if (!value) return;
+      const dt = document.createElement("dt");
+      const dd = document.createElement("dd");
+      dt.textContent = label;
+      dd.textContent = value;
+      box.append(dt, dd);
+    });
+  }
+
+  function place(x, y) {
+    const { width, height } = box.getBoundingClientRect();
+    let left = x + OFFSET;
+    let top = y + OFFSET;
+    if (left + width > window.innerWidth - EDGE) left = x - OFFSET - width;
+    if (top + height > window.innerHeight - EDGE) top = y - OFFSET - height;
+    left = Math.max(EDGE, left);
+    top = Math.max(EDGE, top);
+    box.style.transform = `translate(${left}px, ${top}px)`;
+  }
+
+  // The hero cards are hoverable while still invisible early in the scroll
+  // animation — only show the box once a card has actually revealed.
+  const isRevealed = (card) => parseFloat(getComputedStyle(card).opacity) > 0.9;
+
+  function show(card, x, y) {
+    if (!isRevealed(card)) {
+      hide();
+      return;
+    }
+    if (activeCard !== card) {
+      activeCard = card;
+      fill(card);
+    }
+    place(x, y);
+    box.classList.add("is-visible");
+  }
+
+  function hide() {
+    activeCard = null;
+    box.classList.remove("is-visible");
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      if (event.pointerType !== "mouse") return;
+      show(card, event.clientX, event.clientY);
+    });
+    card.addEventListener("pointerleave", hide);
+    card.addEventListener("focus", () => {
+      if (!card.matches(":focus-visible")) return;
+      const r = card.getBoundingClientRect();
+      show(card, r.left, r.top);
+    });
+    card.addEventListener("blur", hide);
+  });
+
+  // Scrolling moves the cards under a still pointer without any pointer
+  // event — hide until the pointer moves again rather than show stale info.
+  window.addEventListener("scroll", hide, { passive: true });
+})();
+
+// ------------------------------------------------------------------
+// Lightbox — clicking a project photo opens it enlarged over the page.
+// Arrow keys or the left/right edges step through the photos; Escape,
+// the close button or a click on the photo closes it.
+// ------------------------------------------------------------------
+(() => {
+  "use strict";
+
+  const items = [...document.querySelectorAll(".project-gallery__item")];
+  if (!items.length) return;
+
+  const dialog = document.createElement("dialog");
+  dialog.className = "lightbox";
+  dialog.setAttribute("aria-label", "Enlarged photo");
+  const image = document.createElement("img");
+  // Opening a modal dialog focuses its first focusable element — without
+  // this, that's the close button, which then shows a focus ring on
+  // every open. Focusing the (non-tabbable) photo instead keeps Escape
+  // and the arrow keys working with nothing highlighted.
+  image.tabIndex = -1;
+  image.autofocus = true;
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "lightbox__close";
+  close.textContent = "close";
+  dialog.append(image, close);
+
+  let index = 0;
+
+  if (items.length > 1) {
+    [["prev", "←", -1], ["next", "→", 1]].forEach(([name, arrow, step]) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `lightbox__nav lightbox__nav--${name}`;
+      button.setAttribute("aria-label", name === "prev" ? "Previous photo" : "Next photo");
+      button.textContent = arrow;
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        go(step);
+      });
+      dialog.append(button);
+    });
+  }
+  document.body.appendChild(dialog);
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    const source = items[index].querySelector("img");
+    image.src = source.currentSrc || source.src;
+    image.alt = source.alt;
+  }
+
+  function go(step) {
+    show(index + step);
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener("click", () => {
+      show(i);
+      dialog.showModal();
+    });
+  });
+
+  close.addEventListener("click", () => dialog.close());
+  // Clicks on the photo or the empty space around it close; the nav
+  // buttons stop propagation so stepping doesn't.
+  dialog.addEventListener("click", () => dialog.close());
+
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") go(-1);
+    if (event.key === "ArrowRight") go(1);
+  });
+
+  // Return focus to the photo that was opened, wherever the visitor
+  // stepped to inside the lightbox.
+  dialog.addEventListener("close", () => items[index].focus({ preventScroll: true }));
 })();

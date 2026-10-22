@@ -166,37 +166,42 @@ a {
   filter: grayscale(0);
 }
 
-.project-card__title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 6px));
-  max-width: 80%;
-  padding: 0.4em 0.75em;
-  background: var(--ink);
+/* Hover info box — one shared element (built in script.js) that follows
+   the pointer with its corner at the cursor. Fixed to the viewport so it
+   is never clipped by a card's frame or its reveal clip-path. */
+.project-info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.6em;
+  row-gap: 0.15em;
+  max-width: min(26rem, calc(100vw - 32px));
+  margin: 0;
+  padding: 0.9em 1.2em;
+  background: rgba(23, 23, 23, 0.72);
   color: var(--paper);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
-.project-card:hover .project-card__title,
-.project-card:focus-visible .project-card__title {
+.project-info.is-visible {
   opacity: 1;
-  transform: translate(-50%, -50%);
+}
+
+.project-info dt,
+.project-info dd {
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-card__image {
     transition: none;
-  }
-
-  .project-card__title {
-    transition: opacity 0.25s ease;
-    transform: translate(-50%, -50%);
   }
 }
 
@@ -275,11 +280,7 @@ a {
 }
 
 /* ---------------------------------------------------------------- */
-/* Contact page                                                      */
-/*                                                                    */
-/* The hero mark held at rest: no scroll, no morph. Each rectangle is */
-/* a real link, positioned with plain CSS percentages so the exact    */
-/* 00_logo-1.pdf proportions hold at any size without JS.             */
+/* Contact page — just the email address and phone, centered.         */
 /* ---------------------------------------------------------------- */
 
 .contact-main {
@@ -288,191 +289,43 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 5vh, 48px);
-  padding: clamp(96px, 15vh, 150px) 1.5rem 4rem;
+  gap: 0.4em;
+  padding: 1.5rem;
 }
 
-.contact-mark {
-  /* Same responsive formula as the hero mark's targetHeight in script.js
-     (clamp(vh * 0.4, 200, 380)) — this is meant to read as the same
-     object at the same size, not a resized copy of it. */
-  position: relative;
-  container-type: inline-size;
-  height: clamp(200px, 40vh, 380px);
-  width: auto;
-  aspect-ratio: 411.16 / 477.32;
-}
-
-.contact-rect {
-  position: absolute;
-  box-sizing: border-box;
-  padding: clamp(4px, 3cqw, 10px);
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  background: transparent;
-  outline-offset: 4px;
-  transition: transform 0.25s ease, background-color 0.25s ease, border-width 0.15s ease;
-}
-
-.contact-rect__labels {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(2px, 1.4cqw, 6px);
-  text-align: center;
-}
-
-/* Percentages traced from the same vector rectangles as script.js's
-   BASE_RECTS — top/right/bottom/left of the source mark. */
-.contact-rect--top {
-  left: 35.67%;
-  top: 0%;
-  width: 50.33%;
-  height: 35.54%;
-}
-
-.contact-rect--right {
-  left: 72.72%;
-  top: 20.48%;
-  width: 27.28%;
-  height: 63.86%;
-}
-
-.contact-rect--bottom {
-  left: 35.67%;
-  top: 72.89%;
-  width: 50.33%;
-  height: 27.11%;
-}
-
-/* The left/right rectangles' top edges cross through --top at ~57.6% of
-   its height, and their bottom edges cross through --bottom at ~42.2% of
-   its height. Both are computed the same way as the box geometry itself
-   (percentage of the box's own height), so the label block is confined
-   to the clear side of that line rather than guessing at a padding
-   value that would drift out of sync at different sizes. */
-.contact-rect--top .contact-rect__labels {
-  inset: 0 0 42.37% 0;
-}
-
-.contact-rect--bottom .contact-rect__labels {
-  inset: 42.19% 0 0 0;
-}
-
-.contact-rect--left {
-  left: 0%;
-  top: 20.48%;
-  width: 48.95%;
-  height: 63.85%;
-}
-
-.contact-rect__name {
-  min-width: 0;
-  max-width: 100%;
-  font-size: clamp(0.56rem, 4.6cqw, 0.68rem);
-  line-height: 1.2;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.contact-email {
   overflow-wrap: anywhere;
-  opacity: 0.55;
-}
-
-.contact-rect__value {
-  min-width: 0;
-  max-width: 100%;
-  font-size: clamp(0.58rem, 4.8cqw, 0.85rem);
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.contact-rect:hover,
-.contact-rect:focus-visible {
-  z-index: 5;
-  transform: scale(1.035);
-  border-width: 1.5px;
-  background-color: rgba(23, 23, 23, 0.035);
-}
-
-.contact-rect:hover .contact-rect__value,
-.contact-rect:focus-visible .contact-rect__value {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.contact-rect:active {
-  transform: scale(0.985);
-}
-
-/* No hover on touch — show the value permanently instead of gating it
-   behind an interaction that doesn't exist on the device. */
-@media (hover: none) {
-  .contact-rect__value {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.contact-hint {
-  margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.4;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-rect {
-    transition: background-color 0.25s ease;
-  }
-
-  .contact-rect:hover,
-  .contact-rect:focus-visible {
-    transform: none;
-  }
-
-  .contact-rect__value {
-    transition: opacity 0.25s ease;
-  }
 }
 
 /* ---------------------------------------------------------------- */
 /* Project detail page                                               */
 /*                                                                    */
-/* Renders each project's content blocks (Image Group / Text) as a    */
-/* single flexible vertical stack, in whatever order and quantity     */
-/* the owner arranged them in — no fixed two-column template.         */
+/* Text on the left (40%), fixed to the viewport so it never moves;    */
+/* only the photos on the right (60%) scroll with the page. Collapses  */
+/* to a single column — text first, then photos — on narrow screens.   */
 /* ---------------------------------------------------------------- */
 
 .project-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: clamp(96px, 15vh, 150px) clamp(18px, 3vw, 46px) clamp(60px, 10vh, 120px);
+  --project-pad: clamp(14px, 1.5vw, 24px);
+  --project-top: clamp(80px, 11vh, 110px);
+  --project-gap: clamp(24px, 3vw, 56px);
+  --project-text-width: calc((100vw - 2 * var(--project-pad) - var(--project-gap)) * 0.4);
+  padding: var(--project-top) var(--project-pad) clamp(60px, 10vh, 120px);
 }
 
-.project-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: clamp(32px, 6vh, 64px);
-}
-
-.project-header__title {
-  margin: 0;
-  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+.project-text {
+  position: fixed;
+  top: var(--project-top);
+  bottom: var(--project-pad);
+  left: var(--project-pad);
+  width: var(--project-text-width);
+  /* A long text scrolls inside its own column instead of being cut off. */
+  overflow-y: auto;
 }
 
 .project-header__back {
-  flex-shrink: 0;
+  display: inline-block;
+  margin-bottom: clamp(20px, 3vh, 32px);
   font-size: 0.8rem;
   opacity: 0.6;
   transition: opacity 0.2s ease;
@@ -483,146 +336,174 @@ a {
   opacity: 1;
 }
 
-/* Flowing rich-text project content (replaces the old fixed block system).
-   Plain block flow — not flex/grid — is load-bearing here: floated images
-   (the wrap-left/wrap-right variants below) only float correctly as a
-   normal-flow block child; float is ignored on flex/grid items per spec. */
-.project-content > p,
-.project-content > ul,
-.project-content > ol {
-  max-width: 62ch;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0 0 2em;
+/* Label row over value row, each underlined by a thin rule. */
+.project-facts {
+  width: 100%;
+  margin: 0 0 clamp(24px, 4vh, 36px);
+  border-collapse: collapse;
+  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  line-height: 1.25;
+}
+
+.project-facts th,
+.project-facts td {
+  padding: 0.15em 1em 0.2em 0;
+  border-bottom: 1px solid var(--ink);
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
   overflow-wrap: break-word;
 }
 
-.project-content > h2,
-.project-content > h3 {
-  max-width: 62ch;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin: 1.5em 0 0.75em;
-  /* A heading is a natural new-section boundary, so it always starts on
-     its own full-width line — it won't sit squeezed beside a wrap-left/
-     right photo above it the way a plain paragraph deliberately can. */
-  clear: both;
+.project-facts th:last-child,
+.project-facts td:last-child {
+  padding-right: 0;
 }
 
-.project-content > h2 {
-  font-size: 1.3rem;
+.project-facts__title {
+  margin: 0;
+  font: inherit;
 }
 
-.project-content > h3 {
-  font-size: 1.1rem;
+.project-content {
+  max-width: 34rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
-.project-content > :first-child {
-  margin-top: 0;
+.project-content > * {
+  margin: 0 0 1.2em;
 }
 
 .project-content > :last-child {
   margin-bottom: 0;
 }
 
-/* Base image handling — a plain (unclassed) image is a full block on its
-   own line, capped to its container so a resize (TinyMCE writes width as
-   an inline style/attribute) never overflows on a narrow screen. */
+.project-content h2,
+.project-content h3 {
+  font-size: 1em;
+  font-weight: 600;
+}
+
 .project-content img {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 0 0 2em;
 }
 
-/* Wrap-left/right — the photo floats and following text wraps around it,
-   sized reasonably by default until manually resized by dragging a handle.
-   Prefixed with .project-content so these beat the base `img` rule above
-   on specificity (both are one class, but this one is two). */
-.project-content .project-block__image--wrap-left {
-  float: left;
-  max-width: min(340px, 100%);
-  margin: 0 1.75rem 1rem 0;
+.project-gallery {
+  margin-left: calc(var(--project-text-width) + var(--project-gap));
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
-.project-content .project-block__image--wrap-right {
-  float: right;
-  max-width: min(340px, 100%);
-  margin: 0 0 1rem 1.75rem;
-}
-
-.project-content .project-block__image--center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Full width is a deliberate override of any prior manual resize (TinyMCE
-   sets width via an inline style, which normally beats a class rule). */
-.project-block__image--full {
-  width: 100% !important;
-}
-
-/* Table — for precise side-by-side layouts (e.g. a photo in one column,
-   sized by dragging its border, and text in the other, vertically
-   centered via that cell's Cell properties) where wrap-left/right's
-   approximate floating isn't precise enough. Like headings, a table is
-   a new-section boundary: it always starts on its own full-width line. */
-.project-content table {
+.project-gallery__item {
+  display: block;
   width: 100%;
-  max-width: 100%;
-  margin: 0 0 2em;
-  border-collapse: collapse;
-  clear: both;
-  /* Without this, column widths are only a suggestion — a browser's
-     default (auto) table layout will still widen a column to fit an
-     image that doesn't fit, instead of shrinking the image/wrapping
-     text to the width you actually set. Fixed makes the set width the
-     real, enforced width. */
-  table-layout: fixed;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
 }
 
-.project-content td,
-.project-content th {
-  vertical-align: top;
-  padding: 0.5em;
-  overflow-wrap: break-word;
-}
-
-/* A photo dropped into a table cell fills that cell's width by default,
-   so resizing the column (dragging its border) resizes the photo along
-   with it — rather than the photo staying at whatever fixed size it was
-   inserted/last resized at, leaving empty space in a wider column. */
-.project-content td img {
+.project-gallery__item img {
+  display: block;
   width: 100%;
   height: auto;
 }
 
-/* The "End wrap" toolbar button inserts this — a plain paragraph break
-   deliberately doesn't clear a floated photo (that's what lets text wrap
-   beside it), so this thin divider is the explicit, visible way to end
-   that wrap and force whatever comes next onto its own full-width line. */
-.project-content hr {
-  clear: both;
-  border: none;
-  border-top: 1px solid #e2e2e2;
-  margin: 1.5em 0;
+.project-gallery__item:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
-@media (max-width: 640px) {
-  .project-block__image--wrap-left,
-  .project-block__image--wrap-right {
-    float: none;
-    max-width: 100%;
-    margin: 0 0 2em;
+@media (max-width: 720px) {
+  .project-text {
+    position: static;
+    width: auto;
+    overflow: visible;
+    margin-bottom: clamp(28px, 5vh, 44px);
   }
 
-  /* Classic responsive-table collapse: stack cells full-width instead of
-     squeezing a photo+text pair into a too-narrow column on a phone. */
-  .project-content table,
-  .project-content tbody,
-  .project-content tr,
-  .project-content td {
-    display: block;
-    width: 100% !important;
+  .project-gallery {
+    margin-left: 0;
   }
+}
+
+/* ---------------------------------------------------------------- */
+/* Lightbox — a clicked photo, enlarged over the page (script.js).   */
+/* ---------------------------------------------------------------- */
+
+.lightbox {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: clamp(16px, 4vw, 48px);
+  border: 0;
+  background: var(--paper);
+  cursor: zoom-out;
+}
+
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox::backdrop {
+  background: transparent;
+}
+
+.lightbox img {
+  display: block;
+  outline: none;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.2rem;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox__nav:hover,
+.lightbox__nav:focus-visible {
+  opacity: 0.7;
+}
+
+.lightbox__nav--prev {
+  left: 0;
+}
+
+.lightbox__nav--next {
+  right: 0;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  padding: 0.3em;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
 }

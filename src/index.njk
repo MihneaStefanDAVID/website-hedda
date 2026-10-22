@@ -29,7 +29,14 @@ includeScript: true
 
     <div class="project-grid" id="project-grid">
       {% for project in collections.heroProjects %}
-      <a class="project-card" data-index="{{ loop.index0 }}" href="/projects/{{ project.fileSlug }}/">
+      <a
+        class="project-card"
+        data-index="{{ loop.index0 }}"
+        href="/projects/{{ project.fileSlug }}/"
+        data-title="{{ project.data.title }}"
+        data-supervision="{{ project.data.supervision }}"
+        data-semester="{{ project.data.semester }}"
+      >
         <span class="project-card__frame">
           <img
             class="project-card__image"
@@ -37,7 +44,6 @@ includeScript: true
             alt="{{ project.data.title }}"
             loading="eager"
           />
-          <span class="project-card__title" aria-hidden="true">{{ project.data.title }}</span>
         </span>
       </a>
       {% endfor %}
@@ -51,10 +57,15 @@ includeScript: true
 <section class="remaining-projects" aria-label="More projects">
   <div class="project-grid project-grid--static">
     {% for project in collections.remainingProjects %}
-    <a class="project-card" href="/projects/{{ project.fileSlug }}/">
+    <a
+      class="project-card"
+      href="/projects/{{ project.fileSlug }}/"
+      data-title="{{ project.data.title }}"
+      data-supervision="{{ project.data.supervision }}"
+      data-semester="{{ project.data.semester }}"
+    >
       <span class="project-card__frame">
         <img class="project-card__image" src="{{ project.data.cover | imagePath }}" alt="{{ project.data.title }}" loading="lazy" />
-        <span class="project-card__title" aria-hidden="true">{{ project.data.title }}</span>
       </span>
     </a>
     {% endfor %}

@@ -22,133 +22,34 @@
     <script>
       // ------------------------------------------------------------------
       // Custom "rich_editor" widget — a Word-like editor for a project's
-      // `content` field: type text, insert images inline, resize them by
-      // dragging a handle, wrap text around them left/right/center, format
-      // text (headings/bold/italic/lists). Backed by TinyMCE (self-hosted,
-      // license_key: "gpl" — free, no account, no build step, matching how
-      // Decap CMS is loaded above). Stores raw HTML.
-      //
-      // Image insertion deliberately does NOT use TinyMCE's own upload
-      // flow. It reuses Decap's existing media library (the exact same
-      // DecapBridge-backed upload/browse pipeline the old widget used) via
-      // the standard onOpenMediaLibrary/mediaPaths contract every
-      // registered widget control receives — confirmed against Decap's own
-      // source (packages/decap-cms-widget-file/src/withFileControl.js,
-      // the native Image widget's own control): generate a controlID,
-      // call onOpenMediaLibrary({controlID, forImage: true, ...}), then
-      // watch props.mediaPaths.get(controlID) in componentDidUpdate for
-      // the picked path. No new upload code, no new risk to the tested
-      // upload pipeline.
+      // text (the left column of the project page): headings, bold,
+      // italic, lists, links. Photos are a separate list field (right
+      // column), so this editor deliberately has no image or table tools.
+      // Backed by TinyMCE (self-hosted, license_key: "gpl" — free, no
+      // account, no build step, matching how Decap CMS is loaded above).
+      // Stores raw HTML.
       // ------------------------------------------------------------------
-      var RICH_TEXT_IMAGE_CLASSES = [
-        { title: "None", value: "" },
-        { title: "Wrap left", value: "project-block__image--wrap-left" },
-        { title: "Wrap right", value: "project-block__image--wrap-right" },
-        { title: "Centered", value: "project-block__image--center" },
-        { title: "Full width", value: "project-block__image--full" },
-      ];
-
       var RichEditorControl = createClass({
-        getControlID: function () {
-          if (!this._controlID) {
-            this._controlID = "rt_" + Math.random().toString(36).slice(2);
-          }
-          return this._controlID;
-        },
-
-        // The Widget wrapper every registered control renders through only
-        // re-renders on value/classNameWrapper/hasActiveStyle changes by
-        // default — it ignores mediaPaths entirely unless the control
-        // defines its own shouldComponentUpdate (which the wrapper detects
-        // and defers to). Without this, componentDidUpdate below would
-        // never fire after picking an image, exactly like the native Image
-        // widget's own withFileControl.js has to do. No need to track "last
-        // inserted path" separately: componentDidUpdate clears mediaPaths
-        // via onRemoveInsertedMedia right after consuming it, so a truthy
-        // mediaPath here always means a fresh, not-yet-consumed selection —
-        // that also means picking the same image twice in separate actions
-        // still inserts it both times, as it should.
-        shouldComponentUpdate: function (nextProps) {
-          if (this.props.value !== nextProps.value) return true;
-          if (nextProps.mediaPaths.get(this.getControlID())) return true;
-          return false;
-        },
-
         componentDidMount: function () {
           var self = this;
           tinymce.init({
             target: this._textareaEl,
             license_key: "gpl",
-            height: 480,
+            height: 420,
             menubar: false,
             branding: false,
-            plugins: "lists link image table",
-            // insertimage/table/stopwrap are the tools most specific to this
-            // editor's job, so they're placed early enough to stay visible
-            // rather than falling into the "..." overflow menu on the
-            // admin's fixed-width form column.
-            toolbar:
-              "undo redo | blocks | bold italic | insertimage table stopwrap | bullist numlist | alignleft aligncenter alignright | link removeformat",
-            // For precise side-by-side photo+text layouts (exact column
-            // widths, vertical-centering text next to a photo) — right-click
-            // a cell, or use the Table menu, for column width and Cell
-            // properties (vertical align top/middle/bottom).
-            table_toolbar:
-              "tableprops tablerowheader tablecolheader | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablecellprops",
-            table_default_attributes: { border: "0" },
-            table_default_styles: { width: "100%" },
-            image_class_list: RICH_TEXT_IMAGE_CLASSES,
-            // The Align left/center/right toolbar buttons are meant only
-            // for paragraphs/headings/lists — but TinyMCE's built-in align
-            // commands ALSO apply directly to a selected image, writing a
-            // raw `style="float: left"` straight onto the <img> tag. That's
-            // an entirely separate, uncontrolled floating mechanism from
-            // the Class dropdown above (no mobile collapse, no float-
-            // clearing, no max-width clamp) — confirmed by testing
-            // execCommand("JustifyLeft") against a selected image. Omitting
-            // "img" from these format definitions (TinyMCE's default
-            // definitions include it) makes the align buttons a no-op on
-            // images, so floating a photo only ever happens through the
-            // Class dropdown, which is the only path with real support.
-            formats: {
-              alignleft: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "left" } }],
-              aligncenter: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "center" } }],
-              alignright: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "right" } }],
-              alignjustify: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", styles: { textAlign: "justify" } }],
-            },
-            object_resizing: true,
+            plugins: "lists link",
+            toolbar: "undo redo | blocks | bold italic | bullist numlist | link removeformat",
+            block_formats: "Paragraph=p; Heading=h2; Subheading=h3",
             content_css: "/styles.css",
             body_class: "project-content",
-            // Without these, TinyMCE rewrites absolute paths like
-            // /assets/uploads/x.png into a path relative to THIS admin
-            // page's own URL (e.g. "../assets/uploads/x.png") — correct
-            // here, but wrong once rendered on the actual project page at
-            // a different URL. Keep the absolute paths exactly as inserted.
+            // Keep link URLs exactly as typed — TinyMCE would otherwise
+            // rewrite site-absolute paths relative to this admin page.
             relative_urls: false,
             convert_urls: false,
             remove_script_host: false,
             setup: function (editor) {
               self._editor = editor;
-              editor.ui.registry.addButton("insertimage", {
-                icon: "image",
-                tooltip: "Insert image",
-                onAction: function () {
-                  self.handleInsertImageClick();
-                },
-              });
-              // Headings and tables already auto-clear a wrapped photo (see
-              // styles.css), but plain paragraphs deliberately don't — that's
-              // what makes "wrap text around a photo" work at all. This
-              // button is the manual way to end a wrap at any other point:
-              // it inserts a thin divider that also clears floats, so
-              // whatever comes after always starts full width.
-              editor.ui.registry.addButton("stopwrap", {
-                text: "End wrap",
-                tooltip: "End photo wrap here — everything after starts full width",
-                onAction: function () {
-                  editor.execCommand("InsertHorizontalRule");
-                },
-              });
               editor.on("init", function () {
                 editor.setContent(self.props.value || "");
               });
@@ -160,12 +61,6 @@
         },
 
         componentDidUpdate: function (prevProps) {
-          var mediaPath = this.props.mediaPaths.get(this.getControlID());
-          if (mediaPath) {
-            this.insertImage(mediaPath);
-            this.props.onRemoveInsertedMedia(this.getControlID());
-            return;
-          }
           // Decap's SPA routing can reuse this same widget instance when
           // navigating from one entry to another (not a full page reload),
           // so value can change for a reason other than our own typing.
@@ -185,24 +80,6 @@
           if (this._editor) {
             tinymce.remove(this._editor);
           }
-          this.props.onRemoveMediaControl(this.getControlID());
-        },
-
-        insertImage: function (path) {
-          var asset = this.props.getAsset(path, this.props.field);
-          var src = asset ? asset.toString() : path;
-          if (this._editor) {
-            this._editor.insertContent('<img src="' + src + '" alt="" />');
-          }
-        },
-
-        handleInsertImageClick: function () {
-          this.props.onOpenMediaLibrary({
-            controlID: this.getControlID(),
-            forImage: true,
-            allowMultiple: false,
-            field: this.props.field,
-          });
         },
 
         render: function () {
@@ -223,17 +100,26 @@
       CMS.registerWidget("rich_editor", RichEditorControl);
 
       // ------------------------------------------------------------------
-      // Live preview for the Projects collection — the `content` field is
-      // already final HTML (TinyMCE's own output), so the preview just
-      // renders it directly inside the site's real header/page chrome.
+      // Live preview for the Projects collection — mirrors
+      // src/_includes/project.njk: facts table and text on the left,
+      // photos stacked on the right, inside the site's real header.
       // ------------------------------------------------------------------
       CMS.registerPreviewStyle("/styles.css");
 
       var ProjectPreview = createClass({
         render: function () {
-          var entry = this.props.entry;
+          var props = this.props;
+          var entry = props.entry;
           var title = entry.getIn(["data", "title"]) || "";
+          var supervision = entry.getIn(["data", "supervision"]) || "";
+          var semester = entry.getIn(["data", "semester"]) || "";
           var contentHtml = entry.getIn(["data", "body"]) || "";
+          var images = entry.getIn(["data", "images"]);
+          images = images && images.toJS ? images.toJS() : images || [];
+
+          var facts = [["Project", h("h1", { className: "project-facts__title" }, title)]];
+          if (supervision) facts.push(["Supervision", supervision]);
+          if (semester) facts.push(["Semester", semester]);
 
           return h(
             "div",
@@ -249,17 +135,42 @@
             ),
             h(
               "main",
-              { className: "project-main" },
+              { className: "project-main", style: { paddingTop: "24px" } },
               h(
                 "div",
-                { className: "project-header" },
-                h("h1", { className: "project-header__title" }, title),
-                h("span", { className: "project-header__back" }, "go back")
-              ),
-              h("div", {
-                className: "project-content",
-                dangerouslySetInnerHTML: { __html: contentHtml },
-              })
+                { className: "project-layout" },
+                h(
+                  "div",
+                  { className: "project-text" },
+                  h("span", { className: "project-header__back" }, "go back"),
+                  h(
+                    "table",
+                    { className: "project-facts" },
+                    h("thead", {}, h("tr", {}, facts.map(function (f, i) {
+                      return h("th", { key: i }, f[0]);
+                    }))),
+                    h("tbody", {}, h("tr", {}, facts.map(function (f, i) {
+                      return h("td", { key: i }, f[1]);
+                    })))
+                  ),
+                  h("div", {
+                    className: "project-content",
+                    dangerouslySetInnerHTML: { __html: contentHtml },
+                  })
+                ),
+                h(
+                  "div",
+                  { className: "project-gallery" },
+                  images.filter(Boolean).map(function (path, i) {
+                    var asset = props.getAsset(path);
+                    return h(
+                      "span",
+                      { className: "project-gallery__item", key: i },
+                      h("img", { src: asset ? asset.toString() : path, alt: "" })
+                    );
+                  })
+                )
+              )
             )
           );
         },
