@@ -450,6 +450,38 @@
 })();
 
 // ------------------------------------------------------------------
+// Language switch (project pages) — EN/DE. The choice is kept for the
+// rest of the browser session, so every project opens in it; base.njk
+// applies it before first paint, this only handles switching.
+// ------------------------------------------------------------------
+(() => {
+  "use strict";
+
+  const buttons = [...document.querySelectorAll("[data-set-lang]")];
+  if (!buttons.length) return;
+
+  const root = document.documentElement;
+  const sync = () => {
+    const current = root.dataset.lang === "de" ? "de" : "en";
+    buttons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.setLang === current)));
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.dataset.setLang;
+      if (lang === "de") root.dataset.lang = "de";
+      else delete root.dataset.lang;
+      try {
+        sessionStorage.setItem("lang", lang);
+      } catch {}
+      sync();
+    });
+  });
+
+  sync();
+})();
+
+// ------------------------------------------------------------------
 // Project gallery — equal-height rows, and a lightbox: clicking a photo,
 // GIF or video opens it enlarged over the page. Clicking the left/right
 // half of the screen (or the arrow keys) steps through them; Escape or

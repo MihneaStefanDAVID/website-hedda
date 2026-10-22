@@ -11,13 +11,26 @@ includeScript: true
 -->
 <div class="project-layout">
   <div class="project-text">
-    <a href="/" class="project-header__back">go back</a>
+    <!--
+      English / German: both versions are in the page and CSS shows one,
+      based on html[data-lang] (set before first paint in base.njk, and
+      by the EN/DE switch in script.js). Without German text, the English
+      text shows in both languages.
+    -->
+    <div class="project-topbar">
+      <a href="/" class="project-header__back"><span class="lang-en">go back</span><span class="lang-de">zurück</span></a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" lang="en">EN</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-set-lang="de" lang="de">DE</button>
+      </div>
+    </div>
 
     <table class="project-facts">
       <thead>
         <tr>
-          <th>Project</th>
-          {% if supervision %}<th>Supervision</th>{% endif %}
+          <th><span class="lang-en">Project</span><span class="lang-de">Projekt</span></th>
+          {% if supervision %}<th><span class="lang-en">Supervision</span><span class="lang-de">Betreuung</span></th>{% endif %}
           {% if semester %}<th>Semester</th>{% endif %}
         </tr>
       </thead>
@@ -30,7 +43,12 @@ includeScript: true
       </tbody>
     </table>
 
+    {% if body_de %}
+    <div class="project-content lang-en" lang="en">{{ content | safe }}</div>
+    <div class="project-content lang-de" lang="de">{{ body_de | safe }}</div>
+    {% else %}
     <div class="project-content">{{ content | safe }}</div>
+    {% endif %}
   </div>
 
   <div class="project-gallery">

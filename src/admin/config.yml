@@ -72,10 +72,15 @@ collections:
         widget: "string"
         required: false
         hint: "e.g. FS26. Shown at the top of the project page and in the hover box on the main page."
-      - label: "Text"
+      - label: "Text (English)"
         name: "body"
         widget: "rich_editor"
-        hint: "The project text, shown in the left column of the project page. Photos go in the Photos field below."
+        hint: "The project text, shown in the left column of the project page. English is what visitors see by default. Photos go in Photo rows below."
+      - label: "Text (German)"
+        name: "body_de"
+        widget: "rich_editor"
+        required: false
+        hint: "The same text in German, shown when a visitor switches the project page to DE. If left empty, the English text is shown instead."
       - label: "Photo rows"
         name: "gallery"
         widget: "list"

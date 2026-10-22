@@ -122,6 +122,7 @@
           var supervision = entry.getIn(["data", "supervision"]) || "";
           var semester = entry.getIn(["data", "semester"]) || "";
           var contentHtml = entry.getIn(["data", "body"]) || "";
+          var contentHtmlDe = entry.getIn(["data", "body_de"]) || "";
           var gallery = entry.getIn(["data", "gallery"]);
           gallery = gallery && gallery.toJS ? gallery.toJS() : gallery || [];
 
@@ -150,7 +151,12 @@
                 h(
                   "div",
                   { className: "project-text" },
-                  h("span", { className: "project-header__back" }, "go back"),
+                  h(
+                    "div",
+                    { className: "project-topbar" },
+                    h("span", { className: "project-header__back" }, "go back"),
+                    h("span", { className: "lang-switch" }, "EN / DE")
+                  ),
                   h(
                     "table",
                     { className: "project-facts" },
@@ -164,7 +170,19 @@
                   h("div", {
                     className: "project-content",
                     dangerouslySetInnerHTML: { __html: contentHtml },
-                  })
+                  }),
+                  // The site shows one language at a time (EN/DE switch);
+                  // the preview shows both so each can be checked.
+                  contentHtmlDe &&
+                    h(
+                      "div",
+                      { style: { marginTop: "2em", paddingTop: "1em", borderTop: "1px solid #dedede" } },
+                      h("p", { style: { fontSize: "0.75rem", opacity: 0.5, margin: "0 0 1em" } }, "DE"),
+                      h("div", {
+                        className: "project-content",
+                        dangerouslySetInnerHTML: { __html: contentHtmlDe },
+                      })
+                    )
                 ),
                 h(
                   "div",

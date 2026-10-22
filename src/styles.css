@@ -325,9 +325,51 @@ a {
   overflow-y: auto;
 }
 
+/* Language: show only the chosen version (English unless German was
+   picked with the EN/DE switch). */
+html:not([data-lang="de"]) .lang-de,
+html[data-lang="de"] .lang-en {
+  display: none;
+}
+
+.project-topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+
+.lang-switch {
+  display: flex;
+  gap: 0.35em;
+  font-size: 0.8rem;
+}
+
+.lang-switch span {
+  opacity: 0.4;
+}
+
+.lang-switch button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.lang-switch button:hover,
+.lang-switch button:focus-visible,
+html:not([data-lang="de"]) .lang-switch [data-set-lang="en"],
+html[data-lang="de"] .lang-switch [data-set-lang="de"] {
+  opacity: 1;
+}
+
 .project-header__back {
   display: inline-block;
-  margin-bottom: clamp(20px, 3vh, 32px);
   font-size: 0.8rem;
   opacity: 0.6;
   transition: opacity 0.2s ease;
