@@ -6,6 +6,9 @@ supervision: Placeholder Supervisor
 semester: FS26
 gallery:
   - photos:
-      - /assets/projects/05-placeholder.svg
+      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
+      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
+  - photos:
+      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
 ---
 <p>Placeholder description for Project Five. Replace this from the admin panel.</p>
