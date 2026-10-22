@@ -507,40 +507,24 @@ a {
   object-fit: contain;
 }
 
-.lightbox__nav {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 18%;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--ink);
-  font: inherit;
-  font-size: 1.2rem;
-  opacity: 0;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
+/* With more than one item, the cursor becomes a thin arrow pointing the
+   way a click goes: left half = previous, right half = next. A white
+   halo under the dark stroke keeps it visible over dark photos. */
+.lightbox--multi {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 20h28M24 10l10 10-10 10' stroke='white' stroke-width='4'/%3E%3Cpath d='M6 20h28M24 10l10 10-10 10' stroke='%23171717' stroke-width='1.5'/%3E%3C/svg%3E") 20 20, e-resize;
 }
 
-.lightbox__nav:hover,
-.lightbox__nav:focus-visible {
-  opacity: 0.7;
+.lightbox--multi.lightbox--prev {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='white' stroke-width='4'/%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='%23171717' stroke-width='1.5'/%3E%3C/svg%3E") 20 20, w-resize;
 }
 
-.lightbox__nav--prev {
-  left: 0;
-}
-
-.lightbox__nav--next {
-  right: 0;
+/* A video keeps the normal cursor so its controls are usable. */
+.lightbox video {
+  cursor: auto;
 }
 
 .lightbox__close {
   position: absolute;
-  /* Above the full-height prev/next click areas, which otherwise cover
-     it and turn a click on "close" into "next". */
-  z-index: 1;
   top: 1.2rem;
   right: 1.5rem;
   padding: 0.3em;

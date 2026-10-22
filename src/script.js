@@ -440,9 +440,9 @@
 
 // ------------------------------------------------------------------
 // Project gallery — equal-height rows, and a lightbox: clicking a photo,
-// GIF or video opens it enlarged over the page. Arrow keys or the
-// left/right edges step through them; Escape, the close button or a
-// click outside a video closes it.
+// GIF or video opens it enlarged over the page. Clicking the left/right
+// half of the screen (or the arrow keys) steps through them; Escape or
+// the close button closes it.
 // ------------------------------------------------------------------
 (() => {
   "use strict";
@@ -479,20 +479,15 @@
   let index = 0;
   let current = null;
 
-  if (items.length > 1) {
-    [["prev", "←", -1], ["next", "→", 1]].forEach(([name, arrow, step]) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = `lightbox__nav lightbox__nav--${name}`;
-      button.setAttribute("aria-label", name === "prev" ? "Previous" : "Next");
-      button.textContent = arrow;
-      button.addEventListener("click", (event) => {
-        event.stopPropagation();
-        go(step);
-      });
-      dialog.append(button);
-    });
-  }
+  // With several items, a click on the left half of the screen goes to
+  // the previous one and on the right half to the next; the cursor shows
+  // which (see .lightbox--prev in styles.css). A single item just closes.
+  const multiple = items.length > 1;
+  dialog.classList.toggle("lightbox--multi", multiple);
+  const isLeftHalf = (event) => event.clientX < window.innerWidth / 2;
+  dialog.addEventListener("pointermove", (event) => {
+    dialog.classList.toggle("lightbox--prev", isLeftHalf(event));
+  });
   document.body.appendChild(dialog);
 
   function show(i) {
@@ -522,15 +517,23 @@
   }
 
   items.forEach((item, i) => {
-    item.addEventListener("click", () => {
+    item.addEventListener("click", (event) => {
       show(i);
+      // Right arrow/left arrow cursor from the start, before any move.
+      dialog.classList.toggle("lightbox--prev", isLeftHalf(event));
       dialog.showModal();
       current.focus({ preventScroll: true });
     });
   });
 
-  close.addEventListener("click", () => dialog.close());
-  dialog.addEventListener("click", () => dialog.close());
+  close.addEventListener("click", (event) => {
+    event.stopPropagation();
+    dialog.close();
+  });
+  dialog.addEventListener("click", (event) => {
+    if (multiple) go(isLeftHalf(event) ? -1 : 1);
+    else dialog.close();
+  });
 
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") go(-1);
