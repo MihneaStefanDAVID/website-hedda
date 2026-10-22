@@ -538,6 +538,9 @@ a {
 
 .lightbox__close {
   position: absolute;
+  /* Above the full-height prev/next click areas, which otherwise cover
+     it and turn a click on "close" into "next". */
+  z-index: 1;
   top: 1.2rem;
   right: 1.5rem;
   padding: 0.3em;

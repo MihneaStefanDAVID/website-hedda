@@ -29,6 +29,13 @@
       // account, no build step, matching how Decap CMS is loaded above).
       // Stores raw HTML.
       // ------------------------------------------------------------------
+      // The site's stylesheet, loaded by both the editor and the preview.
+      // The host caches styles.css for hours and this admin page is a
+      // static file (no build-time hash like the site's pages get), so
+      // without a fresh URL each time the preview could keep showing an
+      // old layout after a design change.
+      var SITE_CSS = "/styles.css?v=" + Date.now();
+
       var RichEditorControl = createClass({
         componentDidMount: function () {
           var self = this;
@@ -41,7 +48,7 @@
             plugins: "lists link",
             toolbar: "undo redo | blocks | bold italic | bullist numlist | link removeformat",
             block_formats: "Paragraph=p; Heading=h2; Subheading=h3",
-            content_css: "/styles.css",
+            content_css: SITE_CSS,
             body_class: "project-content",
             // Keep link URLs exactly as typed — TinyMCE would otherwise
             // rewrite site-absolute paths relative to this admin page.
@@ -105,7 +112,7 @@
       // rows of side-by-side photos on the right, inside the site's
       // real header.
       // ------------------------------------------------------------------
-      CMS.registerPreviewStyle("/styles.css");
+      CMS.registerPreviewStyle(SITE_CSS);
 
       var ProjectPreview = createClass({
         render: function () {
