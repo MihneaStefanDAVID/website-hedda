@@ -55,6 +55,17 @@
 
   window.addEventListener("pagehide", () => store.set(SCROLL_KEY, String(window.scrollY)));
 
+  // Safari (and other browsers' back-forward cache) can bring this page
+  // back without reloading it, so the restore below never runs again —
+  // and with restoration set to manual, Safari then leaves it at the top.
+  // Put it back at the saved position whenever the page returns that way.
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+    const position = Number(store.get(SCROLL_KEY));
+    store.remove(RESTORE_KEY);
+    if (position > 0 && Math.abs(window.scrollY - position) > 1) window.scrollTo(0, position);
+  });
+
   const navigation = performance.getEntriesByType("navigation")[0];
   const navType = navigation ? navigation.type : "navigate";
   const restoreRequested = store.get(RESTORE_KEY) === "1";
