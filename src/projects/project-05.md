@@ -14,6 +14,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
+      - /assets/uploads/poza3.png
 ---
 <p>12332323232</p>
 <p>&nbsp;</p>
