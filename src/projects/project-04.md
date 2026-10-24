@@ -30,6 +30,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/33.jpg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-02-copy.jpg
   - size: full
     align: center
