@@ -30,7 +30,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/img_1077.jpeg
-      - /assets/uploads/screenshot-2025-10-08-at-10.15.20.png
+      - /assets/uploads/whatsapp-image-2025-09-30-at-14.05.02.jpeg
   - size: full
     align: center
     photos:
