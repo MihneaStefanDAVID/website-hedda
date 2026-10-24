@@ -4,9 +4,53 @@ order: 4
 cover: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
 supervision: Prof. Jan De Vylder
 semester: HS25
+body_de: >-
+  <p>Zusammenleben bringt immer Konflikte mit sich, selbst wenn man nur mit sich
+  selbst zusammenlebt. <strong>Kann man seine eigene Familie sein?</strong> Die
+  Frage, was eine Familie ausmacht, wo sie beginnt und wo sie endet, f&uuml;hrte
+  uns zu den Akteuren unseres Projekts: <em>the ITSELF</em>. Vier Figuren, eine
+  Person, die in verschiedenen Lebensaltern, aber zur selben Zeit mit sich
+  selbst zusammenlebt: ein Kind, eine junge Erwachsene, eine Erwachsene und ein
+  Geist. Stell dir vor, du lebst mit dir selbst zusammen: <strong>G&auml;be es
+  mehr Konflikte oder weniger, br&auml;uchtest du mehr Privatsph&auml;re oder
+  weniger?</strong></p>
+
+  <p>Unser Fragment steht zwischen zwei bestehenden W&auml;nden und fragt: <strong>Braucht Erinnerung Raum?</strong> Einige W&auml;nde waren bereits da, andere werden st&auml;ndig mit Leben gef&uuml;llt. Die Erinnerungen an den Raum, der vorher da war, verschwinden nicht einfach, genauso wenig wie die Erinnerungen an die Leben, die darin gelebt wurden.</p>
+
+  <p>Im Zentrum des Fragments steht <em>eine drehbare Wand</em>, und sie erzeugt immer einen Konflikt. Um sich am Waschbecken die H&auml;nde zu waschen, muss man sie bewegen. Um sie &uuml;ber den Tisch zu drehen, muss man zuerst den Tisch abr&auml;umen. Da der Strom nur durch die Wand l&auml;uft, lassen sich die Lampen nur dort einstecken, wo sie gerade steht. Beim Eintreten &ouml;ffnet sich die Wand entweder zur K&uuml;che oder zum anderen Raum, nie zu beiden. Selbst das gemeinsame Bett hat Schubladen, die einem ge&ouml;ffnet im Weg stehen. Jede Bewegung einer Figur ver&auml;ndert den Raum der anderen.</p>
+
+  <p>Auch wenn man sich selbst so gut kennt, entstehen Konflikte, und man muss eine Balance finden, um mit ihnen zu koexistieren. <strong>F&uuml;reinander sorgen und auf sich selbst achten</strong> steht im Zentrum unseres Konzepts: Man muss so handeln, dass man pr&auml;sent ist und die anderen wahrnimmt. <strong>Wie endet es, und was ist es wert, bewahrt zu werden?</strong> Manchmal bleiben nur ein paar Erinnerungen, deshalb haben wir zum Abschluss eine kleine Sammlung unserer Momente und Konflikte in diesem Fragment zusammengestellt.</p>
 gallery:
   - photos:
-      - /assets/projects/04-placeholder.svg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-01.jpg
+    size: medium
+    align: right
+  - size: medium
+    align: right
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-02.jpg
+  - size: medium
+    align: right
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-03.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-01.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-04.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-02.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-01.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-02.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-03.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-03.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-05.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-06.jpg
 ---
 <p>Do we live a house or do we house a life?&nbsp;</p>
 <p>Living together always comes with conflicts, even if it means just living with yourself. <strong>Can you be your own family?</strong> The question of what makes a family, where it starts and where it ends, led us to the actors of our project: <em>the ITSELF</em>. Four characters, one person living with themselves at different ages, but at the same time: a kid, a young adult, an adult and a ghost. Imagine living with yourself: <strong>would there be more conflicts or less, would you need more privacy or less?</strong></p>
