@@ -184,8 +184,14 @@
     };
     compactStates = [compact, compact, compact, compact];
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    // Card boxes are taken relative to the stage's center, where the
+    // rectangles are positioned (.mark-rect), not the viewport's: when the
+    // page is reloaded further down, the stage has already scrolled past
+    // and is no longer at the top of the viewport, which put the targets a
+    // whole stage too high once the visitor scrolled back up.
+    const stageRect = stage.getBoundingClientRect();
+    const centerX = stageRect.left + stageRect.width / 2;
+    const centerY = stageRect.top + stageRect.height / 2;
 
     // The cards carry their own reveal transform (translateY + scale), which
     // getBoundingClientRect() reports post-transform — measuring while that's
