@@ -528,6 +528,9 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   border: 0;
   background: var(--paper);
   cursor: zoom-out;
+  overflow: hidden;
+  /* Pinches zoom the photo, not the page (see the zoom code in script.js). */
+  touch-action: none;
 }
 
 .lightbox[open] {
@@ -558,6 +561,23 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
 
 .lightbox--multi.lightbox--prev {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='white' stroke-width='4'/%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='%23171717' stroke-width='1.5'/%3E%3C/svg%3E") 20 20, w-resize;
+}
+
+/* Zooming scales the photo from its top-left corner (script.js keeps
+   the point under the cursor in place). */
+.lightbox img {
+  transform-origin: 0 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Zoomed in: the photo can be dragged around. */
+.lightbox.lightbox--zoomed {
+  cursor: grab;
+}
+
+.lightbox.lightbox--zoomed:active {
+  cursor: grabbing;
 }
 
 /* A video keeps the normal cursor so its controls are usable. */

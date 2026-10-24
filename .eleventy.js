@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 export default function (eleventyConfig) {
   // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
@@ -12,6 +12,16 @@ export default function (eleventyConfig) {
       return value;
     }
     return `/assets/uploads/${value}`;
+  });
+
+  // Converted JPEG 2000/TIFF uploads also have a large version in
+  // /assets/zoom (see scripts/convert_uploads.py) that the lightbox loads
+  // for zooming in. Empty when there is none; the lightbox then zooms into
+  // the page image itself.
+  eleventyConfig.addFilter("zoomPath", (value) => {
+    if (!value) return "";
+    const name = value.split("/").pop();
+    return existsSync(`src/assets/zoom/${name}`) ? `/assets/zoom/${name}` : "";
   });
 
   // Appends a short hash of the file's contents ("/styles.css?v=1a2b3c4d").

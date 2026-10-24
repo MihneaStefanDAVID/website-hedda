@@ -545,6 +545,17 @@
       media.addEventListener("click", (event) => event.stopPropagation());
     } else {
       media.alt = source.alt;
+      media.draggable = false; // dragging pans instead
+      // Swap in the large version for zooming once it has loaded. Phones
+      // keep the page image: a 12000px photo can crash a mobile browser.
+      const zoom = source.dataset.zoom;
+      if (zoom && !coarsePointer.matches) {
+        const large = new Image();
+        large.src = zoom;
+        large.decode().then(() => {
+          if (current === media) media.src = zoom;
+        }, () => {});
+      }
     }
     // Focus lands on the media itself rather than the close button, so
     // no focus ring shows on open while Escape and arrows keep working.
@@ -552,8 +563,134 @@
     if (current) current.replaceWith(media);
     else dialog.prepend(media);
     current = media;
+    resetZoom();
     if (dialog.open) media.focus({ preventScroll: true });
   }
+
+  // Zoom: wheel or trackpad pinch on desktop, two-finger pinch on touch
+  // screens; drag to move around. While zoomed in, a click zooms back
+  // out instead of stepping to the next photo.
+  const coarsePointer = window.matchMedia("(pointer: coarse)");
+  let scale = 1;
+  let tx = 0;
+  let ty = 0;
+  let base = null; // the photo's fitted box, before any zoom
+
+  const zoomable = () => current && current.tagName === "IMG";
+
+  function apply() {
+    current.style.transform = scale === 1 ? "" : `translate(${tx}px, ${ty}px) scale(${scale})`;
+    dialog.classList.toggle("lightbox--zoomed", scale > 1);
+  }
+
+  function resetZoom() {
+    scale = 1;
+    tx = ty = 0;
+    base = null;
+    if (current) apply();
+  }
+
+  function fittedBox() {
+    if (!base) {
+      const rect = current.getBoundingClientRect();
+      base = { x: rect.left, y: rect.top, w: rect.width, h: rect.height };
+    }
+    return base;
+  }
+
+  // Up to one photo pixel per CSS pixel.
+  const maxScale = () => Math.max(1, current.naturalWidth / fittedBox().w);
+
+  // Keep the photo covering the screen when it is bigger than it, and
+  // centred when it is smaller.
+  function clamp() {
+    const box = fittedBox();
+    const w = box.w * scale;
+    const h = box.h * scale;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    tx = w <= vw ? (vw - w) / 2 - box.x : Math.min(-box.x, Math.max(vw - w - box.x, tx));
+    ty = h <= vh ? (vh - h) / 2 - box.y : Math.min(-box.y, Math.max(vh - h - box.y, ty));
+  }
+
+  // Zoom to `next`, keeping the photo point under (x, y) where it is.
+  function zoomAt(x, y, next) {
+    if (!zoomable()) return;
+    const box = fittedBox();
+    next = Math.min(maxScale(), Math.max(1, next));
+    const u = (x - box.x - tx) / scale;
+    const v = (y - box.y - ty) / scale;
+    scale = next;
+    tx = x - box.x - u * scale;
+    ty = y - box.y - v * scale;
+    if (scale === 1) tx = ty = 0;
+    else clamp();
+    apply();
+  }
+
+  dialog.addEventListener("wheel", (event) => {
+    if (!zoomable()) return;
+    event.preventDefault();
+    const lines = event.deltaMode === 1 ? 16 : 1;
+    // Trackpad pinches arrive as wheel events with ctrlKey set.
+    const speed = event.ctrlKey ? 0.01 : 0.002;
+    zoomAt(event.clientX, event.clientY, scale * Math.exp(-event.deltaY * lines * speed));
+  }, { passive: false });
+
+  const pointers = new Map();
+  let gesture = null;
+  let dragged = false;
+
+  function startGesture() {
+    const [a, b] = [...pointers.values()];
+    gesture = b
+      ? { pinch: Math.hypot(a.x - b.x, a.y - b.y), scale, x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
+      : { x: a.x, y: a.y, tx, ty };
+  }
+
+  dialog.addEventListener("pointerdown", (event) => {
+    if (!zoomable() || event.target === close) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (pointers.size === 1) dragged = false;
+    if (pointers.size <= 2) startGesture();
+  });
+
+  dialog.addEventListener("pointermove", (event) => {
+    if (!pointers.has(event.pointerId) || !gesture) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    const [a, b] = [...pointers.values()];
+    if (gesture.pinch && b) {
+      const x = (a.x + b.x) / 2;
+      const y = (a.y + b.y) / 2;
+      // Pan with the fingers' midpoint, then zoom around it.
+      tx += x - gesture.x;
+      ty += y - gesture.y;
+      gesture.x = x;
+      gesture.y = y;
+      zoomAt(x, y, gesture.scale * (Math.hypot(a.x - b.x, a.y - b.y) / gesture.pinch));
+      dragged = true;
+    } else if (!gesture.pinch && scale > 1) {
+      const dx = a.x - gesture.x;
+      const dy = a.y - gesture.y;
+      if (Math.hypot(dx, dy) > 4) dragged = true;
+      tx = gesture.tx + dx;
+      ty = gesture.ty + dy;
+      clamp();
+      apply();
+    }
+  });
+
+  const endPointer = (event) => {
+    if (!pointers.delete(event.pointerId)) return;
+    if (pointers.size) startGesture();
+    else gesture = null;
+  };
+  dialog.addEventListener("pointerup", endPointer);
+  dialog.addEventListener("pointercancel", endPointer);
+
+  window.addEventListener("resize", () => {
+    if (dialog.open) resetZoom();
+  });
 
   function go(step) {
     show(index + step);
@@ -574,19 +711,31 @@
     dialog.close();
   });
   dialog.addEventListener("click", (event) => {
-    if (multiple) go(isLeftHalf(event) ? -1 : 1);
+    // The end of a drag or pinch is not a click.
+    if (dragged) {
+      dragged = false;
+      return;
+    }
+    if (scale > 1) resetZoom();
+    else if (multiple) go(isLeftHalf(event) ? -1 : 1);
     else dialog.close();
   });
 
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") go(-1);
     if (event.key === "ArrowRight") go(1);
+    if (event.key === "+" || event.key === "=") zoomAt(window.innerWidth / 2, window.innerHeight / 2, scale * 1.5);
+    if (event.key === "-") zoomAt(window.innerWidth / 2, window.innerHeight / 2, scale / 1.5);
+    if (event.key === "0") resetZoom();
   });
 
   dialog.addEventListener("close", () => {
     // Drop the enlarged copy so a video stops playing (and its sound).
     current.remove();
     current = null;
+    pointers.clear();
+    gesture = null;
+    dragged = false;
     items[index].focus({ preventScroll: true });
   });
 })();

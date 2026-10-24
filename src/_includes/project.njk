@@ -59,7 +59,7 @@ includeScript: true
         {% if item | isVideo %}
         <video src="{{ item | imagePath }}" autoplay muted loop playsinline preload="metadata"></video>
         {% else %}
-        <img src="{{ item | imagePath }}" alt="{{ title }}" loading="lazy" />
+        <img src="{{ item | imagePath }}" data-zoom="{{ item | zoomPath }}" alt="{{ title }}" loading="lazy" />
         {% endif %}
       </button>
       {% endif %}{% endfor %}
