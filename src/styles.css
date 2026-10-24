@@ -437,15 +437,17 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
 }
 
 .project-gallery {
+  /* Space between photos, both between rows and side by side. */
+  --gallery-gap: clamp(6px, 0.75vw, 10px);
   margin-left: calc(var(--project-text-width) + var(--project-gap));
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.5vw, 20px);
+  gap: var(--gallery-gap);
 }
 
 .project-gallery__row {
   display: flex;
-  gap: clamp(12px, 1.5vw, 20px);
+  gap: var(--gallery-gap);
   align-items: flex-start;
   width: 100%;
 }
