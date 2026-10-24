@@ -4,7 +4,8 @@ The CMS accepts any file, but Chrome, Firefox and Edge cannot show .jp2 or
 .tif images, so the site would show an empty frame. Run by the
 convert-uploads GitHub Action after every push: each such file in
 src/assets/uploads becomes a JPG with a plain ASCII name, the original is
-deleted, and every project that referenced it is pointed at the JPG.
+moved to originals/uploads (outside src/, so not published but
+kept at full resolution), and every project that referenced it is pointed at the JPG.
 """
 
 import re
@@ -15,6 +16,7 @@ from PIL import Image
 
 UPLOADS = Path("src/assets/uploads")
 PROJECTS = Path("src/projects")
+ORIGINALS = Path("originals/uploads")
 CONVERT = (".jp2", ".j2k", ".jpf", ".jpx", ".tif", ".tiff")
 LONG_SIDE = 4500  # px; plenty for the enlarged lightbox view
 
@@ -60,7 +62,8 @@ def main() -> None:
             if not dst.exists():
                 convert(src, dst)
                 print(f"converted {src.name} -> {dst.name}")
-            src.unlink()
+            ORIGINALS.mkdir(parents=True, exist_ok=True)
+            src.rename(ORIGINALS / src.name)
 
     # Point projects at the JPGs. Also catches a project saved later from a
     # stale editor tab that still names the original upload.
