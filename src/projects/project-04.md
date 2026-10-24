@@ -53,6 +53,10 @@ gallery:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-03.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-05.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-06.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-memory-game-copy.jpg
 ---
 <p>Do we live a house or do we house a life?&nbsp;</p>
 <p>Living together always comes with conflicts, even if it means just living with yourself. <strong>Can you be your own family?</strong> The question of what makes a family, where it starts and where it ends, led us to the actors of our project: <em>the ITSELF</em>. Four characters, one person living with themselves at different ages, but at the same time: a kid, a young adult, an adult and a ghost. Imagine living with yourself: <strong>would there be more conflicts or less, would you need more privacy or less?</strong></p>
