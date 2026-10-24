@@ -36,6 +36,14 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-03-copy.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-02-copy.jpg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-01.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-04.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-02.jpg
