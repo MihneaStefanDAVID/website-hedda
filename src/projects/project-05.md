@@ -9,7 +9,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
+      - /assets/uploads/3205455.3205581.pdf
   - size: medium
     align: center
     photos:
