@@ -1,8 +1,8 @@
 ---
-title: Project Five
-order: 5
-cover: /assets/projects/05-placeholder.svg
-supervision: Placeholder Supervisor
+title: 33.33% Strategy
+order: 6
+cover: /assets/uploads/dsc00199.jpg
+supervision: Prof. Jan De Vylder
 semester: FS26
 gallery:
   - size: full
