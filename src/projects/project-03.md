@@ -26,7 +26,7 @@ gallery:
       - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-19.jpg
       - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-20.jpg
       - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-21.jpg
-  - size: large
+  - size: medium
     align: center
     photos:
       - /assets/uploads/img_1077.jpeg
