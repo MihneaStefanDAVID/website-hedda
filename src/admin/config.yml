@@ -96,7 +96,7 @@ collections:
             min: 1
             max: 4
             collapsed: false
-            hint: "Photos (JPG, PNG), GIFs or videos (MP4). Videos play silently on a loop, like a GIF — keep them short and compressed (ideally under 20 MB)."
+            hint: "Photos (JPG, PNG), GIFs or videos (MP4). Not JPEG 2000 (.jp2), TIFF or HEIC: browsers cannot show them, so export as JPG first. Videos play silently on a loop, like a GIF — keep them short and compressed (ideally under 20 MB)."
             field: { label: "Photo or video", name: "image", widget: "file" }
           - label: "Row size"
             name: "size"
