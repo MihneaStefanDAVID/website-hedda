@@ -31,6 +31,11 @@ gallery:
     photos:
       - /assets/uploads/img_1077.jpeg
       - /assets/uploads/screenshot-2025-10-08-at-10.15.20.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
+      - /assets/uploads/02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
 ---
 <p>Change always comes with adaptation. <strong>Should people adapt or should places adapt?</strong></p>
 <p>We asked ourselves this while analyzing <strong>two corners</strong>: <em>Kronenhalle Bar</em> by Trix and Robert Haussmann in Zurich and <em>Kleines Caf&eacute;</em> by Hermann Czech in Vienna. Both took their initial inspiration from <em>Adolf Loos's American Bar</em>, yet the outcome could hardly be more different. The <em>Kronenhalle Bar</em> appears unchanged, a place frozen in 1965, yet it evolved from a gathering place for everyone into an exclusive and luxurious venue. <em>Kleines Caf&eacute;</em>, by contrast, grew in an iterative, bottom-up manner, conveying a sense of improvisation and even chaos.<span class="Apple-converted-space">&nbsp;</span></p>
