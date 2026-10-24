@@ -40,7 +40,7 @@ includeScript: true
         <span class="project-card__frame">
           <img
             class="project-card__image"
-            src="{{ project.data.cover | imagePath }}"
+            src="{{ project.data.cover | webPath(media) }}"
             alt="{{ project.data.title }}"
             loading="eager"
           />
@@ -65,7 +65,7 @@ includeScript: true
       data-semester="{{ project.data.semester }}"
     >
       <span class="project-card__frame">
-        <img class="project-card__image" src="{{ project.data.cover | imagePath }}" alt="{{ project.data.title }}" loading="lazy" />
+        <img class="project-card__image" src="{{ project.data.cover | webPath(media) }}" alt="{{ project.data.title }}" loading="lazy" />
       </span>
     </a>
     {% endfor %}

@@ -1,28 +1,27 @@
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 
 export default function (eleventyConfig) {
   // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
   // path, but some paths through the editor (e.g. pasting a bare name from
   // "Copy Name" into "Replace with URL") only save the filename. Normalize
   // defensively rather than depending on which flow was used to add it.
-  eleventyConfig.addFilter("imagePath", (value) => {
+  const imagePath = (value) => {
     if (!value) return value;
     if (value.startsWith("/") || value.startsWith("http://") || value.startsWith("https://")) {
       return value;
     }
     return `/assets/uploads/${value}`;
-  });
+  };
+  eleventyConfig.addFilter("imagePath", imagePath);
 
-  // Converted JPEG 2000/TIFF uploads also have a large version in
-  // /assets/zoom (see scripts/convert_uploads.py) that the lightbox loads
-  // for zooming in. Empty when there is none; the lightbox then zooms into
-  // the page image itself.
-  eleventyConfig.addFilter("zoomPath", (value) => {
-    if (!value) return "";
-    const name = value.split("/").pop();
-    return existsSync(`src/assets/zoom/${name}`) ? `/assets/zoom/${name}` : "";
-  });
+  // Uploads are shown through light web versions and zoomed into through
+  // large ones, both made by scripts/convert_uploads.py and listed in
+  // src/_data/media.json. Until the script has run for a new upload, the
+  // upload itself is shown.
+  const mediaEntry = (value, media) => (media || {})[String(value || "").split("/").pop().normalize("NFC")];
+  eleventyConfig.addFilter("webPath", (value, media) => mediaEntry(value, media)?.web || imagePath(value));
+  eleventyConfig.addFilter("zoomPath", (value, media) => mediaEntry(value, media)?.zoom || "");
 
   // Appends a short hash of the file's contents ("/styles.css?v=1a2b3c4d").
   // The host serves CSS/JS with a 4-hour browser cache, so without this a
