@@ -1,7 +1,7 @@
 ---
 title: Corners
 order: 3
-cover: /assets/projects/03-placeholder.svg
+cover: /assets/uploads/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
 supervision: Prof. Jan De Vylder
 semester: HS25
 body_de: >-
