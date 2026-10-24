@@ -4,6 +4,17 @@ order: 3
 cover: /assets/projects/03-placeholder.svg
 supervision: Prof. Jan De Vylder
 semester: HS25
+body_de: >-
+  <p>Ver&auml;nderung geht immer mit Anpassung einher. <strong>Sollen sich die
+  Menschen anpassen oder die Orte?</strong></p>
+
+  <p>Diese Frage haben wir uns bei der Analyse von <strong>zwei Ecken</strong> gestellt: der <em>Kronenhalle Bar</em> von Trix und Robert Haussmann in Z&uuml;rich und dem <em>Kleinen Caf&eacute;</em> von Hermann Czech in Wien. Beide gehen auf dasselbe Vorbild zur&uuml;ck, <em>Adolf Loos' American Bar</em>, und doch k&ouml;nnte das Ergebnis kaum unterschiedlicher sein. Die <em>Kronenhalle Bar</em> wirkt unver&auml;ndert, wie ein Ort, der 1965 stehen geblieben ist. Dennoch hat sie sich von einem Treffpunkt f&uuml;r alle zu einem exklusiven, luxuri&ouml;sen Lokal entwickelt. Das <em>Kleine Caf&eacute;</em> hingegen ist iterativ und bottom-up gewachsen und vermittelt ein Gef&uuml;hl von Improvisation, ja sogar von Chaos.</p>
+
+  <p>Nicht die Architektur hat diese Orte bestimmt, doch Kultur und Kontext haben sie gepr&auml;gt. Beide teilen einen <strong>h&auml;uslichen Massstab</strong>, sprechen aber ganz <strong>unterschiedliche soziale Schichten</strong> an.</p>
+
+  <p><em>Die ersten beiden Modelle und Axonometrien</em> erzeugen in ihrer Verbindung eine besondere Atmosph&auml;re: Das eine wirkt introvertiert und geschlossen, das andere mit seinen Spiegelfl&auml;chen und dem verdoppelten Massstab offen und weit. Die aufeinander ausgerichteten Eing&auml;nge bilden eine &laquo;Korridorbar&raquo; und zeigen, dass beide auf dieselbe Inspiration zur&uuml;ckgehen.</p>
+
+  <p>Aus dieser Recherche entstand unser Vorschlag, die beiden R&auml;ume zusammen zu sehen. <em>Das dritte Modell</em>, eine &laquo;kombinierte Ecke&raquo;, wird von einer Axonometrie begleitet, die sich allein auf die Atmosph&auml;re konzentriert, die jede Bar durch architektonische Elemente erzeugt: Licht, Materialien, Farben, Ausblicke und Bewegung. Dreht man sie um, verschiebt sich die Perspektive in der Mitte, und es zeigen sich zwei verschiedene Arten, denselben Raum zu sehen. Durch die offenen T&uuml;ren des Kleinen Caf&eacute;s f&uuml;hlt man sich sofort willkommen. Doch im schr&auml;gen Spiegel erkennt man einen dunkleren, verschlosseneren Raum, den man sehen, aber nicht erreichen kann: die Kronenhalle Bar, ein Ort f&uuml;r die Oberschicht oder f&uuml;r Stammg&auml;ste, die wissen, wie man hineinkommt und was sich hinter den W&auml;nden verbirgt.</p>
 gallery:
   - photos:
       - /assets/projects/03-placeholder.svg
