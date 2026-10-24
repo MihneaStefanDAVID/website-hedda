@@ -1,5 +1,14 @@
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
+
+const HOST_FILE_LIMIT = 25 * 1024 * 1024;
+const isHuge = (path) => {
+  try {
+    return statSync(path.startsWith("src/") ? path : `src/assets/${path}`).size >= HOST_FILE_LIMIT;
+  } catch {
+    return false;
+  }
+};
 
 export default function (eleventyConfig) {
   // Decap's media picker normally stores the full "/assets/uploads/x.jpg"
@@ -49,8 +58,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/script.js");
   // PDFs are shown through their converted pages, so the files themselves
-  // are not published (they can also exceed the host's 25 MB file limit).
-  eleventyConfig.addPassthroughCopy("src/assets", { filter: (path) => !/\.pdf$/i.test(path) });
+  // are not published. Neither are files of 25 MB or more: Cloudflare
+  // refuses the whole deploy over a single one, and the site shows their
+  // web and zoom versions anyway (see scripts/convert_uploads.py).
+  eleventyConfig.addPassthroughCopy("src/assets", {
+    filter: (path) => !/\.pdf$/i.test(path) && !isHuge(path),
+  });
   eleventyConfig.addPassthroughCopy("src/admin");
 
   const sortedProjects = (api) =>
