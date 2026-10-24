@@ -5,15 +5,9 @@ cover: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_opre
 supervision: Prof. Jan De Vylder
 semester: HS25
 body_de: >-
-  <p>Zusammenleben bringt immer Konflikte mit sich, selbst wenn man nur mit sich
-  selbst zusammenlebt. <strong>Kann man seine eigene Familie sein?</strong> Die
-  Frage, was eine Familie ausmacht, wo sie beginnt und wo sie endet, f&uuml;hrte
-  uns zu den Akteuren unseres Projekts: <em>the ITSELF</em>. Vier Figuren, eine
-  Person, die in verschiedenen Lebensaltern, aber zur selben Zeit mit sich
-  selbst zusammenlebt: ein Kind, eine junge Erwachsene, eine Erwachsene und ein
-  Geist. Stell dir vor, du lebst mit dir selbst zusammen: <strong>G&auml;be es
-  mehr Konflikte oder weniger, br&auml;uchtest du mehr Privatsph&auml;re oder
-  weniger?</strong></p>
+  <p>Do we live a house or do we house a life?</p>
+
+  <p>Zusammenleben bringt immer Konflikte mit sich, selbst wenn man nur mit sich selbst zusammenlebt.&nbsp;<strong>Kann man seine eigene Familie sein?</strong> Die Frage, was eine Familie ausmacht, wo sie beginnt und wo sie endet, f&uuml;hrte uns zu den Akteuren unseres Projekts: <em>the ITSELF</em>. Vier Figuren, eine Person, die in verschiedenen Lebensaltern, aber zur selben Zeit mit sich selbst zusammenlebt: ein Kind, eine junge Erwachsene, eine Erwachsene und ein Geist. Stell dir vor, du lebst mit dir selbst zusammen: <strong>G&auml;be es mehr Konflikte oder weniger, br&auml;uchtest du mehr Privatsph&auml;re oder weniger?</strong></p>
 
   <p>Unser Fragment steht zwischen zwei bestehenden W&auml;nden und fragt: <strong>Braucht Erinnerung Raum?</strong> Einige W&auml;nde waren bereits da, andere werden st&auml;ndig mit Leben gef&uuml;llt. Die Erinnerungen an den Raum, der vorher da war, verschwinden nicht einfach, genauso wenig wie die Erinnerungen an die Leben, die darin gelebt wurden.</p>
 
