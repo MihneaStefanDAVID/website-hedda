@@ -23,16 +23,10 @@ body_de: >-
 gallery:
   - photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-01.jpg
-    size: medium
-    align: right
-  - size: medium
-    align: right
-    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-02.jpg
-  - size: medium
-    align: right
-    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-03.jpg
+    size: full
+    align: center
   - size: full
     align: center
     photos:
