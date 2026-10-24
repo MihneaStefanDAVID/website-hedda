@@ -1,11 +1,12 @@
 ---
-title: Project Four
+title: Complexity Fragment
 order: 4
-cover: /assets/projects/04-placeholder.svg
-supervision: Placeholder Supervisor
-semester: FS26
+cover: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
+supervision: Prof. Jan De Vylder
+semester: HS25
 gallery:
   - photos:
       - /assets/projects/04-placeholder.svg
 ---
-<p>Placeholder description for Project Four. Replace this from the admin panel.</p>
+<p>Do we live a house or do we house a life?&nbsp;</p>
+<p>&nbsp;</p>
