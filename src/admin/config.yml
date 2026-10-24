@@ -96,7 +96,7 @@ collections:
             min: 1
             max: 4
             collapsed: false
-            hint: "Photos (JPG, PNG), GIFs or videos (MP4). JPEG 2000 (.jp2) and TIFF also work: they are converted to JPG automatically a minute or two after publishing (reload the page to see them). HEIC is not supported, export as JPG first. Videos play silently on a loop, like a GIF — keep them short and compressed (ideally under 20 MB)."
+            hint: "Photos (JPG, PNG), GIFs or videos (MP4). JPEG 2000 (.jp2) and TIFF also work: they are converted to JPG automatically a minute or two after publishing (reload the page to see them). PDFs work too and stay vector, so drawings are sharp at any zoom: each page appears as its own image in this row, a minute or two after publishing. HEIC is not supported, export as JPG first. Videos play silently on a loop, like a GIF — keep them short and compressed (ideally under 20 MB)."
             field: { label: "Photo or video", name: "image", widget: "file" }
           - label: "Row size"
             name: "size"

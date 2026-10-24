@@ -38,9 +38,20 @@ export default function (eleventyConfig) {
   // <video> element instead of an <img>.
   eleventyConfig.addFilter("isVideo", (value) => /\.(mp4|webm|mov|m4v)$/i.test(value || ""));
 
+  // What one gallery entry shows: the file itself, or for a PDF each of
+  // its pages, which scripts/convert_uploads.py turns into SVGs (listed in
+  // src/_data/pdf.json). A PDF not converted yet shows nothing.
+  eleventyConfig.addFilter("galleryFiles", (value, pdfIndex) => {
+    if (!/\.pdf$/i.test(value || "")) return [value];
+    const name = value.split("/").pop().normalize("NFC");
+    return (pdfIndex || {})[name] || [];
+  });
+
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/script.js");
-  eleventyConfig.addPassthroughCopy("src/assets");
+  // PDFs are shown through their converted pages, so the files themselves
+  // are not published (they can also exceed the host's 25 MB file limit).
+  eleventyConfig.addPassthroughCopy("src/assets", { filter: (path) => !/\.pdf$/i.test(path) });
   eleventyConfig.addPassthroughCopy("src/admin");
 
   const sortedProjects = (api) =>

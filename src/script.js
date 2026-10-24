@@ -598,8 +598,10 @@
     return base;
   }
 
-  // Up to one photo pixel per CSS pixel.
-  const maxScale = () => Math.max(1, current.naturalWidth / fittedBox().w);
+  // Up to one photo pixel per CSS pixel. Vector drawings (PDF pages,
+  // converted to SVG) stay sharp at any size, so they go further.
+  const maxScale = () =>
+    /\.svg($|\?)/i.test(current.currentSrc || current.src) ? 30 : Math.max(1, current.naturalWidth / fittedBox().w);
 
   // Keep the photo covering the screen when it is bigger than it, and
   // centred when it is smaller.

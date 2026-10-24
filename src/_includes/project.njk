@@ -54,7 +54,7 @@ includeScript: true
   <div class="project-gallery">
     {% for row in gallery %}
     <div class="project-gallery__row project-gallery__row--{{ row.size or 'full' }} project-gallery__row--align-{{ row.align or 'center' }}">
-      {% for item in row.photos %}{% if item %}
+      {% for entry in row.photos %}{% if entry %}{% for item in entry | galleryFiles(pdf) %}
       <button class="project-gallery__item" type="button" aria-label="Enlarge">
         {% if item | isVideo %}
         <video src="{{ item | imagePath }}" autoplay muted loop playsinline preload="metadata"></video>
@@ -62,7 +62,7 @@ includeScript: true
         <img src="{{ item | imagePath }}" data-zoom="{{ item | zoomPath }}" alt="{{ title }}" loading="lazy" />
         {% endif %}
       </button>
-      {% endif %}{% endfor %}
+      {% endfor %}{% endif %}{% endfor %}
     </div>
     {% endfor %}
   </div>

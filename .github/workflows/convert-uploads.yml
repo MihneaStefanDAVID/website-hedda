@@ -1,5 +1,5 @@
-# Uploads in formats browsers can't show (JPEG 2000, TIFF) are converted to
-# JPG and committed back; see scripts/convert_uploads.py. The commit then
+# Uploads in formats browsers can't show (JPEG 2000, TIFF, PDF) are converted
+# to JPG or SVG and committed back; see scripts/convert_uploads.py. The commit then
 # triggers the normal site deploy.
 name: Convert uploads
 
@@ -27,13 +27,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install pillow
+      - run: pip install pillow pymupdf
 
       - run: python scripts/convert_uploads.py
 
       - name: Commit converted files
         run: |
-          git add -A src/assets/uploads src/assets/zoom src/projects originals
+          git add -A src/assets/uploads src/assets/zoom src/assets/pdf src/_data/pdf.json src/projects originals
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898733+github-actions[bot]@users.noreply.github.com"

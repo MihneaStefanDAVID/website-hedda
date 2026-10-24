@@ -13,21 +13,32 @@ plain ASCII name:
   the CMS media library doesn't list every photo twice.
 
 Every project that referenced the original is pointed at the page JPG.
+
+PDFs stay where they are (projects keep naming the .pdf), and each page
+becomes an SVG in src/assets/pdf/<name>/, so drawings stay vector and
+sharp at any zoom while looking like any other photo. src/_data/pdf.json
+maps each PDF to its pages for the templates. A page too heavy for SVG
+becomes a JPG instead.
 """
 
+import json
 import re
 import unicodedata
 from pathlib import Path
 
+import pymupdf
 from PIL import Image
 
 UPLOADS = Path("src/assets/uploads")
 ZOOM = Path("src/assets/zoom")
 PROJECTS = Path("src/projects")
 ORIGINALS = Path("originals/uploads")
+PDF_PAGES = Path("src/assets/pdf")
+PDF_INDEX = Path("src/_data/pdf.json")
 CONVERT = (".jp2", ".j2k", ".jpf", ".jpx", ".tif", ".tiff")
 PAGE_SIDE = 3000  # px, long side
 ZOOM_SIDE = 12000
+MAX_SVG = 20 * 1024 * 1024  # bytes; the host refuses files over 25 MB
 
 Image.MAX_IMAGE_PIXELS = None  # architecture exports can be ~900 megapixels
 
@@ -65,6 +76,27 @@ def save_jpg(src: Path, dst: Path, long_side: int) -> None:
     print(f"wrote {dst} {im.size[0]}x{im.size[1]}")
 
 
+def pdf_pages(pdf: Path) -> list[str]:
+    """Write each page of `pdf` as an SVG (or JPG if huge); return their URLs."""
+    folder = PDF_PAGES / jpg_name(pdf.name).removesuffix(".jpg")
+    folder.mkdir(parents=True, exist_ok=True)
+    urls = []
+    with pymupdf.open(pdf) as doc:
+        for number, page in enumerate(doc, 1):
+            # Text as outlines: looks exactly as designed without the fonts.
+            svg = page.get_svg_image(text_as_path=True)
+            if len(svg.encode()) <= MAX_SVG:
+                out = folder / f"{number}.svg"
+                out.write_text(svg, encoding="utf-8")
+            else:
+                out = folder / f"{number}.jpg"
+                zoom = ZOOM_SIDE / max(page.rect.width, page.rect.height)
+                page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False).pil_save(out, "JPEG", quality=85, optimize=True, progressive=True)
+            print(f"wrote {out}")
+            urls.append("/" + out.relative_to("src").as_posix())
+    return urls
+
+
 def main() -> None:
     for src in sorted(UPLOADS.iterdir()):
         if src.suffix.lower() in CONVERT:
@@ -80,6 +112,14 @@ def main() -> None:
                     save_jpg(orig, UPLOADS / name, PAGE_SIDE)
                 if not (ZOOM / name).exists():
                     save_jpg(orig, ZOOM / name, ZOOM_SIDE)
+
+    index = json.loads(PDF_INDEX.read_text()) if PDF_INDEX.exists() else {}
+    for pdf in sorted(UPLOADS.iterdir()):
+        key = unicodedata.normalize("NFC", pdf.name)
+        if pdf.suffix.lower() == ".pdf" and key not in index:
+            index[key] = pdf_pages(pdf)
+    PDF_INDEX.parent.mkdir(parents=True, exist_ok=True)
+    PDF_INDEX.write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # Point projects at the JPGs. Also catches a project saved later from a
     # stale editor tab that still names the original upload.
