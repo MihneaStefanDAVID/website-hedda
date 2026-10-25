@@ -9,7 +9,7 @@ gallery:
       - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-01.jpg
       - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-03.jpg
       - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-04.jpg
-  - size: large
+  - size: full
     align: center
     photos:
       - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_drawings-05.jpg
