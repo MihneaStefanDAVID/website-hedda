@@ -8,13 +8,8 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-      - /assets/uploads/3205455.3205581.pdf
-  - size: medium
-    align: center
-    photos:
-      - /assets/uploads/chatgpt-image-apr-19-2026-05_52_09-pm.png
-      - /assets/uploads/poza3.png
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-09.pdf
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-10.pdf
 ---
 <p>12332323232</p>
 <p>&nbsp;</p>
