@@ -203,7 +203,7 @@
                           var el = event.target;
                           var w = el.videoWidth || el.naturalWidth;
                           var ht = el.videoHeight || el.naturalHeight;
-                          if (w && ht) el.parentNode.style.flexGrow = String(w / ht);
+                          if (w && ht) el.parentNode.style.flexGrow = String((w / ht) * 100);
                         };
                         var media = /\.(mp4|webm|mov|m4v)$/i.test(path)
                           ? h("video", { src: src, autoPlay: true, muted: true, loop: true, playsInline: true, onLoadedMetadata: fit })

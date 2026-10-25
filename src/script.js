@@ -509,7 +509,10 @@
     const fit = () => {
       const width = isVideo(media) ? media.videoWidth : media.naturalWidth;
       const height = isVideo(media) ? media.videoHeight : media.naturalHeight;
-      if (width && height) item.style.flexGrow = String(width / height);
+      // Scaled by 100: flex-grow values summing to less than 1 only hand
+      // out that fraction of the space, so a lone portrait photo (ratio
+      // ~0.7) filled just 70% of its row. Scaling keeps the proportions.
+      if (width && height) item.style.flexGrow = String((width / height) * 100);
     };
     const ready = isVideo(media) ? media.readyState >= 1 : media.complete;
     if (ready) fit();
