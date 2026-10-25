@@ -36,6 +36,12 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-05-copy.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-04-copy.jpg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-01.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-04.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_moment-of-life-02.jpg
@@ -54,17 +60,11 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-memory-game-copy.jpg
-  - size: full
-    align: center
-    photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-05-copy.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-04-copy.jpg
-  - size: full
-    align: center
-    photos:
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-01-copy.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-memory-game-copy.jpg
 ---
 <p>Do we live a house or do we house a life?&nbsp;</p>
 <p>Living together always comes with conflicts, even if it means just living with yourself. <strong>Can you be your own family?</strong> The question of what makes a family, where it starts and where it ends, led us to the actors of our project: <em>the ITSELF</em>. Four characters, one person living with themselves at different ages, but at the same time: a kid, a young adult, an adult and a ghost. Imagine living with yourself: <strong>would there be more conflicts or less, would you need more privacy or less?</strong></p>
