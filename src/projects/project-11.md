@@ -1,8 +1,8 @@
 ---
-title: Project Eleven
+title: "Computational Design "
 order: 11
-cover: /assets/projects/11-placeholder.svg
-supervision: Placeholder Supervisor
+cover: /assets/uploads/23-958-044_assignment3-copy-1-dragged-.jpg
+supervision: "Prof. Benjamin Dillenburger; Prof. Fabio Gramazio & Prof. Matthias Kohler "
 semester: FS26
 gallery:
   - photos:
