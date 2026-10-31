@@ -1,9 +1,9 @@
 ---
-title: Project Twelve
+title: Hand Drawings
 order: 12
-cover: /assets/projects/12-placeholder.svg
-supervision: Placeholder Supervisor
-semester: FS26
+cover: /assets/uploads/screenshot-2026-10-31-at-12.32.30.png
+supervision: "- "
+semester: "- "
 gallery:
   - photos:
       - /assets/projects/12-placeholder.svg
