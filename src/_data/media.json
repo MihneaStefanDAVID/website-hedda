@@ -287,6 +287,11 @@
     "web": "/assets/web/picture-png.jpg",
     "zoom": "/assets/uploads/picture.png"
   },
+  "pictury-copy.png": {
+    "sha1": "aa5bd3754b1b191f63e5aba0ff05729709e72047",
+    "web": "/assets/web/pictury-copy-png.jpg",
+    "zoom": "/assets/uploads/pictury-copy.png"
+  },
   "poza3.png": {
     "sha1": "017b1e6966d0c5af24cd7550927e54886dc301b1",
     "web": "/assets/web/poza3-png.jpg"
