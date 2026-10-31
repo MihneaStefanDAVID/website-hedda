@@ -1,8 +1,8 @@
 ---
-title: Project Seven
+title: The Vanishing Frame
 order: 7
-cover: /assets/projects/07-placeholder.svg
-supervision: Placeholder Supervisor
+cover: /assets/uploads/picture.png
+supervision: Dr. Carlotta Daro; Prof. Fabio Gramazio
 semester: FS26
 gallery:
   - photos:
