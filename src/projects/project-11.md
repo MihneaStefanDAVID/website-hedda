@@ -1,7 +1,7 @@
 ---
 title: "Computational Design "
 order: 11
-cover: /assets/uploads/23-958-044_assignment3-copy-1-dragged-.jpg
+cover: /assets/uploads/screenshot-2026-10-31-at-12.35.24.png
 supervision: "Prof. Benjamin Dillenburger; Prof. Fabio Gramazio & Prof. Matthias Kohler "
 semester: HS23-FS25
 gallery:
