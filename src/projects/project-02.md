@@ -51,6 +51,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/render_02-copy-large.jpeg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/vic06827-copy.jpg
       - /assets/uploads/vic06859-copy.jpg
       - /assets/uploads/vic06861-copy.jpg
