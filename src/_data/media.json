@@ -416,6 +416,16 @@
     "web": "/assets/web/img_1598-2.jpg",
     "zoom": "/assets/zoom/img_1598-2.jpg"
   },
+  "img_9562.jpeg": {
+    "sha1": "9c6ab63b0f15956666805f4b8f6a015715fea65f",
+    "web": "/assets/web/img_9562.jpg",
+    "zoom": "/assets/uploads/img_9562.jpeg"
+  },
+  "img_9567.jpeg": {
+    "sha1": "c3ac9038dee9e1f6fd521df43ea841b696c9af47",
+    "web": "/assets/web/img_9567.jpg",
+    "zoom": "/assets/uploads/img_9567.jpeg"
+  },
   "mom-1.jpg": {
     "sha1": "d43599906aecb5bc45b366f6bd54dce43d0af432",
     "web": "/assets/web/mom-1.jpg",
