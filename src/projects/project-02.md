@@ -20,11 +20,11 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_brücke_oprea_pop-copy-2-dragged-9.jp2
+      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-9.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_brücke_oprea_pop-copy-2-dragged-10.jp2
+      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-10.jpg
   - size: full
     align: center
     photos:
@@ -41,7 +41,7 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_brücke_oprea_pop-copy-2-dragged-6.jp2
+      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-6.jpg
   - size: full
     align: center
     photos:
