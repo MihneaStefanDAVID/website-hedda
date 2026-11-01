@@ -13,6 +13,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/screenshot-2026-11-01-at-19.29.32.png
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-02.pdf
   - size: full
     align: center
