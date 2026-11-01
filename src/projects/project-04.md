@@ -16,7 +16,7 @@ body_de: >-
   <p>Auch wenn man sich selbst so gut kennt, entstehen Konflikte, und man muss eine Balance finden, um mit ihnen zu koexistieren. <strong>F&uuml;reinander sorgen und auf sich selbst achten</strong> steht im Zentrum unseres Konzepts: Man muss so handeln, dass man pr&auml;sent ist und die anderen wahrnimmt. <strong>Wie endet es, und was ist es wert, bewahrt zu werden?</strong> Manchmal bleiben nur ein paar Erinnerungen, deshalb haben wir zum Abschluss eine kleine Sammlung unserer Momente und Konflikte in diesem Fragment zusammengestellt.</p>
 gallery:
   - photos:
-      - /assets/uploads/process-1.jpg
+      - /assets/uploads/proc-1.jpg
       - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-02.jpg
       - /assets/uploads/process-3.jpg
     size: full
