@@ -23,6 +23,10 @@ gallery:
   - photos:
       - /assets/uploads/screenshot-2026-11-01-at-19.41.44.png
       - /assets/uploads/screenshot-2026-11-01-at-19.41.38.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/video_model.mp4
 ---
 <p><strong>How does the audience stop looking at a scene and start feeling like they are inside a place?</strong></p>
 <p>In 1781, the painter Philippe Jacques de Loutherbourg opened the <em>Eidophusikon</em> in London: a small mechanical theatre without actors, an "Imitation of Natural Phenomena".</p>
