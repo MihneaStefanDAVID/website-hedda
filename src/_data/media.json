@@ -456,6 +456,9 @@
     "web": "/assets/web/process-3.jpg",
     "zoom": "/assets/uploads/process-3.jpg"
   },
+  "render-copy-large.jpeg": {
+    "sha1": "b27dd13217fe85f65c1cc7b4ae0978587bdaafd1"
+  },
   "screenshot-2025-10-08-at-10.15.20.png": {
     "sha1": "67b007772d5b69f03a3320e1d95fc90150456136",
     "web": "/assets/web/screenshot-2025-10-08-at-10.15.20-png.jpg"
