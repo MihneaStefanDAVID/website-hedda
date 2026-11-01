@@ -346,15 +346,45 @@
     "web": "/assets/web/dsc00199.jpg",
     "zoom": "/assets/uploads/dsc00199.jpg"
   },
+  "dsc00255.jpg": {
+    "sha1": "b480111febae933fcfd84261f97f47c4173acebf",
+    "web": "/assets/web/dsc00255.jpg",
+    "zoom": "/assets/zoom/dsc00255.jpg"
+  },
+  "dsc00276-copy.jpg": {
+    "sha1": "9aaddaf8dc90a9a63f6571eb5091b1dfd9248628",
+    "web": "/assets/web/dsc00276-copy.jpg",
+    "zoom": "/assets/zoom/dsc00276-copy.jpg"
+  },
   "dsc00305.jpg": {
     "sha1": "75cc7a4f87cc8010a21fcde6c86fb2d9bc492b9f",
     "web": "/assets/web/dsc00305.jpg",
     "zoom": "/assets/uploads/dsc00305.jpg"
   },
+  "dsc00405.jpg": {
+    "sha1": "425b652e1ba1afea88437feb36f386203376b41d",
+    "web": "/assets/web/dsc00405.jpg",
+    "zoom": "/assets/zoom/dsc00405.jpg"
+  },
+  "dsc00527-copy.jpg": {
+    "sha1": "c77896ccaa5609d8ec0638db6c970a252ce8f902",
+    "web": "/assets/web/dsc00527-copy.jpg",
+    "zoom": "/assets/zoom/dsc00527-copy.jpg"
+  },
+  "dsc00599.jpeg": {
+    "sha1": "e786b454d6ddcd0a5e23e3b94611dede47f4013f",
+    "web": "/assets/web/dsc00599.jpg",
+    "zoom": "/assets/zoom/dsc00599.jpg"
+  },
   "dsc00602.jpeg": {
     "sha1": "99e61665436f0f9bce75549f8d6d34f726c876d0",
     "web": "/assets/web/dsc00602.jpg",
     "zoom": "/assets/zoom/dsc00602.jpg"
+  },
+  "dsc00619.jpg": {
+    "sha1": "102ad888b964aba19ec252c6cc6c94b95eaa4881",
+    "web": "/assets/web/dsc00619.jpg",
+    "zoom": "/assets/zoom/dsc00619.jpg"
   },
   "dsc00944-copy.jpg": {
     "sha1": "cc0c72eea26c331b3640a2a196ad437508602fe8",
