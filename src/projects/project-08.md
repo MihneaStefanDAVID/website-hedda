@@ -6,6 +6,6 @@ supervision: Dr. Achilleas Xydis; Anna Maragkoudaki; Constantinos Miltiadis
 semester: FS25
 gallery:
   - photos:
-      - /assets/projects/08-placeholder.svg
+      - /assets/uploads/game.mp4
 ---
-<p>Placeholder description for Project Eight. Replace this from the admin panel.</p>
+<p>C</p>
