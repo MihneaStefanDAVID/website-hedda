@@ -44,9 +44,9 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-04.jpg
+      - /assets/uploads/moment-4.jpg
       - /assets/uploads/white.pdf
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-08.jpg
+      - /assets/uploads/moment-8.jpg
   - size: full
     align: center
     photos:
