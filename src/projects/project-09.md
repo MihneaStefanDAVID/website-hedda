@@ -8,5 +8,19 @@ gallery:
   - photos:
       - /assets/uploads/out-of-service__flyer_digital-dragged-.pdf
       - /assets/uploads/out-of-service__flyer_digital-dragged-2.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/dsc00255.jpg
+      - /assets/uploads/dsc00599.jpeg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/dsc00527-copy.jpg
+      - /assets/uploads/dsc00405.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/dsc00276-copy.jpg
 ---
 <p>Placeholder description for Project Nine. Replace this from the admin panel.</p>
