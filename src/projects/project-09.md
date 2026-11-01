@@ -8,6 +8,7 @@ gallery:
   - photos:
       - /assets/uploads/out-of-service__flyer_digital-dragged-.pdf
       - /assets/uploads/out-of-service__flyer_digital-dragged-2.pdf
+    size: large
   - size: full
     align: center
     photos:
