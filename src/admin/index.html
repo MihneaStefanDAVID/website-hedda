@@ -14,6 +14,33 @@
         border: 1px solid #dedede;
         border-radius: 4px;
       }
+
+      /* Shown while a video is compressed, above Decap's media library. */
+      .video-job {
+        position: fixed;
+        inset: 0;
+        z-index: 1000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(23, 23, 23, 0.6);
+        font: 15px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .video-job__box {
+        width: min(420px, calc(100vw - 32px));
+        box-sizing: border-box;
+        padding: 24px;
+        background: #fff;
+        border-radius: 4px;
+      }
+      .video-job__box p {
+        margin: 0 0 16px;
+      }
+      .video-job__box progress {
+        display: block;
+        width: 100%;
+        margin-bottom: 16px;
+      }
     </style>
   </head>
   <body>
@@ -107,6 +134,157 @@
       CMS.registerWidget("rich_editor", RichEditorControl);
 
       // ------------------------------------------------------------------
+      // Uploads are checked here, the moment a file is chosen, because
+      // Decap only sends them on Publish and then fails the whole entry
+      // with an unhelpful error. Three limits decide what reaches the site:
+      // - a request through the CMS gateway can't pass 100 MB (Cloudflare),
+      //   and files travel as base64, a third larger: about 70 MB of file;
+      // - the host refuses files of 25 MB or more, so the build leaves them
+      //   out (.eleventy.js). Photos have smaller web versions, but videos
+      //   and GIFs don't and would simply be missing from the page;
+      // - not every browser plays every video, e.g. iPhone .mov (HEVC).
+      // So a video is compressed in the browser into an MP4 that fits and
+      // plays everywhere, and Decap receives that file instead.
+      // ------------------------------------------------------------------
+      var MB = 1024 * 1024;
+      var UPLOAD_LIMIT = 70 * MB;
+      var HOST_LIMIT = 25 * MB;
+      var VIDEO_TARGET = 20 * MB;
+      var VIDEO_BITRATE = 6e6; // the most a video gets, in bits per second
+      var AUDIO_BITRATE = 128e3;
+      var MIN_BITRATE = 25e4; // below this a video is too blurry to show
+      var VIDEO_LIBRARY = "https://cdn.jsdelivr.net/npm/mediabunny@1.61.6/dist/bundles/mediabunny.min.mjs";
+
+      var showVideoJob = function (onCancel) {
+        var job = document.createElement("div");
+        job.className = "video-job";
+        job.innerHTML =
+          '<div class="video-job__box" role="status"><p>Compressing video for the website… Keep this tab open.</p>' +
+          '<progress max="1"></progress><button type="button">Cancel</button></div>';
+        job.querySelector("button").addEventListener("click", onCancel);
+        document.body.appendChild(job);
+        return job;
+      };
+
+      // Longest side for a bitrate: a low one looks better on fewer pixels.
+      var longSideFor = function (bitrate) {
+        return bitrate >= 2e6 ? 1920 : bitrate >= 8e5 ? 1280 : 854;
+      };
+
+      var convertVideo = async function (lib, file, bitrate, job) {
+        var input = new lib.Input({ source: new lib.BlobSource(file), formats: lib.ALL_FORMATS });
+        var output = new lib.Output({
+          format: new lib.Mp4OutputFormat({ fastStart: "in-memory" }),
+          target: new lib.BufferTarget(),
+        });
+        var track = await input.getPrimaryVideoTrack();
+        var side = longSideFor(bitrate);
+        var video = { codec: "avc", bitrate: Math.round(bitrate), forceTranscode: true };
+        if (track.displayWidth >= track.displayHeight) {
+          video.width = Math.min(track.displayWidth, side);
+        } else {
+          video.height = Math.min(track.displayHeight, side);
+        }
+        var conversion = await lib.Conversion.init({
+          input: input,
+          output: output,
+          video: video,
+          audio: { codec: "aac", bitrate: AUDIO_BITRATE },
+          showWarnings: false,
+        });
+        if (!conversion.isValid) {
+          throw new Error("This browser can't read this video. Try Chrome, or export it as an MP4 (H.264) first.");
+        }
+        conversion.onProgress = function (progress) {
+          job.progress.value = progress;
+        };
+        job.conversion = conversion;
+        await conversion.execute();
+        return output.target.buffer;
+      };
+
+      var compressVideo = async function (file, job) {
+        var lib = await import(VIDEO_LIBRARY);
+        var input = new lib.Input({ source: new lib.BlobSource(file), formats: lib.ALL_FORMATS });
+        var track = await input.getPrimaryVideoTrack();
+        if (!track) throw new Error("This file has no video in it.");
+        var isMp4 = (await input.getFormat()) === lib.MP4;
+        if (isMp4 && (await track.getCodec()) === "avc" && file.size <= VIDEO_TARGET) return file;
+        var audio = await input.getPrimaryAudioTrack();
+        var seconds = await input.computeDuration();
+        var budget = (VIDEO_TARGET * 8) / seconds - (audio ? AUDIO_BITRATE : 0);
+        if (budget < MIN_BITRATE) {
+          throw new Error("This video is too long to fit on the website (" + Math.round(seconds / 60) + " min). Shorten it to about 8 minutes or less.");
+        }
+        var bitrate = Math.min(budget, VIDEO_BITRATE);
+        // Encoders only aim for a bitrate; aim lower if one overshot.
+        for (var attempt = 0; attempt < 3; attempt++) {
+          job.progress.removeAttribute("value");
+          var buffer = await convertVideo(lib, file, bitrate, job);
+          if (buffer.byteLength < HOST_LIMIT) {
+            var name = file.name.replace(/\.[^.]+$/, "") + ".mp4";
+            return new File([buffer], name, { type: "video/mp4" });
+          }
+          bitrate *= (VIDEO_TARGET / buffer.byteLength) * 0.9;
+        }
+        throw new Error("This video could not be compressed enough. Shorten it and try again.");
+      };
+
+      var handleVideo = async function (input, file) {
+        var job = { canceled: false };
+        job.element = showVideoJob(function () {
+          job.canceled = true;
+          if (job.conversion) job.conversion.cancel();
+        });
+        job.progress = job.element.querySelector("progress");
+        var result = null;
+        try {
+          result = await compressVideo(file, job);
+        } catch (error) {
+          if (!job.canceled) window.alert(error.message || "This video could not be compressed.");
+        }
+        job.element.remove();
+        if (!result) {
+          input.value = "";
+          return;
+        }
+        var files = new DataTransfer();
+        files.items.add(result);
+        input.files = files.files;
+        input.dataset.ready = "true";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      };
+
+      // Runs before Decap's own handler, which only gets the file once
+      // this has let it through.
+      window.addEventListener(
+        "change",
+        function (event) {
+          var input = event.target;
+          if (input.type !== "file" || !input.files.length) return;
+          if (input.dataset.ready) {
+            delete input.dataset.ready;
+            return;
+          }
+          var file = input.files[0];
+          var refuse = function (message) {
+            event.stopImmediatePropagation();
+            input.value = "";
+            window.alert(message);
+          };
+          if (/^video\//.test(file.type) || /\.(mp4|m4v|mov|webm|mkv)$/i.test(file.name)) {
+            event.stopImmediatePropagation();
+            handleVideo(input, file);
+          } else if (/\.gif$/i.test(file.name) && file.size >= HOST_LIMIT) {
+            refuse("This GIF is too large for the website (25 MB or more). Export it as an MP4 instead: videos are compressed automatically.");
+          } else if (file.size > UPLOAD_LIMIT) {
+            refuse("This file is too large to upload (over 70 MB). Export a smaller version first.");
+          }
+        },
+        true
+      );
+
+      // ------------------------------------------------------------------
       // Live preview for the Projects collection — mirrors
       // src/_includes/project.njk: facts table and text on the left,
       // rows of side-by-side photos on the right, inside the site's
@@ -125,6 +303,10 @@
           var contentHtmlDe = entry.getIn(["data", "body_de"]) || "";
           var gallery = entry.getIn(["data", "gallery"]);
           gallery = gallery && gallery.toJS ? gallery.toJS() : gallery || [];
+          // Files added but not published yet aren't at their final URL,
+          // and getAsset still returns it; the entry holds a temporary one.
+          var mediaFiles = entry.get("mediaFiles");
+          mediaFiles = mediaFiles && mediaFiles.toJS ? mediaFiles.toJS() : mediaFiles || [];
 
           var facts = [["Project", h("h1", { className: "project-facts__title" }, title)]];
           if (supervision) facts.push(["Supervision", supervision]);
@@ -197,7 +379,10 @@
                       { className: rowClass, key: r },
                       items.map(function (path, i) {
                         var asset = props.getAsset(path);
-                        var src = asset ? asset.toString() : path;
+                        var unpublished = mediaFiles.find(function (file) {
+                          return file.draft && file.name === path.split("/").pop();
+                        });
+                        var src = unpublished ? unpublished.url : asset ? asset.toString() : path;
                         // Same equal-height rule as script.js on the site.
                         var fit = function (event) {
                           var el = event.target;
