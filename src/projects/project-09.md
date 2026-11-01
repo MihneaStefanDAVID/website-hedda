@@ -23,5 +23,10 @@ gallery:
     align: center
     photos:
       - /assets/uploads/dsc00276-copy.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/img_9562.jpeg
+      - /assets/uploads/img_9567.jpeg
 ---
 <p>Placeholder description for Project Nine. Replace this from the admin panel.</p>
