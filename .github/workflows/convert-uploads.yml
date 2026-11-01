@@ -9,6 +9,7 @@ on:
     paths:
       - "src/assets/uploads/**"
       - "src/projects/**"
+      - "scripts/**"
 
 permissions:
   contents: write

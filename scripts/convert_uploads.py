@@ -17,8 +17,8 @@ Every project that referenced the original is pointed at the page JPG.
 PDFs stay where they are (projects keep naming the .pdf), and each page
 becomes an SVG in src/assets/pdf/<name>/, so drawings stay vector and
 sharp at any zoom while looking like any other photo. src/_data/pdf.json
-maps each PDF to its pages for the templates. A page too heavy for SVG
-becomes a JPG instead.
+maps each PDF to its pages for the templates. A page too heavy for SVG,
+or that is only a photo, becomes a JPG instead.
 
 Every photo also gets a light web version (WEB_SIDE px, a few hundred KB)
 in src/assets/web/, which the site shows instead of the upload, often
@@ -96,14 +96,20 @@ def pdf_pages(pdf: Path) -> list[str]:
     urls = []
     with pymupdf.open(pdf) as doc:
         for number, page in enumerate(doc, 1):
+            # A page that is only a photo stays a JPG at the photo's own size:
+            # an SVG would just hold it as base64 text, a third heavier, and
+            # GitHub can mistake that text for a secret and refuse the push.
+            images = page.get_image_info()
+            photo = len(images) == 1 and not page.get_drawings() and not page.get_text().strip()
             # Text as outlines: looks exactly as designed without the fonts.
-            svg = page.get_svg_image(text_as_path=True)
-            if len(svg.encode()) <= MAX_SVG:
+            svg = "" if photo else page.get_svg_image(text_as_path=True)
+            if svg and len(svg.encode()) <= MAX_SVG:
                 out = folder / f"{number}.svg"
                 out.write_text(svg, encoding="utf-8")
             else:
                 out = folder / f"{number}.jpg"
-                zoom = ZOOM_SIDE / max(page.rect.width, page.rect.height)
+                side = max(images[0]["width"], images[0]["height"]) if photo else ZOOM_SIDE
+                zoom = side / max(page.rect.width, page.rect.height)
                 page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False).pil_save(out, "JPEG", quality=85, optimize=True, progressive=True)
             print(f"wrote {out}")
             urls.append("/" + out.relative_to("src").as_posix())
