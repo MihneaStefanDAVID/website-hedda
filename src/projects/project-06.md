@@ -1,6 +1,6 @@
 ---
 title: Badminton Kitchen
-order: 5
+order: 6
 cover: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_axo.jpg
 supervision: "Prof. Jan De Vylder "
 semester: FS26
