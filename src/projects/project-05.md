@@ -83,7 +83,6 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00197.jpg
       - /assets/uploads/dsc00198.jpg
       - /assets/uploads/dsc00199.jpg
   - size: full
