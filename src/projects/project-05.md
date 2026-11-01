@@ -4,16 +4,27 @@ order: 6
 cover: /assets/uploads/dsc00199.jpg
 supervision: Prof. Jan De Vylder
 semester: FS26
+body_de: >-
+  <p>33.33% eines bestehenden Geb&auml;udes werden ZUM WOHNEN umgewandelt,
+  w&auml;hrend die &uuml;brigen 66.66% ihre NUTZUNGEN behalten.</p>
+
+  <p>The Pitched Roof an der Steinackerstrasse 2 ist fast das einzige Geb&auml;ude in der Umgebung, das h&auml;uslich wirkt, beinahe wie ein &laquo;Schweizer Haus&raquo;. Es beherbergt zwei Recyclingzentren und ein Velogesch&auml;ft mit Badmintonfeldern. In unserem Vorschlag haben wir den Recyclingteil belassen, da er als eine einzige Maschine funktioniert, und im Velogesch&auml;ft eingegriffen.</p>
+
+  <p>Durch das Entfernen der Fassade wurden die orangen St&uuml;tzen freigelegt. Die Garagentore wurden als Balkone wiederverwendet, und eine Verl&auml;ngerung des Tr&auml;gers, die dem Muster des Daches folgt, l&auml;sst mehr Licht in die Spielfelder. Die Spielfelder bleiben erhalten und werden zum Wintergarten und zur Gemeinschaftsk&uuml;che: Der Linoleumboden ist robust und leicht zu reinigen. Kochen, Zusammensein und Sport finden gleichzeitig statt.</p>
+
+  <p>Die Wohnungen sind um die St&uuml;tzen und die Treppe organisiert, von denen aus sich alle wichtigen Funktionen des Wohnens entwickeln. In der ersten Typologie bestimmt die St&uuml;tze Form und Gr&ouml;sse der K&uuml;chenzeile und des Sp&uuml;lbeckens, der Sitzbank im Wohnbereich und der Lampe am Arbeitsplatz. Die Dusche zweigt von denselben Leitungen ab wie das Sp&uuml;lbecken, und der Badebereich ist von W&auml;nden befreit: Man kann w&auml;hlen, ob man drinnen oder draussen badet, denn die Leitungen f&uuml;hren weiter.</p>
+
+  <p>In der zweiten Typologie, den Familienwohnungen, &uuml;bernimmt die Treppe die Rolle der St&uuml;tze. Man geht um sie herum, und alle Funktionen des Wohnens sind daran angegliedert. Oben befindet sich ein weiteres Schlafzimmer mit eigenem Badebereich. Durchgehend haben wir die H&ouml;he zelebriert, die dem Geb&auml;ude seinen industriellen Charakter verleiht.</p>
 gallery:
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/screenshot-2026-11-01-at-19.29.32.png
   - size: full
     align: center
     photos:
       - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-09.pdf
       - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-10.pdf
-  - size: full
-    align: center
-    photos:
-      - /assets/uploads/screenshot-2026-11-01-at-19.29.32.png
   - size: full
     align: center
     photos:
@@ -90,10 +101,8 @@ gallery:
     photos:
       - /assets/uploads/dsc00305.jpg
 ---
-<p>33.33% an existing building is transformed TO LIVE, while the remaining 66.66% keep their ACTIVITIES.&nbsp;</p>
-<p><em>The Pitched Roof</em> on Steinackerstrasse 2, built in 1984, shelters a bike shop with a badminton court inside and two recycling centers. From the outside, it is almost the only building that looks like a house, a<strong> </strong>"Swiss home".</p>
-<p>We kept the whole recycling part, as it functions as one whole machine. The bike shop already had a temporary structure with perforated beams that didn't touch any existing walls, which meant less demolishing. We removed the fa&ccedil;ade between the bearing pillars and reused the garage doors for the balconies of the housing. The pattern of the roof caught our attention and we decided to work with it by creating an extension of the beam, letting more light come into the courts.</p>
-<p>The original badminton courts stay and become a <strong>wintergarden</strong> for the houses. While matches still take place, the court also becomes a <strong>communal kitchen</strong> and living space. The linoleum floor is durable and easy to clean, and the space between the two courts is perfectly sized for kitchen counters. Water and electricity come from the beam above. Tables and counters are movable, only the sinks stay in place, serving both the cooks and the players. <strong>Cooking, socializing and sports happen simultaneously.</strong></p>
-<p>The apartments are organized around <strong>the pillars and the staircase</strong>, from which all the main functions of the home extend. In the first typology, the pillar gives the shape and size of the kitchen counter and sink, the bench in the living area and the lamp for the work area. The shower head extends from the same pipes as the sink, and the bathing area is freed from walls: <strong>you can choose to bathe inside, or outside</strong>, as the pipes continue.<span class="Apple-converted-space">&nbsp;</span>In the second typology of apartments, family homes, the staircase takes over the role of the pillar. You walk around it, with all the functions of the home attached.</p>
-<p>Throughout, we celebrated&nbsp;<strong>the height that gives the building its industrial feel</strong>.</p>
-<p>&nbsp;</p>
+<p>33.33% of an existing building is transformed TO LIVE, while the remaining 66.66% keep their ACTIVITIES.<span class="Apple-converted-space">&nbsp;</span></p>
+<p><em>The Pitched Roof</em> on Steinackerstrasse 2, is almost the only building in the area that looks domestic, almost like a "Swiss home&rdquo;. It shelters two recycling centers and a bike shop with badminton courts. In our proposal, we kept the recycling part, as it functions as one whole machine, and intervened in the bike shop.<span class="Apple-converted-space">&nbsp;</span></p>
+<p>Removing the fa&ccedil;ade liberated the bearing orange pillars. The garage doors were reused as balconies, and an extension of the beam following the pattern of the roof lets more light into the courts. The playing fields stay and become a wintergarden and communal kitchen: the linoleum floor is durable and easy to clean. <strong>Cooking, socializing and sports</strong> happen simultaneously.</p>
+<p>The apartments are organized around <strong>the pillars and the staircase</strong>, from which all the main functions of the home extend. In the first typology, the pillar gives the shape and size of the kitchen counter and sink, the bench in the living area and the lamp for the work area. The shower head extends from the same pipes as the sink, and the bathing area is freed from walls: <strong>you can choose to bathe inside, or outside</strong>, as the pipes continue.<span class="Apple-converted-space">&nbsp;</span></p>
+<p>In the second typology of apartments, family homes, the staircase takes over the role of the pillar. You walk around it, with all the functions of the home attached. Upstairs there is another bedroom with its own bathing area. Throughout, we celebrated <strong>the height that gives the building its industrial feel</strong>.</p>
