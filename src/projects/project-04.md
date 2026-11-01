@@ -48,9 +48,9 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-01.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-02.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_construction-03.jpg
+      - /assets/uploads/cons-1-.jpg
+      - /assets/uploads/conss-2.jpg
+      - /assets/uploads/conss-3.jpg
   - size: full
     align: center
     photos:
