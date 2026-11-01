@@ -26,9 +26,9 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/moment-1.pdf
+      - /assets/uploads/moment-1.jpg
       - /assets/uploads/white.pdf
-      - /assets/uploads/moment-5.pdf
+      - /assets/uploads/moment-5.jpg
   - size: full
     align: center
     photos:
