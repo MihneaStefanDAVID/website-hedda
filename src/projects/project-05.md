@@ -76,6 +76,16 @@ gallery:
     photos:
       - /assets/uploads/cons-3.jpg
       - /assets/uploads/cons-4.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/dsc00197.jpg
+      - /assets/uploads/dsc00198.jpg
+      - /assets/uploads/dsc00199.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/dsc00305.jpg
 ---
 <p>33.33% an existing building is transformed TO LIVE, while the remaining 66.66% keep their ACTIVITIES.&nbsp;</p>
 <p><em>The Pitched Roof</em> on Steinackerstrasse 2, built in 1984, shelters a bike shop with a badminton court inside and two recycling centers. From the outside, it is almost the only building that looks like a house, a<strong> </strong>"Swiss home".</p>
