@@ -10,6 +10,31 @@ gallery:
     photos:
       - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-09.pdf
       - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-10.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-02.pdf
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-03.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-04.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-06.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-01.jpg
+      - /assets/uploads/white.pdf
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-05.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-02.jpg
+      - /assets/uploads/white.pdf
+      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-06.jpg
 ---
 <p>33.33% an existing building is transformed TO LIVE, while the remaining 66.66% keep their ACTIVITIES.&nbsp;</p>
 <p><em>The Pitched Roof</em> on Steinackerstrasse 2, built in 1984, shelters a bike shop with a badminton court inside and two recycling centers. From the outside, it is almost the only building that looks like a house, a<strong> </strong>"Swiss home".</p>
