@@ -28,6 +28,18 @@ gallery:
     align: center
     photos:
       - /assets/uploads/hedda_oprea_persönliche-verortung.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/class_matters-copy-dragged-7.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/class_matters-copy-dragged-8.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/class_matters-copy-dragged-9.png
 ---
 <p class="p1"><span class="s1"><strong>Who has access to architecture, and who is shaped by it?</strong></span></p>
 <p class="p1"><span class="s1">In the elective <em>Class Matters &ndash; in Architecture, Art and Design</em>, we discussed how architecture has long been, and often still is, a field understood and accessible to only one social class. For my submission, I examined my own social position through the lives of my four great-grandparents in Romania. They lived at almost the same time, yet had very different paths and possibilities.</span></p>
