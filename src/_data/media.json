@@ -441,16 +441,6 @@
     "web": "/assets/web/dsc00405.jpg",
     "zoom": "/assets/zoom/dsc00405.jpg"
   },
-  "dsc00527-copy.jpg": {
-    "sha1": "c77896ccaa5609d8ec0638db6c970a252ce8f902",
-    "web": "/assets/web/dsc00527-copy.jpg",
-    "zoom": "/assets/zoom/dsc00527-copy.jpg"
-  },
-  "dsc00599.jpeg": {
-    "sha1": "e786b454d6ddcd0a5e23e3b94611dede47f4013f",
-    "web": "/assets/web/dsc00599.jpg",
-    "zoom": "/assets/zoom/dsc00599.jpg"
-  },
   "dsc00602.jpeg": {
     "sha1": "99e61665436f0f9bce75549f8d6d34f726c876d0",
     "web": "/assets/web/dsc00602.jpg",
@@ -465,21 +455,6 @@
     "sha1": "cc0c72eea26c331b3640a2a196ad437508602fe8",
     "web": "/assets/web/dsc00944-copy.jpg",
     "zoom": "/assets/uploads/dsc00944-copy.jpg"
-  },
-  "dsc00944.jpg": {
-    "sha1": "b7f0dbf3a553a4be9f1cbaa86e90e1a69424a5b7",
-    "web": "/assets/web/dsc00944.jpg",
-    "zoom": "/assets/zoom/dsc00944.jpg"
-  },
-  "dsc00947.jpg": {
-    "sha1": "6010dda9998f3c067335d33b41d48004b9d01715",
-    "web": "/assets/web/dsc00947.jpg",
-    "zoom": "/assets/zoom/dsc00947.jpg"
-  },
-  "dsc00960.jpg": {
-    "sha1": "c0f95280a1f38f8c64204019e2ed7ede7e9f4ec1",
-    "web": "/assets/web/dsc00960.jpg",
-    "zoom": "/assets/zoom/dsc00960.jpg"
   },
   "hedda_oprea_persönliche-verortung.jpg": {
     "sha1": "b63a780ea86edda171cb46b545c67ae8901316d1",
@@ -505,16 +480,6 @@
     "sha1": "f8e35a8a044601c5fcb45a6314e4086682adb8ca",
     "web": "/assets/web/img_1598-2.jpg",
     "zoom": "/assets/zoom/img_1598-2.jpg"
-  },
-  "img_9562.jpeg": {
-    "sha1": "9c6ab63b0f15956666805f4b8f6a015715fea65f",
-    "web": "/assets/web/img_9562.jpg",
-    "zoom": "/assets/uploads/img_9562.jpeg"
-  },
-  "img_9567.jpeg": {
-    "sha1": "c3ac9038dee9e1f6fd521df43ea841b696c9af47",
-    "web": "/assets/web/img_9567.jpg",
-    "zoom": "/assets/uploads/img_9567.jpeg"
   },
   "mom-1.jpg": {
     "sha1": "d43599906aecb5bc45b366f6bd54dce43d0af432",

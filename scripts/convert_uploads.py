@@ -34,7 +34,7 @@ import unicodedata
 from pathlib import Path
 
 import pymupdf
-from PIL import Image
+from PIL import Image, ImageOps
 
 UPLOADS = Path("src/assets/uploads")
 ZOOM = Path("src/assets/zoom")
@@ -76,6 +76,8 @@ def save_jpg(src: Path, dst: Path, long_side: int, quality: int = 85) -> None:
             reduce += 1
         im.reduce = reduce
     im.load()
+    # Cameras store a turned photo as a flag, which the copy would lose.
+    ImageOps.exif_transpose(im, in_place=True)
     if im.mode in ("RGBA", "LA", "PA") or "transparency" in im.info:
         im = im.convert("RGBA")
         bg = Image.new("RGB", im.size, "white")
