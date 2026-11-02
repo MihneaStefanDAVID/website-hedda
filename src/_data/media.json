@@ -293,6 +293,17 @@
     "web": "/assets/web/33.jpg",
     "zoom": "/assets/zoom/33.jpg"
   },
+  "class_matters-copy-dragged-2.png": {
+    "sha1": "4f1082f98c13d2175ad8b8863378c050bf50e8de",
+    "web": "/assets/web/class_matters-copy-dragged-2-png.jpg"
+  },
+  "class_matters-copy-dragged-3.png": {
+    "sha1": "3e64725a27942d1b259f174cafb4fc73855cf61d",
+    "web": "/assets/web/class_matters-copy-dragged-3-png.jpg"
+  },
+  "class_matters-copy-dragged-4.png": {
+    "sha1": "0c27290d6ec86070b808c59e5ad717b320b985a5"
+  },
   "class_matters-copy-dragged-5.png": {
     "sha1": "4a9295eb54adce10c636c4c175c35eb80ecf0ff8"
   },
@@ -405,6 +416,11 @@
     "sha1": "c0f95280a1f38f8c64204019e2ed7ede7e9f4ec1",
     "web": "/assets/web/dsc00960.jpg",
     "zoom": "/assets/zoom/dsc00960.jpg"
+  },
+  "hedda_oprea_persönliche-verortung.jpg": {
+    "sha1": "b63a780ea86edda171cb46b545c67ae8901316d1",
+    "web": "/assets/web/hedda_oprea_persoenliche-verortung.jpg",
+    "zoom": "/assets/uploads/hedda_oprea_persönliche-verortung.jpg"
   },
   "img_1077.jpeg": {
     "sha1": "3da4f9d0b1a0c908b4fa2bcdd9988a862fb24d6e",
