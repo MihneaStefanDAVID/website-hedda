@@ -4,10 +4,40 @@
     "web": "/assets/web/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg",
     "zoom": "/assets/zoom/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg"
   },
+  "02.png": {
+    "sha1": "7157718fcfef4afed20e72d80936831d050ce232",
+    "web": "/assets/web/02-png.jpg",
+    "zoom": "/assets/uploads/02.png"
+  },
   "02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg": {
     "sha1": "0b170865bfab12f0ae6c42bb23c54ebe813063d7",
     "web": "/assets/web/02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg",
     "zoom": "/assets/zoom/02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg"
+  },
+  "03.png": {
+    "sha1": "407496d8d6e2af643e80e5ec0238a3c706dc9244",
+    "web": "/assets/web/03-png.jpg",
+    "zoom": "/assets/uploads/03.png"
+  },
+  "04.png": {
+    "sha1": "8b5b9ff351d41f2968547b64aaffb14975550068",
+    "web": "/assets/web/04-png.jpg",
+    "zoom": "/assets/uploads/04.png"
+  },
+  "05.jpg": {
+    "sha1": "101dfe7adb0c0aa1b58198444b377b2389ce8bc3",
+    "web": "/assets/web/05.jpg",
+    "zoom": "/assets/uploads/05.jpg"
+  },
+  "06.jpg": {
+    "sha1": "3b425286e64f2ae732f4d0521cd163a3cd4c5df3",
+    "web": "/assets/web/06.jpg",
+    "zoom": "/assets/uploads/06.jpg"
+  },
+  "07.jpg": {
+    "sha1": "a7da41cc2d80c204f72fae7353c4c90fc1646044",
+    "web": "/assets/web/07.jpg",
+    "zoom": "/assets/uploads/07.jpg"
   },
   "1m2a8481.jpg": {
     "sha1": "0037855b3b2e60a8e9eec1e439ced49ee77ab5a4",
