@@ -22,5 +22,9 @@ gallery:
     align: center
     photos:
       - /assets/uploads/03.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/axo.jpg
 ---
 <p>Placeholder description for Project Twelve. Replace this from the admin panel.</p>
