@@ -6,6 +6,21 @@ supervision: ""
 semester: ""
 gallery:
   - photos:
-      - /assets/projects/12-placeholder.svg
+      - /assets/uploads/07.jpg
+      - /assets/uploads/06.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/02.png
+      - /assets/uploads/05.jpg
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/01.pdf
+      - /assets/uploads/04.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/03.png
 ---
 <p>Placeholder description for Project Twelve. Replace this from the admin panel.</p>
