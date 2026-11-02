@@ -18,6 +18,7 @@ gallery:
       - /assets/uploads/23-958-044_assignment1-copy-2.jpg
       - /assets/uploads/23-958-044_assignment3-copy-2.jpg
       - /assets/uploads/23-958-044_assignment3-copy-1-dragged-.jpg
+      - /assets/uploads/23-958-044_assignment2-copy.jpg
   - size: full
     align: center
     photos:
