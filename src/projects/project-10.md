@@ -35,6 +35,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/tataie.mp4
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/class_matters-copy-dragged-8.png
   - size: full
     align: center
