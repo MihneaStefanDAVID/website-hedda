@@ -22,7 +22,12 @@ jobs:
   convert:
     runs-on: ubuntu-latest
     steps:
+      # Runs queue up, so start from the latest main, not the commit that
+      # triggered this run: it would miss what the run before it just pushed
+      # and conflict with it in media.json.
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
