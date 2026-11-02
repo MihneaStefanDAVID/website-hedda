@@ -23,6 +23,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/nineta.mp4
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/class_matters-copy-dragged-4.png
   - size: full
     align: center
