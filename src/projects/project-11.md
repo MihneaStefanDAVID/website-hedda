@@ -17,6 +17,10 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/viewcapture20250413_190102.png
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/viewcapture20250504_093056.png
 ---
 <p>Placeholder description for Project Eleven. Replace this from the admin panel.</p>
