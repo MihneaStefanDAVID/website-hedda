@@ -12,6 +12,11 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/vic06806-copy.jpg
+      - /assets/uploads/vic06803-copy.jpg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/151c5e7e-f4b2-41c6-8d0b-2445ec100e6d-2.jpg
 ---
 <p>hfhf</p>
