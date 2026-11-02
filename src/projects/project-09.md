@@ -4,6 +4,17 @@ order: 9
 cover: /assets/uploads/dsc00602.jpeg
 supervision: Adrian Dorschner; Prof. Silke Langenberg
 semester: FS26
+body_de: >-
+  <p><strong>Was bleibt von einem Kloster, wenn die Gemeinschaft verschwindet,
+  die es mit Leben f&uuml;llt?</strong></p>
+
+  <p>Im M&auml;rz 2026 verbrachten wir eine Seminarwoche im Dominikanerinnenkloster Ilanz. Wir wohnten bei den Schwestern, teilten ihre Mahlzeiten und folgten dem Rhythmus ihres Alltags. Einst pr&auml;gte die Gemeinschaft mit Schulen und Spit&auml;lern die ganze Region. Heute wird die Gemeinschaft der rund 60 Schwestern &auml;lter und hat sich entschieden, die Transformation des Klosters selbst zu gestalten. Das Kloster wird dabei nicht als statisches Denkmal verstanden, sondern als <strong>gelebter Ort im Wandel</strong>.</p>
+
+  <p>Nach einem Crashkurs in Dokumentarfilm mit dem Architekten und Filmemacher Adrian Dorschner arbeiteten wir in Gruppen, die sich jeweils einer anderen Seite des Klosters n&auml;herten: dem Alltag, der Liturgie, Raum und Licht, der Landschaft, dem Archiv. In der Gruppe <em>Oral History</em> filmte ich die <strong>pers&ouml;nlichen Lebenswege</strong> der Schwestern und ihre Beziehung zu den R&auml;umen, in denen sie leben. Ihnen zuzuh&ouml;ren hat den Blick unserer Gruppe auf das Kloster ver&auml;ndert.</p>
+
+  <p>Die Filme bleiben <strong>fragmentarisch und widerspr&uuml;chlich</strong>, und genau so haben wir den Ort erlebt.</p>
+
+  <p>Parallel zum Filmen diskutierten wir mit den Kuratorinnen des ZAZ, wie solche Arbeiten in einer Ausstellung gezeigt werden k&ouml;nnen, und entwickelten gemeinsam das szenografische Konzept. Die Filme sind Teil der Ausstellung <a href="https://zaz-bellerive.ch/"><em>Out of Service? Schweizer Sakralarchitektur im Wandel</em></a> im ZAZ Bellerive in Z&uuml;rich, von September 2026 bis Februar 2027.</p>
 gallery:
   - size: full
     align: center
