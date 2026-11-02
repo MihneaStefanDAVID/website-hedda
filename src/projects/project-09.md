@@ -5,6 +5,10 @@ cover: /assets/uploads/dsc00602.jpeg
 supervision: Adrian Dorschner; Prof. Silke Langenberg
 semester: FS26
 gallery:
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/booklet.mp4
   - photos:
       - /assets/uploads/out-of-service__flyer_digital-dragged-.pdf
       - /assets/uploads/out-of-service__flyer_digital-dragged-2.pdf
