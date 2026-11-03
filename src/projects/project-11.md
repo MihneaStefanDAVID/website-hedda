@@ -22,7 +22,10 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/viewcapture20250504_092859.png
+      - /assets/uploads/bricks_walkthrough_eye_level.mp4
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/viewcapture20250504_093148.png
   - size: full
     align: center
