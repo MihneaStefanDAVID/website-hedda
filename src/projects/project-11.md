@@ -37,6 +37,7 @@ gallery:
       - /assets/uploads/viewcapture20250504_093056.png
 ---
 <p>These are my submissions from <em>Computational Design</em> in the first and second year, exploring 3D scanning, parametric modeling, optimization and algorithmic design with Rhino, Grasshopper and Python. My first-year works are also part of <a href="https://dbt.arch.ethz.ch/panorama/"><strong>PANORAMA</strong></a>, a digital exhibition of the course.</p>
-<p>The course sparked a lasting interest. Beyond it, I kept exploring digital fabrication and visualisation on my own, and later joined the <strong>teaching team as a student assistant</strong>, now working with the students who follow.</p>
+<p>The course sparked a lasting interest. Beyond it, I kept exploring digital fabrication and visualisation on my own, and later, in September 2025, joined the <strong>teaching team as a student assistant</strong>, now working with the students who follow.</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
