@@ -19,7 +19,7 @@ body_de: >-
 
   <p class="p1"><span class="s1">Somnia bewegt sich zwischen pers&ouml;nlicher Erinnerung und gesammelten Daten. Das Spiel untersucht, wie die Atmosph&auml;re eines Ortes klarer in Erinnerung bleiben kann als der Ort selbst.</span></p>
 
-  <p class="p1"><span class="s1">Im Oktober 2026 wurde Somnia im SiloSilo in Z&uuml;rich im Rahmen von <a href="https://dbt.arch.ethz.ch/latent-spaces/"><span class="s2">Latent Spaces: Dreamcore</span></a> ausgestellt, einer Ausstellung von Tiziano Derme, den ich bei der Kuration und beim Aufbau unterst&uuml;tzt habe..</span></p>
+  <p class="p1"><span class="s1">Im Oktober 2026 wurde Somnia im SiloSilo in Z&uuml;rich im Rahmen von <a href="https://dbt.arch.ethz.ch/latent-spaces/"><span class="s2">Latent Spaces: Dreamcore</span></a> ausgestellt, einer Ausstellung von <span class="s2">Digital Building Technologies</span>, den ich bei der Kuration und beim Aufbau unterst&uuml;tzt habe..</span></p>
 
   <p class="p1"><span class="s1">Schau, h&ouml;r zu und tritt in den n&auml;chsten Raum.</span></p>
 gallery:
@@ -36,5 +36,5 @@ gallery:
 <p class="p1"><span class="s1">Starting in a 3D-scanned bedroom, the journey moves through rooms, each rebuilt from spatial data and reshaped around a dream recently described by its owners. Gaps and distortions from scanning remain part of the dream. The spaces stay recognisable, yet difficult to place. The familiar turns uncanny.</span></p>
 <p class="p1"><span class="s1">Sound guides the way. Background noise recorded in each room is placed back into the scan as spatialized audio. Following it leads to the dream hidden in the space, and then to the exit into the next room. Hearing often moves ahead of sight. Perception becomes the main interface.</span></p>
 <p class="p1"><span class="s1">Somnia sits between personal memory and collected data. The game explores how the atmosphere of a place can be remembered more clearly than the place itself.</span></p>
-<p class="p1"><span class="s1">In October 2026, Somnia was exhibited at SiloSilo in Zurich as part of <a href="https://dbt.arch.ethz.ch/latent-spaces/"><span class="s2">Latent Spaces: Dreamcore</span></a></span><span class="s1"><span class="s2">, an exhibition by Tiziano Derme, whom I assisted with the curation and setup.</span></span></p>
+<p class="p1"><span class="s1">In October 2026, Somnia was exhibited at SiloSilo in Zurich as part of <a href="https://dbt.arch.ethz.ch/latent-spaces/"><span class="s2">Latent Spaces: Dreamcore</span></a></span><span class="s1"><span class="s2">, an exhibition by Digital Building Technologies, whom I assisted with the curation and setup.</span></span></p>
 <p class="p1"><span class="s1">Watch, listen, and step into the next room.</span></p>
