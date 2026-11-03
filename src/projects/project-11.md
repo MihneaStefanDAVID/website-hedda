@@ -7,10 +7,9 @@ semester: HS23-FS25
 body_de: >-
   <p>Dies sind meine Abgaben aus <em>Computational Design</em> im ersten und
   zweiten Jahr (HS23&ndash;FS25), mit Schwerpunkten wie 3D-Scanning,
-  parametrischem Modellieren, Optimierung und algorithmischem Entwerfen. Meine
-  Arbeiten aus dem ersten Jahr sind zudem Teil von <a
-  href="https://dbt.arch.ethz.ch/panorama/"><strong>PANORAMA</strong></a>, einer
-  digitalen Ausstellung des Kurses.</p>
+  parametrischem Modellieren, Optimierung und algorithmischem Entwerfen.</p>
+
+  <p>Meine Arbeiten aus dem ersten Jahr sind zudem Teil von&nbsp;<a href="https://dbt.arch.ethz.ch/panorama/"><strong>PANORAMA</strong></a>, einer digitalen Ausstellung des Kurses.</p>
 
   <p>Der Kurs hat ein bleibendes Interesse geweckt. Dar&uuml;ber hinaus habe ich mich selbstst&auml;ndig weiter mit <strong>digitaler Fabrikation und Visualisierung</strong> besch&auml;ftigt und bin sp&auml;ter als <strong>Assistentin dem Lehrteam</strong> beigetreten, wo ich nun mit den nachfolgenden Studierenden arbeite.</p>
 gallery:
