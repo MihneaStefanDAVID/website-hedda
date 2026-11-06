@@ -8,8 +8,19 @@ includeScript: true
   videos on the right (60%) in rows of 1–4 shown side by side at equal
   height (see script.js). Each row has an optional size and alignment.
   Clicking an item opens it enlarged in the lightbox.
+
+  Page type "Images only" (page_type: images, chosen in the CMS) drops the
+  text column: a bar with "go back" and the title, then the photos across
+  the whole width.
 -->
-<div class="project-layout">
+{% set imagesOnly = page_type == "images" %}
+<div class="project-layout{% if imagesOnly %} project-layout--images{% endif %}">
+  {% if imagesOnly %}
+  <div class="project-topbar">
+    <a href="/" class="project-header__back"><span class="lang-en">go back</span><span class="lang-de">zurück</span></a>
+    <h1 class="project-topbar__title">{{ title }}</h1>
+  </div>
+  {% else %}
   <div class="project-text">
     <!--
       English / German: both versions are in the page and CSS shows one,
@@ -50,6 +61,7 @@ includeScript: true
     <div class="project-content">{{ content | safe }}</div>
     {% endif %}
   </div>
+  {% endif %}
 
   <div class="project-gallery">
     {% for row in gallery %}

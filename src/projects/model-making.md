@@ -1,5 +1,6 @@
 ---
 title: Model Making
+page_type: images
 order: 14
 cover: /assets/uploads/img_1598-2.jpg
 body_de: <p>fjjf</p>

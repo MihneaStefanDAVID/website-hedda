@@ -308,9 +308,57 @@
           var mediaFiles = entry.get("mediaFiles");
           mediaFiles = mediaFiles && mediaFiles.toJS ? mediaFiles.toJS() : mediaFiles || [];
 
+          var imagesOnly = entry.getIn(["data", "page_type"]) === "images";
+
           var facts = [["Project", h("h1", { className: "project-facts__title" }, title)]];
           if (supervision) facts.push(["Supervision", supervision]);
           if (semester) facts.push(["Semester", semester]);
+
+          // "Images only": a bar with "go back" and the title instead of
+          // the text column.
+          var side = imagesOnly
+            ? h(
+                "div",
+                { className: "project-topbar" },
+                h("span", { className: "project-header__back" }, "go back"),
+                h("h1", { className: "project-topbar__title" }, title)
+              )
+            : h(
+                "div",
+                { className: "project-text" },
+                h(
+                  "div",
+                  { className: "project-topbar" },
+                  h("span", { className: "project-header__back" }, "go back"),
+                  h("span", { className: "lang-switch" }, "EN / DE")
+                ),
+                h(
+                  "table",
+                  { className: "project-facts" },
+                  h("thead", {}, h("tr", {}, facts.map(function (f, i) {
+                    return h("th", { key: i }, f[0]);
+                  }))),
+                  h("tbody", {}, h("tr", {}, facts.map(function (f, i) {
+                    return h("td", { key: i }, f[1]);
+                  })))
+                ),
+                h("div", {
+                  className: "project-content",
+                  dangerouslySetInnerHTML: { __html: contentHtml },
+                }),
+                // The site shows one language at a time (EN/DE switch);
+                // the preview shows both so each can be checked.
+                contentHtmlDe &&
+                  h(
+                    "div",
+                    { style: { marginTop: "2em", paddingTop: "1em", borderTop: "1px solid #dedede" } },
+                    h("p", { style: { fontSize: "0.75rem", opacity: 0.5, margin: "0 0 1em" } }, "DE"),
+                    h("div", {
+                      className: "project-content",
+                      dangerouslySetInnerHTML: { __html: contentHtmlDe },
+                    })
+                  )
+              );
 
           return h(
             "div",
@@ -329,43 +377,8 @@
               { className: "project-main", style: { paddingTop: "24px" } },
               h(
                 "div",
-                { className: "project-layout" },
-                h(
-                  "div",
-                  { className: "project-text" },
-                  h(
-                    "div",
-                    { className: "project-topbar" },
-                    h("span", { className: "project-header__back" }, "go back"),
-                    h("span", { className: "lang-switch" }, "EN / DE")
-                  ),
-                  h(
-                    "table",
-                    { className: "project-facts" },
-                    h("thead", {}, h("tr", {}, facts.map(function (f, i) {
-                      return h("th", { key: i }, f[0]);
-                    }))),
-                    h("tbody", {}, h("tr", {}, facts.map(function (f, i) {
-                      return h("td", { key: i }, f[1]);
-                    })))
-                  ),
-                  h("div", {
-                    className: "project-content",
-                    dangerouslySetInnerHTML: { __html: contentHtml },
-                  }),
-                  // The site shows one language at a time (EN/DE switch);
-                  // the preview shows both so each can be checked.
-                  contentHtmlDe &&
-                    h(
-                      "div",
-                      { style: { marginTop: "2em", paddingTop: "1em", borderTop: "1px solid #dedede" } },
-                      h("p", { style: { fontSize: "0.75rem", opacity: 0.5, margin: "0 0 1em" } }, "DE"),
-                      h("div", {
-                        className: "project-content",
-                        dangerouslySetInnerHTML: { __html: contentHtmlDe },
-                      })
-                    )
-                ),
+                { className: "project-layout" + (imagesOnly ? " project-layout--images" : "") },
+                side,
                 h(
                   "div",
                   { className: "project-gallery" },

@@ -54,6 +54,15 @@ collections:
     identifier_field: "title"
     sortable_fields: ["order", "title"]
     fields:
+      - label: "Page type"
+        name: "page_type"
+        widget: "select"
+        required: false
+        default: "text"
+        options:
+          - { label: "Text | Images", value: "text" }
+          - { label: "Images only", value: "images" }
+        hint: "Text | Images: the text on the left, the photos on the right. Images only: no text, just the title and the photos across the whole page (the English and German text are then not shown; supervision and semester still appear in the hover box on the main page)."
       - { label: "Title", name: "title", widget: "string" }
       - label: "Order"
         name: "order"
@@ -75,7 +84,8 @@ collections:
       - label: "Text (English)"
         name: "body"
         widget: "rich_editor"
-        hint: "The project text, shown in the left column of the project page. English is what visitors see by default. Photos go in Photo rows below."
+        required: false
+        hint: "The project text, shown in the left column of the project page. English is what visitors see by default. Photos go in Photo rows below. Not shown on an Images only page."
       - label: "Text (German)"
         name: "body_de"
         widget: "rich_editor"

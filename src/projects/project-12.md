@@ -1,5 +1,6 @@
 ---
 title: Hand Drawings
+page_type: images
 order: 12
 cover: /assets/uploads/screenshot-2026-10-31-at-12.32.30.png
 supervision: ""

@@ -498,6 +498,19 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   outline-offset: 3px;
 }
 
+/* "Images only" pages: no text column, the photos take the whole width
+   under a bar with "go back" and the title. */
+.project-layout--images .project-gallery {
+  margin-left: 0;
+}
+
+.project-topbar__title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: right;
+}
+
 @media (max-width: 720px) {
   .project-text {
     position: static;
