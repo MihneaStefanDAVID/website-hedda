@@ -1,6 +1,6 @@
 ---
-title: Model Making
 page_type: images
+title: Model Making
 order: 14
 cover: /assets/uploads/img_1598-2.jpg
 body_de: <p>fjjf</p>
@@ -15,7 +15,7 @@ gallery:
     photos:
       - /assets/uploads/vic06806-copy.jpg
       - /assets/uploads/vic06803-copy.jpg
-  - size: full
+  - size: medium
     align: center
     photos:
       - /assets/uploads/151c5e7e-f4b2-41c6-8d0b-2445ec100e6d-2.jpg
