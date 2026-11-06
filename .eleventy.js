@@ -28,19 +28,34 @@ export default function (eleventyConfig) {
   // large ones, both made by scripts/convert_uploads.py and listed in
   // src/_data/media.json. Until the script has run for a new upload, the
   // upload itself is shown.
+  //
+  // These keep their name when remade, and the host lets browsers keep a file
+  // for 4 hours without asking again, so the URL carries a hash of the file:
+  // otherwise visitors go on seeing the old version.
+  const fileHash = (url) => createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 8);
+  const versioned = (url) => {
+    try {
+      return `${url}?v=${fileHash(url)}`;
+    } catch {
+      return url; // e.g. a name stored in another Unicode form
+    }
+  };
   const mediaEntry = (value, media) => (media || {})[String(value || "").split("/").pop().normalize("NFC")];
-  eleventyConfig.addFilter("webPath", (value, media) => mediaEntry(value, media)?.web || imagePath(value));
-  eleventyConfig.addFilter("zoomPath", (value, media) => mediaEntry(value, media)?.zoom || "");
+  eleventyConfig.addFilter("webPath", (value, media) => {
+    const web = mediaEntry(value, media)?.web;
+    return web ? versioned(web) : imagePath(value);
+  });
+  eleventyConfig.addFilter("zoomPath", (value, media) => {
+    const zoom = mediaEntry(value, media)?.zoom;
+    return zoom ? versioned(zoom) : "";
+  });
 
   // Appends a short hash of the file's contents ("/styles.css?v=1a2b3c4d").
   // The host serves CSS/JS with a 4-hour browser cache, so without this a
   // visitor (Safari especially) can pair a fresh page with a stale
   // stylesheet or script after a deploy. The URL now changes whenever the
   // file does, so browsers always fetch the matching version.
-  eleventyConfig.addFilter("bust", (url) => {
-    const hash = createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 8);
-    return `${url}?v=${hash}`;
-  });
+  eleventyConfig.addFilter("bust", (url) => `${url}?v=${fileHash(url)}`);
 
   // Project gallery items can be photos, GIFs or videos — videos need a
   // <video> element instead of an <img>.
