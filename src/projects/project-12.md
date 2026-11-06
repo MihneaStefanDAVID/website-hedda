@@ -1,6 +1,6 @@
 ---
-title: Hand Drawings
 page_type: images
+title: Hand Drawings
 order: 12
 cover: /assets/uploads/screenshot-2026-10-31-at-12.32.30.png
 supervision: ""
@@ -23,7 +23,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/03.png
-  - size: full
+  - size: medium
     align: center
     photos:
       - /assets/uploads/axo.jpg
