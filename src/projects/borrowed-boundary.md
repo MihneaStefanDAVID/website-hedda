@@ -9,7 +9,12 @@ gallery:
   - size: large
     align: center
     photos:
-      - /assets/uploads/invs16_sites_all-dragged-.pdf
+      - /assets/uploads/screenshot-2026-11-08-at-19.24.22.png
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/inves16_atlas-w04-_01.jpg
+      - /assets/uploads/inves16_atlas-w04-copy.jpg
   - size: full
     align: center
     photos:
