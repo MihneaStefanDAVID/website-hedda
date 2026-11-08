@@ -52,7 +52,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/1.jpg
-      - /assets/uploads/2.jp2
+      - /assets/uploads/2.jpg
       - /assets/uploads/3.jpg
   - size: full
     align: center

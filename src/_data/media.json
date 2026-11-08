@@ -39,6 +39,11 @@
     "web": "/assets/web/07.jpg",
     "zoom": "/assets/uploads/07.jpg"
   },
+  "1.jpg": {
+    "sha1": "94ea71db9b79eae60563f38da602d52b54e40fd7",
+    "web": "/assets/web/1.jpg",
+    "zoom": "/assets/uploads/1.jpg"
+  },
   "151c5e7e-f4b2-41c6-8d0b-2445ec100e6d-2.jpg": {
     "sha1": "41f19e27d66538c02abd3522c9ef0926750bb709",
     "web": "/assets/web/151c5e7e-f4b2-41c6-8d0b-2445ec100e6d-2.jpg"
@@ -67,6 +72,11 @@
     "sha1": "39cd228fbda3d5d258160b629a23c75cc5065d70",
     "web": "/assets/web/1m2a8489.jpg",
     "zoom": "/assets/zoom/1m2a8489.jpg"
+  },
+  "2.jpg": {
+    "sha1": "24c0bd2d3235c5eb6f280fa25d07a9246b8fcbb9",
+    "web": "/assets/web/2.jpg",
+    "zoom": "/assets/zoom/2.jpg"
   },
   "2025_03_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti-copy.jpg": {
     "sha1": "faee8010be13cd8bfa72b16a77be821bdfda74a8",
@@ -351,6 +361,11 @@
     "sha1": "704f9a47093946f0a3f18f966685231e86b65f0e",
     "web": "/assets/web/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged.jpg",
     "zoom": "/assets/zoom/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged.jpg"
+  },
+  "3.jpg": {
+    "sha1": "9f8f24a7e8396edad777ea36f01d6b3656da3df9",
+    "web": "/assets/web/3.jpg",
+    "zoom": "/assets/uploads/3.jpg"
   },
   "33.jpg": {
     "sha1": "72dfc5a29abfd7cade0455589b11d9a3ea8437a2",
