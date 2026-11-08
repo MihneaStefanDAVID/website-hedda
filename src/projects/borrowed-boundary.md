@@ -10,6 +10,10 @@ gallery:
     align: center
     photos:
       - /assets/uploads/invs16_sites_all-dragged-.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/invs16_w05_hedda_duru_section.pdf
 ---
 <p class="p1"><span class="s1">As the first phase of an ongoing project, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
 <p class="p1"><span class="s1">Our site in Schlieren holds the warehouses of the food distributor Transgourmet: storage on one side, offices on the other, and a steel car park connecting them, with truck dispatch and maintenance on the ground floor. The building is strongly divided by actors and scale. On the ground floor everything is <strong>truck-sized</strong>, with no sidewalks or lights for pedestrians, and only higher up does it become human-sized again. Nature appears at the margins, most clearly in the <strong>Limmat river</strong>. Still, we found people using the parking spaces for lunch or a coffee break.</span></p>
