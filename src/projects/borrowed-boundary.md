@@ -2,7 +2,7 @@
 page_type: text
 title: Borrowed Boundary
 order: 6
-cover: /assets/uploads/dsc08582-1.png
+cover: /assets/uploads/fragy.jpg
 supervision: "Prof. Alexandre Theriot "
 semester: HS26
 body_de: >-
