@@ -52,7 +52,7 @@ gallery:
     align: center
     photos:
       - /assets/uploads/inves16_w05_hedda_duru_video.mp4
-  - size: full
+  - size: large
     align: center
     photos:
       - /assets/uploads/d_try02.pdf
