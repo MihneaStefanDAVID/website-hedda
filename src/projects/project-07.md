@@ -1,6 +1,6 @@
 ---
 title: The Vanishing Frame
-order: 6
+order: 9
 cover: /assets/uploads/pictury-copy.png
 supervision: Dr. Carlotta Daro; Prof. Fabio Gramazio
 semester: FS26
