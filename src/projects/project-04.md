@@ -1,6 +1,6 @@
 ---
 title: Complexity Fragment
-order: 4
+order: 2
 cover: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
 supervision: Prof. Jan De Vylder
 semester: HS25
