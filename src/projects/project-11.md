@@ -5,9 +5,9 @@ cover: /assets/uploads/23-958-044_assignment1-copy-2.jpg
 supervision: "Prof. Benjamin Dillenburger; Prof. Fabio Gramazio & Prof. Matthias Kohler "
 semester: HS23-FS25
 body_de: >-
-  <p>Dies sind meine Abgaben aus <em>Computational Design</em> im ersten und
-  zweiten Jahr (HS23&ndash;FS25), mit Schwerpunkten wie 3D-Scanning,
-  parametrischem Modellieren, Optimierung und algorithmischem Entwerfen.</p>
+  <p>In zwei Jahren <em>Computational Design</em> habe ich mich mit 3D-Scanning,
+  parametrischem Modellieren, Optimierung und algorithmischem Entwerfen
+  besch&auml;ftigt und dabei mit Rhino, Grasshopper und Python gearbeitet.</p>
 
   <p>Meine Arbeiten aus dem ersten Jahr sind zudem Teil von&nbsp;<a href="https://dbt.arch.ethz.ch/panorama/"><strong>PANORAMA</strong></a>, einer digitalen Ausstellung des Kurses.</p>
 
@@ -34,7 +34,7 @@ gallery:
     photos:
       - /assets/uploads/viewcapture20250504_093056.png
 ---
-<p>These are my submissions from <em>Computational Design</em> in the first and second year, exploring 3D scanning, parametric modeling, optimization and algorithmic design with Rhino, Grasshopper and Python.</p>
+<p>Over two years of <em>Computational Design</em> courses, I explored 3D scanning, parametric modeling, optimization and algorithmic design using Rhino, Grasshopper and Python.</p>
 <p>My first-year works are also part of&nbsp;<a href="https://dbt.arch.ethz.ch/panorama/"><strong>PANORAMA</strong></a>, a digital exhibition of the course.</p>
 <p>The course sparked a lasting interest. Beyond it, I kept exploring digital fabrication and visualisation on my own, and later, in September 2025, joined the <strong>teaching team as a student assistant</strong>, now working with the students who follow.</p>
 <p>&nbsp;</p>
