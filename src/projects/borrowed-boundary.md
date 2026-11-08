@@ -13,26 +13,26 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/inves16_atlas-w04-_01.jpg
-      - /assets/uploads/inves16_atlas-w04-copy.jpg
-  - size: full
-    align: center
-    photos:
       - /assets/uploads/invs16_w05_hedda_duru_section.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/screenshot-2026-11-08-at-19.18.53.png
-  - size: full
-    align: center
-    photos:
-      - /assets/uploads/screenshot-2026-11-08-at-19.20.36.png
+      - /assets/uploads/inves16_atlas-w04-_01.jpg
+      - /assets/uploads/inves16_atlas-w04-copy.jpg
   - size: full
     align: center
     photos:
       - /assets/uploads/invs16_w05_hedda_duru_picture-01-copy.pdf
       - /assets/uploads/plot1-dragged-.pdf
       - /assets/uploads/plot1-dragged-2.pdf
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/inves16_w05_hedda_duru_video.mp4
+  - size: full
+    align: center
+    photos:
+      - /assets/uploads/d_try02.pdf
 ---
 <p class="p1"><span class="s1">As the first phase of an ongoing project, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
 <p class="p1"><span class="s1">Our site in Schlieren holds the warehouses of the food distributor Transgourmet: storage on one side, offices on the other, and a steel car park connecting them, with truck dispatch and maintenance on the ground floor. The building is strongly divided by actors and scale. On the ground floor everything is <strong>truck-sized</strong>, with no sidewalks or lights for pedestrians, and only higher up does it become human-sized again.&nbsp;</span></p>
