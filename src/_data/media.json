@@ -536,6 +536,16 @@
     "web": "/assets/web/img_9567.jpg",
     "zoom": "/assets/uploads/img_9567.jpeg"
   },
+  "inves16_atlas-w04-_01.jpg": {
+    "sha1": "b0c7effc8b78cca117a8b3161d5d9e9a6a7f05b7",
+    "web": "/assets/web/inves16_atlas-w04-_01.jpg",
+    "zoom": "/assets/uploads/inves16_atlas-w04-_01.jpg"
+  },
+  "inves16_atlas-w04-copy.jpg": {
+    "sha1": "36be8186a0468a9d00cf0ae7dce3e09a61af49bd",
+    "web": "/assets/web/inves16_atlas-w04-copy.jpg",
+    "zoom": "/assets/uploads/inves16_atlas-w04-copy.jpg"
+  },
   "mom-1.jpg": {
     "sha1": "d43599906aecb5bc45b366f6bd54dce43d0af432",
     "web": "/assets/web/mom-1.jpg",
@@ -663,6 +673,10 @@
   "screenshot-2026-11-08-at-19.20.36.png": {
     "sha1": "e69eb60cc435f970e97e47e108ac715aa16a7728",
     "web": "/assets/web/screenshot-2026-11-08-at-19.20.36-png.jpg"
+  },
+  "screenshot-2026-11-08-at-19.24.22.png": {
+    "sha1": "048e47de3d9a23dfb00cbbe5859e3b51385f11f8",
+    "web": "/assets/web/screenshot-2026-11-08-at-19.24.22-png.jpg"
   },
   "vic06803-copy.jpg": {
     "sha1": "aa525a0812c5b8011e3b533034a6fc2c4433cb34",
