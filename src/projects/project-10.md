@@ -1,6 +1,6 @@
 ---
 title: "Class Matters "
-order: 10
+order: 12
 cover: /assets/uploads/class_matters-copy-dragged-5.png
 supervision: Dr. Paola De Martin; Prof. Phillip Urspung
 semester: HS24
