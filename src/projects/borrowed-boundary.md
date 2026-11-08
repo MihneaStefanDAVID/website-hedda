@@ -5,6 +5,29 @@ order: 14
 cover: /assets/uploads/dsc08582-1.png
 supervision: "Prof. Alexandre Theriot "
 semester: HS26
+body_de: >-
+  <p>Als erste Phase eines laufenden Projekts begannen wir mit der
+  Frage:<br><strong>Wann wird Licht zu Sicherheitslicht?</strong></p>
+
+  <p>Unser Ort in Schlieren umfasst die Lagerhallen des Lebensmittelh&auml;ndlers Transgourmet: auf der einen Seite das Lager, auf der anderen die B&uuml;ros, dazwischen ein Parkhaus aus Stahl, im Erdgeschoss Lkw-Abfertigung und Wartung. Das Geb&auml;ude ist stark nach Akteuren und Massst&auml;ben geschichtet. Im Erdgeschoss ist alles auf Lastwagen ausgelegt, ohne Gehwege oder Beleuchtung f&uuml;r Fussg&auml;nger, erst weiter oben wird es wieder menschlich.</p>
+
+  <p>Unser Mythos ist das Sicherheitslicht des Gabelstaplers. Ausgehend davon recherchierten wir, entwickelten ein Storyboard und kamen zum Schluss: Licht wird zu Sicherheitslicht, wenn es nicht mehr nur beleuchtet, sondern zu kommunizieren beginnt, durch Farbe, Intensit&auml;t und die Position der Betrachtenden.</p>
+
+  <p>Um diese Recherche sichtbar zu machen, entwickelten wir ein Fragment: eine Performance mit Lasern, die untersucht, wie Licht auf unterschiedliche Situationen reagiert.</p>
+
+  <ul>
+
+  <li><strong>Licht und Umgebung:</strong> Licht bewegt sich als winzige Signale, Photonen, die f&uuml;r das menschliche Auge unsichtbar sind, ausser in einem staubigen oder nebligen Raum. Die Umgebung ver&auml;ndert, wie wir Licht wahrnehmen.</li>
+
+  <li><strong>Licht und Information:</strong> Als schnellste Substanz transportiert Licht Informationen, etwa in Glasfaserkabeln. Richtet man einen Laser auf fliessendes Wasser, entsteht derselbe Effekt: Das Wasser leuchtet auf, und man sieht, wie die Information dem Wasserstrahl folgt und sich mit ihm biegt. Licht hat seine eigene Sprache.</li>
+
+  <li><strong>Licht und Klang:</strong> Licht bewegt sich wie Wasser, in Wellen. Lissajous-Figuren machen Schallwellen sichtbar und verwandeln einen einfachen Laser durch Schwingungen in eine Botschaft, auch solche, die f&uuml;r Menschen unh&ouml;rbar, f&uuml;r andere Lebewesen aber wahrnehmbar sind.</li>
+
+  </ul>
+
+  <p>Zwischen 21 und 2 Uhr steht das Areal leer. Wir behalten das bestehende Lager und die B&uuml;ros und nutzen diese freie Zeit, um neue Bewegung einzuf&uuml;hren, mit Licht als Werkzeug, sie zu regeln.</p>
+
+  <p>Die Grenze, die durch Licht entsteht, existiert nur in ihrer Wahrnehmung. Ein Mensch sieht vielleicht eine Schwelle, ein Lastwagen ein Signal, und ein Tier nimmt sie wom&ouml;glich gar nicht wahr. Wie beim Gabelstapler wird Licht zum Vermittler des Zusammenlebens.</p>
 gallery:
   - size: large
     align: center
@@ -34,7 +57,7 @@ gallery:
     photos:
       - /assets/uploads/d_try02.pdf
 ---
-<p class="p1"><span class="s1">As the first phase of an ongoing project, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
+<p class="p1"><span class="s1">As the first phase of an <em>ongoing project</em>, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
 <p class="p1"><span class="s1">Our site in Schlieren holds the warehouses of the food distributor Transgourmet: storage on one side, offices on the other, and a steel car park connecting them, with truck dispatch and maintenance on the ground floor. The building is strongly divided by actors and scale. On the ground floor everything is <strong>truck-sized</strong>, with no sidewalks or lights for pedestrians, and only higher up does it become human-sized again.&nbsp;</span></p>
 <p class="p1"><span class="s1">Our myth is the <strong>forklift safety light</strong>. Starting from it, we researched and built a storyboard, and concluded that light becomes safety light when it stops only illuminating and starts <strong>communicating</strong>, through colour, intensity and the position of the observer.</span></p>
 <p class="p1"><span class="s1">To visualise this research, we created a fragment: a <strong>performance with lasers</strong>, exploring how light reacts to different situations.</span></p>
