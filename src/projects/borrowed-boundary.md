@@ -55,7 +55,7 @@ gallery:
   - size: large
     align: center
     photos:
-      - /assets/uploads/d_try02.pdf
+      - /assets/uploads/invs16_w05_hedda_duru_diagramm.pdf
 ---
 <p class="p1"><span class="s1">As the first phase of an <em>ongoing project</em>, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
 <p class="p1"><span class="s1">Our site in Schlieren holds the warehouses of the food distributor Transgourmet: storage on one side, offices on the other, and a steel car park connecting them, with truck dispatch and maintenance on the ground floor. The building is strongly divided by actors and scale. On the ground floor everything is <strong>truck-sized</strong>, with no sidewalks or lights for pedestrians, and only higher up does it become human-sized again.&nbsp;</span></p>
