@@ -6,7 +6,7 @@ cover: /assets/uploads/dsc08582-1.png
 supervision: "Prof. Alexandre Theriot "
 semester: HS26
 gallery:
-  - size: full
+  - size: large
     align: center
     photos:
       - /assets/uploads/invs16_sites_all-dragged-.pdf
