@@ -1,6 +1,6 @@
 ---
 title: Atelierhouse in the Neighbourhood
-order: 2
+order: 3
 cover: /assets/uploads/vic06803-copy.jpg
 supervision: "Prof. Andrea Deplazes "
 semester: FS25
