@@ -1,6 +1,6 @@
 ---
 title: The Pitched Roof
-order: 5
+order: 1
 cover: /assets/uploads/dsc00199.jpg
 supervision: Prof. Jan De Vylder
 semester: FS26
