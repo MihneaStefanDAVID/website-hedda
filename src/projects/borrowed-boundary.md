@@ -51,6 +51,12 @@ gallery:
   - size: full
     align: center
     photos:
+      - /assets/uploads/1.jpg
+      - /assets/uploads/2.jp2
+      - /assets/uploads/3.jpg
+  - size: full
+    align: center
+    photos:
       - /assets/uploads/inves16_w05_hedda_duru_video.mp4
   - size: full
     align: center
