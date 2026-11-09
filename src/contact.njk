@@ -8,3 +8,11 @@ permalink: /contact/
 ---
 <a class="contact-email" href="mailto:hoprea@ethz.ch">hoprea@ethz.ch</a>
 <a href="tel:+41782662007">+41 78 266 20 07</a>
+{#- The CVs are chosen in the CMS (Pages > Contact, src/_data/contact.json). #}
+{% if contact.cv_en or contact.cv_de %}
+<p class="contact-cv">
+  {% if contact.cv_en %}<a href="{{ contact.cv_en | versioned }}" target="_blank" rel="noopener" hreflang="en">CV</a>{% endif %}
+  {% if contact.cv_en and contact.cv_de %}<span aria-hidden="true">/</span>{% endif %}
+  {% if contact.cv_de %}<a href="{{ contact.cv_de | versioned }}" target="_blank" rel="noopener" hreflang="de">Lebenslauf</a>{% endif %}
+</p>
+{% endif %}

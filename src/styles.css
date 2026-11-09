@@ -299,6 +299,17 @@ a {
   padding: 1.5rem;
 }
 
+/* CV / Lebenslauf, set a little apart under the phone number. */
+.contact-cv {
+  display: flex;
+  gap: 0.35em;
+  margin: 1.2em 0 0;
+}
+
+.contact-cv span {
+  opacity: 0.4;
+}
+
 .contact-email {
   overflow-wrap: anywhere;
 }

@@ -141,3 +141,24 @@ collections:
               - { label: "Center", value: "center" }
               - { label: "Right", value: "right" }
             hint: "Where a row smaller than full width sits."
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Contact"
+        name: "contact"
+        file: "src/_data/contact.json"
+        fields:
+          - label: "CV (English, PDF)"
+            name: "cv_en"
+            widget: "file"
+            required: false
+            media_folder: "/src/assets/cv"
+            public_folder: "/assets/cv"
+            hint: "Linked as \"CV\" on the contact page. To update it, choose the new PDF here and publish."
+          - label: "Lebenslauf (German, PDF)"
+            name: "cv_de"
+            widget: "file"
+            required: false
+            media_folder: "/src/assets/cv"
+            public_folder: "/assets/cv"
+            hint: "Linked as \"Lebenslauf\" on the contact page."

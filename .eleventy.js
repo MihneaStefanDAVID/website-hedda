@@ -40,6 +40,7 @@ export default function (eleventyConfig) {
       return url; // e.g. a name stored in another Unicode form
     }
   };
+  eleventyConfig.addFilter("versioned", versioned);
   const mediaEntry = (value, media) => (media || {})[String(value || "").split("/").pop().normalize("NFC")];
   eleventyConfig.addFilter("webPath", (value, media) => {
     const web = mediaEntry(value, media)?.web;
@@ -73,11 +74,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/script.js");
   // PDFs are shown through their converted pages, so the files themselves
-  // are not published. Neither are files of 25 MB or more: Cloudflare
+  // are not published, except the CVs (src/assets/cv), which are linked
+  // from the contact page. Neither are files of 25 MB or more: Cloudflare
   // refuses the whole deploy over a single one, and the site shows their
   // web and zoom versions anyway (see scripts/convert_uploads.py).
   eleventyConfig.addPassthroughCopy("src/assets", {
-    filter: (path) => !/\.pdf$/i.test(path) && !isHuge(path),
+    filter: (path) => (!/\.pdf$/i.test(path) || /(^|\/)cv\//.test(path)) && !isHuge(path),
   });
   eleventyConfig.addPassthroughCopy("src/admin");
 
