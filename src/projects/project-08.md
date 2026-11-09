@@ -24,13 +24,13 @@ body_de: >-
   <p class="p1"><span class="s1">Schau, h&ouml;r zu und tritt in den n&auml;chsten Raum.</span></p>
 gallery:
   - photos:
-      - /assets/uploads/game.mp4
+      - image: /assets/uploads/game.mp4
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00944.jpg
-      - /assets/uploads/dsc00960.jpg
-      - /assets/uploads/dsc00947.jpg
+      - image: /assets/uploads/dsc00944.jpg
+      - image: /assets/uploads/dsc00960.jpg
+      - image: /assets/uploads/dsc00947.jpg
 ---
 <p class="p1"><span class="s1"><em>Somnia</em> is a playable game about perception and memory, developed in an accelerated three-day programme during the seminar week <em>Virtual Acoustic Ecologies 2</em>. Using experimental game design, the seminar explores architectural acoustics, a dimension largely overlooked in visual-based design processes, through 3D scanning, virtual acoustic simulation and the Unity game engine.</span></p>
 <p class="p1"><span class="s1">Starting in a 3D-scanned bedroom, the journey moves through rooms, each rebuilt from spatial data and reshaped around a dream recently described by its owners. Gaps and distortions from scanning remain part of the dream. The spaces stay recognisable, yet difficult to place. The familiar turns uncanny.</span></p>

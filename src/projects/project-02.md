@@ -12,52 +12,52 @@ body_de: >-
   <p>Aus der Robustheit unseres Atelierhauses entwickelte sich das Potenzial f&uuml;r eine extrem dichte Bebauung. So entstand ein Wechselspiel aus engen, intimen Gassen und gesch&uuml;tzten H&ouml;fen bis hin zu Weite auf den Pl&auml;tzen und dem begehbaren Dachpavillon. Das Haus selbst ist stark introvertiert: Massivbauw&auml;nde trennen es klar von der Umgebung ab und der Innenhof bildet die einzige Lichtquelle. Beim Betreten l&ouml;st sich die &auml;ussere Schwere jedoch in eine filigrane Holzstruktur auf, deren St&uuml;tzen und unterschiedlich hohe D&auml;cher die R&auml;ume gliedern, von privaten Zonen wie dem Bad bis hin zu fliessenden Raum&uuml;berlappungen entlang des Innenhofs.</p>
 gallery:
   - photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-8.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-8.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-9.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-9.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-10.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-10.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged.jpg
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-2.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-2.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-3.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-3.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-4.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-4.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-6.jpg
+      - image: /assets/uploads/25fs_nachbarschaft_bruecke_oprea_pop-copy-2-dragged-6.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/vic06825-copy.jpg
-      - /assets/uploads/vic06803-copy.jpg
-      - /assets/uploads/vic06804-copy.jpg
+      - image: /assets/uploads/vic06825-copy.jpg
+      - image: /assets/uploads/vic06803-copy.jpg
+      - image: /assets/uploads/vic06804-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/render_02-copy-large.jpeg
+      - image: /assets/uploads/render_02-copy-large.jpeg
   - size: full
     align: center
     photos:
-      - /assets/uploads/vic06827-copy.jpg
-      - /assets/uploads/vic06859-copy.jpg
-      - /assets/uploads/vic06861-copy.jpg
+      - image: /assets/uploads/vic06827-copy.jpg
+      - image: /assets/uploads/vic06859-copy.jpg
+      - image: /assets/uploads/vic06861-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/render-copy-large.jpeg
+      - image: /assets/uploads/render-copy-large.jpeg
 ---
 <p><strong>How can living and working coexist?</strong></p>
 <p>The watermills by the stream served as the starting point, providing friction for the urban design of our neighborhood. The flowing water guided movement throughout the district: in some places, the stream runs hidden beneath the mills, while at deliberately chosen squares, it emerges as a gathering place. Together with water towers and basins, rainwater becomes part of a sustainable resource concept.</p>

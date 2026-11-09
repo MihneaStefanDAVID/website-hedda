@@ -512,7 +512,7 @@
       // Scaled by 100: flex-grow values summing to less than 1 only hand
       // out that fraction of the space, so a lone portrait photo (ratio
       // ~0.7) filled just 70% of its row. Scaling keeps the proportions.
-      if (width && height) item.style.flexGrow = String((width / height) * 100);
+      if (width && height) item.parentElement.style.flexGrow = String((width / height) * 100);
     };
     const ready = isVideo(media) ? media.readyState >= 1 : media.complete;
     if (ready) fit();
@@ -526,7 +526,11 @@
   close.type = "button";
   close.className = "lightbox__close";
   close.textContent = "close";
-  dialog.append(close);
+  // The item's caption, if it has one, shows under it enlarged too.
+  const caption = document.createElement("p");
+  caption.className = "lightbox__caption";
+  dialog.append(close, caption);
+  const captionOf = (item) => item.parentElement.querySelector(".project-gallery__caption");
 
   let index = 0;
   let current = null;
@@ -547,6 +551,9 @@
     const source = mediaOf(items[index]);
     const media = document.createElement(source.tagName.toLowerCase());
     media.src = source.currentSrc || source.src;
+    const text = captionOf(items[index]);
+    caption.innerHTML = text ? text.innerHTML : "";
+    dialog.classList.toggle("lightbox--captioned", !!text);
     if (isVideo(media)) {
       // Starts muted (browsers block autoplay with sound); the controls
       // let the visitor unmute. Clicks on it stay with the video.

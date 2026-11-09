@@ -64,16 +64,38 @@ includeScript: true
   {% endif %}
 
   <div class="project-gallery">
+    {% if gallery and gallery.length %}
+    <!-- Visitors rarely expect photos to open; a quiet line says so. -->
+    <p class="project-gallery__hint">
+      <span class="lang-en"><span class="hint-click">Click</span><span class="hint-tap">Tap</span> an image to see it in detail</span>
+      <span class="lang-de">Für Details auf ein Bild <span class="hint-click">klicken</span><span class="hint-tap">tippen</span></span>
+    </p>
+    {% endif %}
     {% for row in gallery %}
     <div class="project-gallery__row project-gallery__row--{{ row.size or 'full' }} project-gallery__row--align-{{ row.align or 'center' }}">
-      {% for entry in row.photos %}{% if entry %}{% for item in entry | galleryFiles(pdf) %}
-      <button class="project-gallery__item" type="button" aria-label="Enlarge">
-        {% if item | isVideo %}
-        <video src="{{ item | imagePath }}" autoplay muted loop playsinline preload="metadata"></video>
-        {% else %}
-        <img src="{{ item | webPath(media) }}" data-zoom="{{ item | zoomPath(media) }}" alt="{{ title }}" loading="lazy" />
+      {#
+        Each entry is { image, caption, caption_de }; older projects saved
+        just the file path. A PDF's caption goes under its last page.
+      #}
+      {% for entry in row.photos %}{% set file = entry.image if entry.image else entry %}{% if file and file.length %}{% for item in file | galleryFiles(pdf) %}
+      <figure class="project-gallery__cell">
+        <button class="project-gallery__item" type="button" aria-label="Enlarge">
+          {% if item | isVideo %}
+          <video src="{{ item | imagePath }}" autoplay muted loop playsinline preload="metadata"></video>
+          {% else %}
+          <img src="{{ item | webPath(media) }}" data-zoom="{{ item | zoomPath(media) }}" alt="{{ entry.caption or title }}" loading="lazy" />
+          {% endif %}
+        </button>
+        {% if loop.last and entry.caption %}
+        <figcaption class="project-gallery__caption">
+          {%- if entry.caption_de -%}
+          <span class="lang-en" lang="en">{{ entry.caption }}</span><span class="lang-de" lang="de">{{ entry.caption_de }}</span>
+          {%- else -%}
+          {{ entry.caption }}
+          {%- endif -%}
+        </figcaption>
         {% endif %}
-      </button>
+      </figure>
       {% endfor %}{% endif %}{% endfor %}
     </div>
     {% endfor %}

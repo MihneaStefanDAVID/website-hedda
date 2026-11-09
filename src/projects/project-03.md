@@ -17,41 +17,41 @@ body_de: >-
   <p>Aus dieser Recherche entstand unser Vorschlag, die beiden R&auml;ume zusammen zu sehen. <em>Das dritte Modell</em>, eine &laquo;kombinierte Ecke&raquo;, wird von einer Axonometrie begleitet, die sich allein auf die Atmosph&auml;re konzentriert, die jede Bar durch architektonische Elemente erzeugt: Licht, Materialien, Farben, Ausblicke und Bewegung. Dreht man sie um, verschiebt sich die Perspektive in der Mitte, und es zeigen sich zwei verschiedene Arten, denselben Raum zu sehen. Durch die offenen T&uuml;ren des Kleinen Caf&eacute;s f&uuml;hlt man sich sofort willkommen. Doch im schr&auml;gen Spiegel erkennt man einen dunkleren, verschlosseneren Raum, den man sehen, aber nicht erreichen kann: die Kronenhalle Bar, ein Ort f&uuml;r die Oberschicht oder f&uuml;r Stammg&auml;ste, die wissen, wie man hineinkommt und was sich hinter den W&auml;nden verbirgt.</p>
 gallery:
   - photos:
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-16.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-17.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-18.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-16.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-17.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-18.jpg
     size: full
     align: null
   - photos:
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-19.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-20.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-21.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-19.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-20.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_process-21.jpg
   - size: medium
     align: center
     photos:
-      - /assets/uploads/whatsapp-image-2025-09-30-at-14.05.02.jpeg
-      - /assets/uploads/img_1077.jpeg
+      - image: /assets/uploads/whatsapp-image-2025-09-30-at-14.05.02.jpeg
+      - image: /assets/uploads/img_1077.jpeg
   - size: full
     align: center
     photos:
-      - /assets/uploads/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
-      - /assets/uploads/02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
+      - image: /assets/uploads/01_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
+      - image: /assets/uploads/02_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/1m2a8487.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_model_02.jpg
-      - /assets/uploads/1m2a8481.jpg
+      - image: /assets/uploads/1m2a8487.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_model_02.jpg
+      - image: /assets/uploads/1m2a8481.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_03_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
-      - /assets/uploads/2025_03_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti-copy.jpg
+      - image: /assets/uploads/2025_03_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti.jpg
+      - image: /assets/uploads/2025_03_c1_b1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/1m2a8482.jpg
-      - /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_model_03.2.jpg
+      - image: /assets/uploads/1m2a8482.jpg
+      - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_model_03.2.jpg
 ---
 <p>Change always comes with adaptation. <strong>Should people adapt or should places adapt?</strong></p>
 <p>We asked ourselves this while analyzing <strong>two corners</strong>: <em>Kleines Caf&eacute;</em> by Hermann Czech in Vienna and <em>Kronenhalle Bar</em> by Trix and Robert Haussmann in Zurich. Both took their initial inspiration from <em>Adolf Loos's American Bar</em>, yet the outcome could hardly be more different. The <em>Kronenhalle Bar</em> appears unchanged, a place frozen in 1965, yet it evolved from a gathering place for everyone into an exclusive and luxurious venue. <em>Kleines Caf&eacute;</em>, by contrast, grew in an iterative, bottom-up manner, conveying a sense of improvisation and even chaos, adapting with time.</p>

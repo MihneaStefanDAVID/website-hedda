@@ -22,31 +22,31 @@ body_de: >-
   <p>All das geschieht, ohne dass das Badmintonspiel unterbrochen wird.</p>
 gallery:
   - photos:
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-01.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-03.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-04.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-01.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-03.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_process-04.jpg
   - size: large
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_drawings-05.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_drawings-05.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-01.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-02.jpg
-      - /assets/uploads/white.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-01.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-02.jpg
+      - image: /assets/uploads/white.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-03.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-04.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-05.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-03.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-04.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-05.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-06.jpg
-      - /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-07.jpg
-      - /assets/uploads/white.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-06.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c2-_hedda-oprea_moment-07.jpg
+      - image: /assets/uploads/white.pdf
 ---
 <p><strong>Why was the kitchen a place only for women, yet standardized to a man's body? </strong>Why does every household cook alone?</p>
 <p><em>Domesticity was seen as a female trait for a long time.</em></p>

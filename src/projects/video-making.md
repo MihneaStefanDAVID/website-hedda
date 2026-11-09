@@ -14,19 +14,19 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/hs23_ast_hedda_oprea_artwork-copy.mp4
+      - image: /assets/uploads/hs23_ast_hedda_oprea_artwork-copy.mp4
   - size: full
     align: center
     photos:
-      - /assets/uploads/00_kunsthaus-copy.mp4
+      - image: /assets/uploads/00_kunsthaus-copy.mp4
   - size: full
     align: center
     photos:
-      - /assets/uploads/540be4a5-d645-4b3c-8bd3-7b3a24b2958f.mp4
+      - image: /assets/uploads/540be4a5-d645-4b3c-8bd3-7b3a24b2958f.mp4
   - size: full
     align: center
     photos:
-      - /assets/uploads/05_proiect.mp4
+      - image: /assets/uploads/05_proiect.mp4
 ---
 <div>Filming is how I look at space when I am not drawing it.</div>
 <div>Some of these videos started in a course, others simply in my free time: the daily train ride home, a hidden courtyard in Zurich, people moving through the Kunsthaus, small moments with the people around me.</div>

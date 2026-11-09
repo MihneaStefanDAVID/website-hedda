@@ -2,6 +2,7 @@
   --ink: #171717;
   --line: #dedede;
   --paper: #fff;
+  --link: #1f45c9;
 
   /* Scroll scene length — see script.js CONFIG for the matching timeline. */
   --scene-height: 300vh;
@@ -225,8 +226,11 @@ a {
     padding: clamp(90px, 16vh, 130px) clamp(14px, 4vw, 24px) var(--grid-gap);
   }
 
+  /* Without this, the padding above that leaves room for the header in
+     the first grid also lands between it and this one: a gap on phones. */
   .project-grid--static {
     grid-template-rows: repeat(4, auto);
+    padding-top: 0;
   }
 }
 
@@ -430,6 +434,20 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   font-weight: 600;
 }
 
+/* Links in the text: blue and underlined, so they read as links. */
+.project-content a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: opacity 0.2s ease;
+}
+
+.project-content a:hover,
+.project-content a:focus-visible {
+  opacity: 0.65;
+}
+
 .project-content img {
   display: block;
   max-width: 100%;
@@ -473,13 +491,48 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   margin-left: auto;
 }
 
+.project-gallery__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* "Click" with a mouse, "Tap" on a touch screen. */
+.hint-tap {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hint-click {
+    display: none;
+  }
+
+  .hint-tap {
+    display: inline;
+  }
+}
+
 /* Equal widths until each photo loads; script.js then sets flex-grow to
    the photo's aspect ratio (x100, matching the 100 here) so every photo
-   in a row gets the same height without cropping. */
-.project-gallery__item {
-  display: block;
+   in a row gets the same height without cropping. A caption, if any,
+   sits under its photo. */
+.project-gallery__cell {
   flex: 100 1 0;
   min-width: 0;
+  margin: 0;
+}
+
+.project-gallery__caption {
+  margin-top: 0.5em;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.project-gallery__item {
+  display: block;
+  width: 100%;
   padding: 0;
   border: 0;
   background: none;
@@ -567,15 +620,15 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   object-fit: contain;
 }
 
-/* With more than one item, the cursor becomes a thin arrow pointing the
+/* With more than one item, the cursor becomes a thin chevron pointing the
    way a click goes: left half = previous, right half = next. A white
    halo under the dark stroke keeps it visible over dark photos. */
 .lightbox--multi {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 20h28M24 10l10 10-10 10' stroke='white' stroke-width='4'/%3E%3Cpath d='M6 20h28M24 10l10 10-10 10' stroke='%23171717' stroke-width='1.5'/%3E%3C/svg%3E") 20 20, e-resize;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 6l12 14-12 14' stroke='white' stroke-width='3.5'/%3E%3Cpath d='M15 6l12 14-12 14' stroke='%23171717' stroke-width='1'/%3E%3C/svg%3E") 20 20, e-resize;
 }
 
 .lightbox--multi.lightbox--prev {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='white' stroke-width='4'/%3E%3Cpath d='M34 20H6M16 10L6 20l10 10' stroke='%23171717' stroke-width='1.5'/%3E%3C/svg%3E") 20 20, w-resize;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M25 6L13 20l12 14' stroke='white' stroke-width='3.5'/%3E%3Cpath d='M25 6L13 20l12 14' stroke='%23171717' stroke-width='1'/%3E%3C/svg%3E") 20 20, w-resize;
 }
 
 /* Zooming scales the photo from its top-left corner (script.js keeps
@@ -598,6 +651,30 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
 /* A video keeps the normal cursor so its controls are usable. */
 .lightbox video {
   cursor: auto;
+}
+
+.lightbox__caption {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  width: max-content;
+  max-width: min(40rem, calc(100vw - 3rem));
+  margin: 0;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line;
+  pointer-events: none;
+}
+
+.lightbox:not(.lightbox--captioned) .lightbox__caption {
+  display: none;
+}
+
+/* Room under the photo for its caption. */
+.lightbox--captioned {
+  padding-bottom: 4.5rem;
 }
 
 .lightbox__close {

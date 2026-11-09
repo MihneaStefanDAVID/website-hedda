@@ -195,6 +195,15 @@
         if (!conversion.isValid) {
           throw new Error("This browser can't read this video. Try Chrome, or export it as an MP4 (H.264) first.");
         }
+        // A picture the browser can't decode (e.g. ProRes) is dropped while
+        // the sound converts fine, which would upload a film with no picture.
+        var lostPicture = conversion.discardedTracks.find(function (discarded) {
+          return discarded.track.isVideoTrack();
+        });
+        if (lostPicture) {
+          var codec = (await lostPicture.track.getCodec()) || "unknown format";
+          throw new Error("This browser can't read the picture of this video (" + codec + "). Export it as an MP4 (H.264) and add it again.");
+        }
         conversion.onProgress = function (progress) {
           job.progress.value = progress;
         };
@@ -382,15 +391,26 @@
                 h(
                   "div",
                   { className: "project-gallery" },
+                  gallery.length > 0 &&
+                    h("p", { className: "project-gallery__hint" }, "Click an image to see it in detail"),
                   gallery.map(function (row, r) {
-                    var items = ((row && row.photos) || []).filter(Boolean);
+                    // { image, caption, caption_de }, or just the path in
+                    // projects saved before captions existed.
+                    var items = ((row && row.photos) || [])
+                      .map(function (photo) {
+                        return photo && typeof photo === "object" ? photo : { image: photo };
+                      })
+                      .filter(function (photo) {
+                        return photo.image;
+                      });
                     var rowClass =
                       "project-gallery__row project-gallery__row--" + ((row && row.size) || "full") +
                       " project-gallery__row--align-" + ((row && row.align) || "center");
                     return h(
                       "div",
                       { className: rowClass, key: r },
-                      items.map(function (path, i) {
+                      items.map(function (photo, i) {
+                        var path = photo.image;
                         var asset = props.getAsset(path);
                         var unpublished = mediaFiles.find(function (file) {
                           return file.draft && file.name === path.split("/").pop();
@@ -401,12 +421,26 @@
                           var el = event.target;
                           var w = el.videoWidth || el.naturalWidth;
                           var ht = el.videoHeight || el.naturalHeight;
-                          if (w && ht) el.parentNode.style.flexGrow = String((w / ht) * 100);
+                          if (w && ht) el.closest(".project-gallery__cell").style.flexGrow = String((w / ht) * 100);
                         };
                         var media = /\.(mp4|webm|mov|m4v)$/i.test(path)
                           ? h("video", { src: src, autoPlay: true, muted: true, loop: true, playsInline: true, onLoadedMetadata: fit })
                           : h("img", { src: src, alt: "", onLoad: fit });
-                        return h("span", { className: "project-gallery__item", key: i }, media);
+                        // Both captions, like the text, so each can be checked.
+                        var captions = [photo.caption, photo.caption_de].filter(Boolean);
+                        return h(
+                          "figure",
+                          { className: "project-gallery__cell", key: i },
+                          h("span", { className: "project-gallery__item" }, media),
+                          captions.length > 0 &&
+                            h(
+                              "figcaption",
+                              { className: "project-gallery__caption" },
+                              captions.map(function (text, c) {
+                                return h("span", { key: c, style: { display: "block", opacity: c ? 0.5 : 1 } }, text);
+                              })
+                            )
+                        );
                       })
                     );
                   })

@@ -7,25 +7,25 @@ supervision: ""
 semester: ""
 gallery:
   - photos:
-      - /assets/uploads/07.jpg
-      - /assets/uploads/06.jpg
+      - image: /assets/uploads/07.jpg
+      - image: /assets/uploads/06.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/02.png
-      - /assets/uploads/05.jpg
+      - image: /assets/uploads/02.png
+      - image: /assets/uploads/05.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/01.pdf
-      - /assets/uploads/04.png
+      - image: /assets/uploads/01.pdf
+      - image: /assets/uploads/04.png
   - size: full
     align: center
     photos:
-      - /assets/uploads/03.png
+      - image: /assets/uploads/03.png
   - size: medium
     align: center
     photos:
-      - /assets/uploads/axo.jpg
+      - image: /assets/uploads/axo.jpg
 ---
 <p>Placeholder description for Project Twelve. Replace this from the admin panel.</p>

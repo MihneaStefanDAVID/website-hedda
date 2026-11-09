@@ -32,36 +32,36 @@ gallery:
   - size: large
     align: center
     photos:
-      - /assets/uploads/screenshot-2026-11-08-at-19.24.22.png
+      - image: /assets/uploads/screenshot-2026-11-08-at-19.24.22.png
   - size: full
     align: center
     photos:
-      - /assets/uploads/invs16_w05_hedda_duru_section.pdf
+      - image: /assets/uploads/invs16_w05_hedda_duru_section.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/inves16_atlas-w04-_01.jpg
-      - /assets/uploads/inves16_atlas-w04-copy.jpg
+      - image: /assets/uploads/inves16_atlas-w04-_01.jpg
+      - image: /assets/uploads/inves16_atlas-w04-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/invs16_w05_hedda_duru_picture-01-copy.jpg
-      - /assets/uploads/plot1-dragged-.jpg
-      - /assets/uploads/plot1-dragged-2.jpg
+      - image: /assets/uploads/invs16_w05_hedda_duru_picture-01-copy.jpg
+      - image: /assets/uploads/plot1-dragged-.jpg
+      - image: /assets/uploads/plot1-dragged-2.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/1.jpg
-      - /assets/uploads/2.jpg
-      - /assets/uploads/3.jpg
+      - image: /assets/uploads/1.jpg
+      - image: /assets/uploads/2.jpg
+      - image: /assets/uploads/3.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/inves16_w05_hedda_duru_video.mp4
+      - image: /assets/uploads/inves16_w05_hedda_duru_video.mp4
   - size: full
     align: center
     photos:
-      - /assets/uploads/invs16_w05_hedda_duru_diagramm.jpg
+      - image: /assets/uploads/invs16_w05_hedda_duru_diagramm.jpg
 ---
 <p class="p1"><span class="s1">As the first phase of an <em>ongoing project</em>, we started with the question:<br><strong>When does light become safety light?</strong></span></p>
 <p class="p1"><span class="s1">Our site in Schlieren holds the warehouses of the food distributor Transgourmet: storage on one side, offices on the other, and a steel car park connecting them, with truck dispatch and maintenance on the ground floor. The building is strongly divided by actors and scale. On the ground floor everything is <strong>truck-sized</strong>, with no sidewalks or lights for pedestrians, and only higher up does it become human-sized again.&nbsp;</span></p>

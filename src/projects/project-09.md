@@ -17,30 +17,30 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/booklet.mp4
+      - image: /assets/uploads/booklet.mp4
   - photos:
-      - /assets/uploads/out-of-service__flyer_digital-dragged-.pdf
-      - /assets/uploads/out-of-service__flyer_digital-dragged-2.pdf
+      - image: /assets/uploads/out-of-service__flyer_digital-dragged-.pdf
+      - image: /assets/uploads/out-of-service__flyer_digital-dragged-2.pdf
     size: large
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00255.jpg
-      - /assets/uploads/dsc00599.jpeg
+      - image: /assets/uploads/dsc00255.jpg
+      - image: /assets/uploads/dsc00599.jpeg
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00527-copy.jpg
-      - /assets/uploads/dsc00405.jpg
+      - image: /assets/uploads/dsc00527-copy.jpg
+      - image: /assets/uploads/dsc00405.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00276-copy.jpg
+      - image: /assets/uploads/dsc00276-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/img_9562.jpeg
-      - /assets/uploads/img_9567.jpeg
+      - image: /assets/uploads/img_9562.jpeg
+      - image: /assets/uploads/img_9567.jpeg
 ---
 <p class="p1"><span class="s1"><strong>What remains of a monastery when the community that fills it with life disappears?</strong></span></p>
 <p class="p1"><span class="s1">In March 2026, we spent a seminar week at the Dominican convent in Ilanz, living with the sisters, sharing their meals and following the rhythm of their daily life. Once at the center of the region's schools and hospitals, with almost 500 sisters, the community is now growing older, and with no new members joining, only about 60 sisters remain. The convent is understood not as a static monument, but as <strong>a lived place in transformation.</strong></span></p>

@@ -16,55 +16,55 @@ body_de: >-
   <p>Auch wenn man sich selbst so gut kennt, entstehen Konflikte, und man muss eine Balance finden, um mit ihnen zu koexistieren. <strong>F&uuml;reinander sorgen und auf sich selbst achten</strong> steht im Zentrum unseres Konzepts: Man muss so handeln, dass man pr&auml;sent ist und die anderen wahrnimmt. <strong>Wie endet es, und was ist es wert, bewahrt zu werden?</strong> Manchmal bleiben nur ein paar Erinnerungen, deshalb haben wir zum Abschluss eine kleine Sammlung unserer Momente und Konflikte in diesem Fragment zusammengestellt.</p>
 gallery:
   - photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-02.jpg
-      - /assets/uploads/proc-1.jpg
-      - /assets/uploads/process-3.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_question-02.jpg
+      - image: /assets/uploads/proc-1.jpg
+      - image: /assets/uploads/process-3.jpg
     size: full
     align: center
   - size: full
     align: center
     photos:
-      - /assets/uploads/33.jpg
+      - image: /assets/uploads/33.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/plan_1.jpg
+      - image: /assets/uploads/plan_1.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-03.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-03.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-05-copy.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-04-copy.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-05-copy.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-02-copy.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-04-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/mom-1.jpg
-      - /assets/uploads/mom-4.jpg
-      - /assets/uploads/mom-2.jpg
+      - image: /assets/uploads/mom-1.jpg
+      - image: /assets/uploads/mom-4.jpg
+      - image: /assets/uploads/mom-2.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/cons-1-.jpg
-      - /assets/uploads/conss-2.jpg
-      - /assets/uploads/conss-3.jpg
+      - image: /assets/uploads/cons-1-.jpg
+      - image: /assets/uploads/conss-2.jpg
+      - image: /assets/uploads/conss-3.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/mom-3.jpg
-      - /assets/uploads/mom-5.jpg
-      - /assets/uploads/mom-6.jpg
+      - image: /assets/uploads/mom-3.jpg
+      - image: /assets/uploads/mom-5.jpg
+      - image: /assets/uploads/mom-6.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-01-copy.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike_model-picture-01-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-memory-game-copy.jpg
+      - image: /assets/uploads/2025_hs_bachelor_c3__brigger_lucca_lötscher_olivia_oprea_hedda__sonderegger_mike-memory-game-copy.jpg
 ---
 <p><strong>Do we live a house or do we house a life?&nbsp;</strong></p>
 <p>Living together always comes with conflicts, even if it means just living with yourself. <strong>Can you be your own family?</strong> The question of what makes a family, where it starts and where it ends, led us to the actors of our project: <em>the ITSELF</em>. Four characters, one person living with themselves at different ages, but at the same time: a kid, a young adult, an adult and a ghost. Imagine living with yourself: <strong>would there be more conflicts or less, would you need more privacy or less?</strong></p>

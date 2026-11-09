@@ -19,92 +19,92 @@ gallery:
   - size: full
     align: center
     photos:
-      - /assets/uploads/screenshot-2026-11-01-at-19.29.32.png
+      - image: /assets/uploads/screenshot-2026-11-01-at-19.29.32.png
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c1_naemi-celio_hedda-oprea_maria-pop_adria-pozo_process-22-copy.jpg
-      - /assets/uploads/2026_fs_bachelor_c1_naemi-celio_hedda-oprea_maria-pop_adria-pozo_process-21-copy.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c1_naemi-celio_hedda-oprea_maria-pop_adria-pozo_process-22-copy.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c1_naemi-celio_hedda-oprea_maria-pop_adria-pozo_process-21-copy.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-09.pdf
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-10.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-09.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-10.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-02.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-02.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-03.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-03.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-04.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-04.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-06.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-06.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/moment-1.jpg
-      - /assets/uploads/white.pdf
-      - /assets/uploads/moment-5.jpg
+      - image: /assets/uploads/moment-1.jpg
+      - image: /assets/uploads/white.pdf
+      - image: /assets/uploads/moment-5.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-02.jpg
-      - /assets/uploads/white.pdf
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-06.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-02.jpg
+      - image: /assets/uploads/white.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-06.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/moment-3.jpg
-      - /assets/uploads/white.pdf
-      - /assets/uploads/moment-7.jpg
+      - image: /assets/uploads/moment-3.jpg
+      - image: /assets/uploads/white.pdf
+      - image: /assets/uploads/moment-7.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/moment-4.jpg
-      - /assets/uploads/white.pdf
-      - /assets/uploads/moment-8.jpg
+      - image: /assets/uploads/moment-4.jpg
+      - image: /assets/uploads/white.pdf
+      - image: /assets/uploads/moment-8.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-07.pdf
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-08.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-07.pdf
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_plans-08.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-09.jpg
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-10.jpg
-      - /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-11.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-09.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-10.jpg
+      - image: /assets/uploads/2026_fs_bachelor_c3_celio-naemi_oprea-hedda_pop-maria_pozo-adria_moments-11.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/cons-1.jpg
-      - /assets/uploads/cons-2.jpg
+      - image: /assets/uploads/cons-1.jpg
+      - image: /assets/uploads/cons-2.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/3.pdf
-      - /assets/uploads/4.pdf
+      - image: /assets/uploads/3.pdf
+      - image: /assets/uploads/4.pdf
   - size: full
     align: center
     photos:
-      - /assets/uploads/cons-3.jpg
-      - /assets/uploads/cons-4.jpg
+      - image: /assets/uploads/cons-3.jpg
+      - image: /assets/uploads/cons-4.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00198.jpg
-      - /assets/uploads/dsc00199.jpg
+      - image: /assets/uploads/dsc00198.jpg
+      - image: /assets/uploads/dsc00199.jpg
   - size: full
     align: center
     photos:
-      - /assets/uploads/dsc00305.jpg
+      - image: /assets/uploads/dsc00305.jpg
 ---
 <p>33.33% of an existing building is transformed TO LIVE, while the remaining 66.66% keep their ACTIVITIES.<span class="Apple-converted-space">&nbsp;</span></p>
 <p><em>The Pitched Roof</em> on Steinackerstrasse 2, is almost the only building in the area that looks domestic, almost like a "Swiss home&rdquo;. It shelters two recycling centers and a bike shop with badminton courts. In our proposal, we kept the recycling part, as it functions as one whole machine, and intervened in the bike shop.<span class="Apple-converted-space">&nbsp;</span></p>

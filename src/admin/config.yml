@@ -107,7 +107,19 @@ collections:
             max: 4
             collapsed: false
             hint: "Photos (JPG, PNG), GIFs or videos (MP4). JPEG 2000 (.jp2) and TIFF also work: they are converted to JPG automatically a minute or two after publishing (reload the page to see them). PDFs work too and stay vector, so drawings are sharp at any zoom: each page appears as its own image in this row, a minute or two after publishing. HEIC is not supported, export as JPG first. Videos (MP4, MOV, WebM) can be any size: they are compressed automatically when you add them, which takes a moment for long ones, and they play silently on a loop, like a GIF. GIFs must be under 25 MB, for bigger ones use a video."
-            field: { label: "Photo or video", name: "image", widget: "file" }
+            summary: "{{fields.image}}"
+            fields:
+              - { label: "Photo or video", name: "image", widget: "file" }
+              - label: "Caption (English)"
+                name: "caption"
+                widget: "text"
+                required: false
+                hint: "Optional. Shown under the photo and when it is enlarged."
+              - label: "Caption (German)"
+                name: "caption_de"
+                widget: "text"
+                required: false
+                hint: "Optional. Shown instead when a visitor switches to DE. If left empty, the English caption is shown."
           - label: "Row size"
             name: "size"
             widget: "select"
