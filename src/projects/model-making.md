@@ -9,6 +9,8 @@ gallery:
     align: center
     photos:
       - image: /assets/uploads/img_1598-2.jpg
+        caption: sasasasasasasasasasasasasasasaaasasasasasaksaksakskaskakskaskaskaksaksakskaskaksakskaskaskaskkskaskaksaksak
+        caption_de: zdsdsdssdsdsdsdsdsdsdsdsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsds
       - image: /assets/uploads/img_1567-2.jpg
   - size: full
     align: center
