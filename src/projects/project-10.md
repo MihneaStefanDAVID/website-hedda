@@ -25,10 +25,6 @@ gallery:
   - size: full
     align: center
     photos:
-      - image: /assets/uploads/nineta.mp4
-  - size: full
-    align: center
-    photos:
       - image: /assets/uploads/class_matters-copy-dragged-4.png
   - size: full
     align: center
@@ -38,10 +34,6 @@ gallery:
     align: center
     photos:
       - image: /assets/uploads/class_matters-copy-dragged-7.png
-  - size: full
-    align: center
-    photos:
-      - image: /assets/uploads/tataie.mp4
   - size: full
     align: center
     photos:
