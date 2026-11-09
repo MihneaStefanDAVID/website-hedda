@@ -118,14 +118,38 @@ def pdf_pages(pdf: Path) -> list[str]:
     return urls
 
 
-def web_versions(upload: Path, old: dict | None, converted: set[str]) -> dict:
+def version_name(upload_name: str) -> str:
+    """The file name of a photo's web and zoom versions."""
+    stem, ext = Path(upload_name).stem, Path(upload_name).suffix.lower()
+    # Keep "plan.png" and "plan.jpg" apart.
+    return jpg_name(upload_name if ext in (".jpg", ".jpeg") else f"{stem}-{ext[1:]}.x")
+
+
+def unique_names(keys: list[str]) -> dict[str, str]:
+    """Map each upload to its version name, never giving two the same.
+
+    Simplifying names can make two uploads meet ("cons-1-.jpg" and
+    "cons-1.jpg" both give "cons-1.jpg"), and one would then show the
+    other's photo. All but an upload already named that way get a suffix.
+    """
+    claims: dict[str, list[str]] = {}
+    for key in keys:
+        claims.setdefault(version_name(key), []).append(key)
+    names = {}
+    for name, owners in claims.items():
+        for key in owners:
+            if len(owners) > 1 and key != name:
+                names[key] = f"{name[:-4]}-{hashlib.sha1(key.encode()).hexdigest()[:6]}.jpg"
+            else:
+                names[key] = name
+    return names
+
+
+def web_versions(upload: Path, name: str, old: dict | None, converted: set[str]) -> dict:
     """Make the web (and if needed zoom) version of a photo; return the index entry."""
     digest = hashlib.sha1(upload.read_bytes()).hexdigest()
-    if old and old.get("sha1") == digest:
+    if old and old.get("sha1") == digest and old.get("web") in (None, f"/assets/web/{name}"):
         return old
-    stem, ext = upload.stem, upload.suffix.lower()
-    # Keep "plan.png" and "plan.jpg" apart.
-    name = jpg_name(upload.name if ext in (".jpg", ".jpeg") else f"{stem}-{ext[1:]}.x")
     entry = {"sha1": digest}
     with Image.open(upload) as im:
         long_side = max(im.size)
@@ -174,22 +198,23 @@ def main() -> None:
     PDF_INDEX.write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     media = json.loads(MEDIA_INDEX.read_text()) if MEDIA_INDEX.exists() else {}
-    present = set()
-    for upload in sorted(UPLOADS.iterdir()):
-        if upload.suffix.lower() in PHOTOS:
-            key = unicodedata.normalize("NFC", upload.name)
-            present.add(key)
-            try:
-                media[key] = web_versions(upload, media.get(key), converted)
-            except Exception as error:  # a broken upload must not stop the rest
-                print(f"skipped {upload.name}: {error}")
-                media.pop(key, None)
-    # Drop the versions of deleted uploads.
-    for key in set(media) - present:
-        for url in (media[key].get("web"), media[key].get("zoom")):
-            if url and url.startswith(("/assets/web/", "/assets/zoom/")):
-                (Path("src") / url.lstrip("/")).unlink(missing_ok=True)
-        del media[key]
+    before = {url for entry in media.values() for url in (entry.get("web"), entry.get("zoom")) if url}
+    photos = [upload for upload in sorted(UPLOADS.iterdir()) if upload.suffix.lower() in PHOTOS]
+    keys = {upload: unicodedata.normalize("NFC", upload.name) for upload in photos}
+    names = unique_names(list(keys.values()))
+    for upload, key in keys.items():
+        try:
+            media[key] = web_versions(upload, names[key], media.get(key), converted)
+        except Exception as error:  # a broken upload must not stop the rest
+            print(f"skipped {upload.name}: {error}")
+            media.pop(key, None)
+    for key in set(media) - set(keys.values()):
+        del media[key]  # deleted in the CMS
+    # Drop versions nothing uses any more: of deleted uploads, or renamed.
+    used = {url for entry in media.values() for url in (entry.get("web"), entry.get("zoom")) if url}
+    for url in before - used:
+        if url.startswith(("/assets/web/", "/assets/zoom/")):
+            (Path("src") / url.lstrip("/")).unlink(missing_ok=True)
     MEDIA_INDEX.write_text(json.dumps(dict(sorted(media.items())), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # Point projects at the JPGs. Also catches a project saved later from a
