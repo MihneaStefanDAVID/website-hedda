@@ -10,7 +10,8 @@ includeScript: true
   Clicking an item opens it enlarged in the lightbox.
 
   Page type "Images only" (page_type: images, chosen in the CMS) drops the
-  text column: a bar with "go back" and the title, then the photos across
+  text column: a bar with "go back", the title and EN/DE (for the
+  captions), then the photos across
   the whole width.
 -->
 {% set imagesOnly = page_type == "images" %}
@@ -19,6 +20,11 @@ includeScript: true
   <div class="project-topbar">
     <a href="/" class="project-header__back"><span class="lang-en">go back</span><span class="lang-de">zurück</span></a>
     <h1 class="project-topbar__title">{{ title }}</h1>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en">EN</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-set-lang="de" lang="de">DE</button>
+    </div>
   </div>
   {% else %}
   <div class="project-text">
@@ -67,8 +73,8 @@ includeScript: true
     {% if gallery and gallery.length %}
     <!-- Visitors rarely expect photos to open; a quiet line says so. -->
     <p class="project-gallery__hint">
-      <span class="lang-en"><span class="hint-click">Click</span><span class="hint-tap">Tap</span> an image to see it in detail</span>
-      <span class="lang-de">Für Details auf ein Bild <span class="hint-click">klicken</span><span class="hint-tap">tippen</span></span>
+      <span class="lang-en"><span class="hint-click">click</span><span class="hint-tap">tap</span> the content to see details</span>
+      <span class="lang-de">für Details auf den Inhalt <span class="hint-click">klicken</span><span class="hint-tap">tippen</span></span>
     </p>
     {% endif %}
     {% for row in gallery %}

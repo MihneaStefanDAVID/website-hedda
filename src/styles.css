@@ -557,11 +557,13 @@ html[data-lang="de"] .lang-switch [data-set-lang="de"] {
   margin-left: 0;
 }
 
+/* Between "go back" and EN/DE. */
 .project-topbar__title {
+  flex: 1;
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
-  text-align: right;
+  text-align: center;
 }
 
 @media (max-width: 720px) {

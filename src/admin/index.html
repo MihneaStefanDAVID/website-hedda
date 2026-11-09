@@ -330,7 +330,8 @@
                 "div",
                 { className: "project-topbar" },
                 h("span", { className: "project-header__back" }, "go back"),
-                h("h1", { className: "project-topbar__title" }, title)
+                h("h1", { className: "project-topbar__title" }, title),
+                h("span", { className: "lang-switch" }, "EN / DE")
               )
             : h(
                 "div",
@@ -392,7 +393,7 @@
                   "div",
                   { className: "project-gallery" },
                   gallery.length > 0 &&
-                    h("p", { className: "project-gallery__hint" }, "Click an image to see it in detail"),
+                    h("p", { className: "project-gallery__hint" }, "click the content to see details"),
                   gallery.map(function (row, r) {
                     // { image, caption, caption_de }, or just the path in
                     // projects saved before captions existed.
