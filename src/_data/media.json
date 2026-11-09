@@ -566,6 +566,16 @@
     "web": "/assets/web/inves16_atlas-w04-copy.jpg",
     "zoom": "/assets/uploads/inves16_atlas-w04-copy.jpg"
   },
+  "invs16_w05_hedda_duru_diagramm.jpg": {
+    "sha1": "7d22969b4e7e8a3daf74ea4b8d6f72b48c2c8199",
+    "web": "/assets/web/invs16_w05_hedda_duru_diagramm.jpg",
+    "zoom": "/assets/zoom/invs16_w05_hedda_duru_diagramm.jpg"
+  },
+  "invs16_w05_hedda_duru_picture-01-copy.jpg": {
+    "sha1": "bc6491d9b360a5f2baded9fc6a923cc64b75186c",
+    "web": "/assets/web/invs16_w05_hedda_duru_picture-01-copy.jpg",
+    "zoom": "/assets/uploads/invs16_w05_hedda_duru_picture-01-copy.jpg"
+  },
   "mom-1.jpg": {
     "sha1": "d43599906aecb5bc45b366f6bd54dce43d0af432",
     "web": "/assets/web/mom-1.jpg",
@@ -635,6 +645,16 @@
     "sha1": "09015e2479c76a6679b1c1ae1ed88e2bca12e1ba",
     "web": "/assets/web/plan_1.jpg",
     "zoom": "/assets/zoom/plan_1.jpg"
+  },
+  "plot1-dragged-.jpg": {
+    "sha1": "59245c085549b678632c81c3c3c1efa7b582d176",
+    "web": "/assets/web/plot1-dragged.jpg",
+    "zoom": "/assets/uploads/plot1-dragged-.jpg"
+  },
+  "plot1-dragged-2.jpg": {
+    "sha1": "7758f7e8c39bb17afdf91c335b34df3bd49914aa",
+    "web": "/assets/web/plot1-dragged-2.jpg",
+    "zoom": "/assets/uploads/plot1-dragged-2.jpg"
   },
   "proc-1.jpg": {
     "sha1": "2a58421a40a4ca236cade4858b4aefac9abe60c5",
