@@ -32,4 +32,11 @@ gallery:
         caption: Cardboard & Paper Model, 2025
         caption_de: Karton & Papier Modell, 2025
       - image: /assets/uploads/2025_bachelor_c1_naemi_celio_nico_frank_hedda_oprea_nico_toneatti_model_01.4.jpg
+  - size: full
+    align: center
+    photos:
+      - image: /assets/uploads/vic06827-copy.jpg
+        caption: Concrete & Wood Model, 2025
+        caption_de: Beton & Holz Modell, 2025
+      - image: /assets/uploads/vic06861-copy.jpg
 ---
