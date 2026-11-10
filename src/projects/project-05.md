@@ -89,11 +89,6 @@ gallery:
   - size: full
     align: center
     photos:
-      - image: /assets/uploads/3.pdf
-      - image: /assets/uploads/4.pdf
-  - size: full
-    align: center
-    photos:
       - image: /assets/uploads/cons-3.jpg
       - image: /assets/uploads/cons-4.jpg
   - size: full
