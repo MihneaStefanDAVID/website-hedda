@@ -1,7 +1,7 @@
 ---
 page_type: text
 title: Borrowed Boundary
-order: 6
+order: 8
 cover: /assets/uploads/fragy.jpg
 supervision: "Prof. Alexandre Theriot "
 semester: HS26
